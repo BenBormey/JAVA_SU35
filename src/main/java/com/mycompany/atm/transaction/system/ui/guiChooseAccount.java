@@ -15,10 +15,10 @@ public class guiChooseAccount extends javax.swing.JFrame {
     /**
      * Creates new form guiChooseAccount
      */
-    
+
     private int currentUserId;
     private double withdrawAmount;
-    
+
     public guiChooseAccount(int userid , double amount) {
         initComponents();
           this.currentUserId = userid;
@@ -180,16 +180,16 @@ public class guiChooseAccount extends javax.swing.JFrame {
         if (cboAccount.getSelectedItem() == null) {
         JOptionPane.showMessageDialog(this, "Please choose account.");
         return;
-    } 
-     
+    }
+
 String item = cboAccount.getSelectedItem().toString();
 
 String[] mainParts = item.split(" - ");
 
-String accountNo = mainParts[0];   
+String accountNo = mainParts[0];
 
-String accountType = mainParts[1];    
- 
+String accountType = mainParts[1];
+
 
 
     String sqlLoad = """
@@ -210,11 +210,32 @@ String accountType = mainParts[1];
     this.iskh  = (boolean)row.get("isKh");
     String symbol = this.iskh  ? "៛" : "$";
 
-    long accountId = Long.parseLong(row.get("ID").toString());       
+    long accountId = Long.parseLong(row.get("ID").toString());
+ 
+    
+    String sqlLoadCurrency = """
+    SELECT id, from_code, to_code, rate
+    FROM public.currency_rate
+    WHERE from_code = 'USD'
+    ORDER BY effective_at DESC
+    LIMIT 1
+""";
+
+var listCurrency = DBHelper.getValues(sqlLoadCurrency);
+
+double rateUsd = 0;
+
+if (!listCurrency.isEmpty()) {
+    var rowCurrency = listCurrency.get(0);   
+    rateUsd = ((Number) rowCurrency.get("rate")).doubleValue();
+}
+  
+
+
    // String accountNo = row.get("AccountNo").toString();
  double withdrawAmountriel = 0;
    if(this.iskh){
-       withdrawAmountriel = withdrawAmount *4100;
+       withdrawAmountriel = withdrawAmount *rateUsd;
        if (withdrawAmountriel > balance) {
            JOptionPane.showMessageDialog(this, "Insufficient balance!");
            return;
@@ -227,7 +248,7 @@ String accountType = mainParts[1];
         JOptionPane.showMessageDialog(this, "Insufficient balance!");
         return;
     }
-    
+
 
     double newBalance = balance - withdrawAmount;
 
@@ -277,7 +298,7 @@ String accountType = mainParts[1];
             main.setLocationRelativeTo(null);
             main.setVisible(true);
 
-            this.dispose(); 
+            this.dispose();
     }
     catch (Exception ex) {
         try {
@@ -311,7 +332,7 @@ String accountType = mainParts[1];
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
