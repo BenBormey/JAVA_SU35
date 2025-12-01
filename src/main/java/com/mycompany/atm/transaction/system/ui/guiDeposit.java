@@ -186,7 +186,11 @@ public class guiDeposit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGetCash1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCash1ActionPerformed
-        this.dispose();        // TODO add your handling code here:
+       MainForm main = new MainForm(this.currentUserId);
+            main.setLocationRelativeTo(null);
+            main.setVisible(true);
+
+            this.dispose();   
     }//GEN-LAST:event_btnGetCash1ActionPerformed
 
     private void btnGetCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCashActionPerformed

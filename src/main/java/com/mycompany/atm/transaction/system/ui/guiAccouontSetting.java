@@ -6,23 +6,15 @@ package com.mycompany.atm.transaction.system.ui;
 
 /**
  *
- * @author USER
+ * @author HQ
  */
-public class guiPayment extends javax.swing.JFrame {
-    
-    private int userid;
-    /**
-     * Creates new form guiPayment
-     */
-    public guiPayment() {
-    
-    }
-  
+public class guiAccouontSetting extends javax.swing.JFrame {
 
-    guiPayment(int currentUserId) {
-         initComponents();
-         this.userid = currentUserId;
-       
+    /**
+     * Creates new form guiAccouontSetting
+     */
+    public guiAccouontSetting() {
+        initComponents();
     }
 
     /**
@@ -35,26 +27,20 @@ public class guiPayment extends javax.swing.JFrame {
     private void initComponents() {
 
         panel1 = new java.awt.Panel();
-        lblTitleGetCash = new java.awt.Label();
         btn60 = new java.awt.Button();
+        lblTitleGetCash = new java.awt.Label();
         btn61 = new java.awt.Button();
         btn62 = new java.awt.Button();
-        btn63 = new java.awt.Button();
-        btn64 = new java.awt.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panel1.setBackground(new java.awt.Color(10, 31, 57));
 
-        lblTitleGetCash.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
-        lblTitleGetCash.setForeground(new java.awt.Color(220, 194, 154));
-        lblTitleGetCash.setName(""); // NOI18N
-        lblTitleGetCash.setText("Payment");
-
         btn60.setBackground(new java.awt.Color(10, 31, 57));
         btn60.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btn60.setForeground(new java.awt.Color(220, 194, 154));
-        btn60.setLabel("Pay Electricity");
+        btn60.setLabel("VIEW TRANSACTIONS");
+        btn60.setName(""); // NOI18N
         btn60.setPreferredSize(new java.awt.Dimension(100, 70));
         btn60.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,10 +48,15 @@ public class guiPayment extends javax.swing.JFrame {
             }
         });
 
+        lblTitleGetCash.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
+        lblTitleGetCash.setForeground(new java.awt.Color(220, 194, 154));
+        lblTitleGetCash.setName(""); // NOI18N
+        lblTitleGetCash.setText("Account Setting");
+
         btn61.setBackground(new java.awt.Color(10, 31, 57));
         btn61.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btn61.setForeground(new java.awt.Color(220, 194, 154));
-        btn61.setLabel("Pay Water");
+        btn61.setLabel("Pay Electricity");
         btn61.setPreferredSize(new java.awt.Dimension(100, 70));
         btn61.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,33 +67,11 @@ public class guiPayment extends javax.swing.JFrame {
         btn62.setBackground(new java.awt.Color(10, 31, 57));
         btn62.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btn62.setForeground(new java.awt.Color(220, 194, 154));
-        btn62.setLabel("Phone Tup_up");
+        btn62.setLabel("Pay Electricity");
         btn62.setPreferredSize(new java.awt.Dimension(100, 70));
         btn62.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn62ActionPerformed(evt);
-            }
-        });
-
-        btn63.setBackground(new java.awt.Color(10, 31, 57));
-        btn63.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btn63.setForeground(new java.awt.Color(220, 194, 154));
-        btn63.setLabel("Internet");
-        btn63.setPreferredSize(new java.awt.Dimension(100, 70));
-        btn63.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn63ActionPerformed(evt);
-            }
-        });
-
-        btn64.setBackground(new java.awt.Color(10, 31, 57));
-        btn64.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btn64.setForeground(new java.awt.Color(220, 194, 154));
-        btn64.setLabel("Internet");
-        btn64.setPreferredSize(new java.awt.Dimension(100, 70));
-        btn64.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn64ActionPerformed(evt);
             }
         });
 
@@ -111,83 +80,59 @@ public class guiPayment extends javax.swing.JFrame {
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
+                .addGap(127, 127, 127)
+                .addComponent(lblTitleGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn60, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn60, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn61, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn63, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn64, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn62, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                .addContainerGap(151, Short.MAX_VALUE)
-                .addComponent(lblTitleGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
                 .addComponent(lblTitleGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addGap(51, 51, 51)
                 .addComponent(btn60, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btn61, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(19, 19, 19)
                 .addComponent(btn62, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn63, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 447, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 486, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn60ActionPerformed
-            // TODO add your handling code here:   guipayelectricity
-              guipayelectricity payWaterForm = new guipayelectricity();
-    payWaterForm.setVisible(true);      
-    payWaterForm.setLocationRelativeTo(null);
+        // TODO add your handling code here:   guipayelectricity
+        guiTransations payWaterForm = new guiTransations();
+        payWaterForm.setVisible(true);
+        payWaterForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn60ActionPerformed
 
     private void btn61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn61ActionPerformed
         // TODO add your handling code here:
-                guiPayWater payWaterForm = new guiPayWater(this.userid);
-    payWaterForm.setVisible(true);      
-    payWaterForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn61ActionPerformed
 
     private void btn62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn62ActionPerformed
-        // TODO add your handling code here: 
-   guipayPhoneTop_up payWaterForm = new guipayPhoneTop_up(this.userid);
-    payWaterForm.setVisible(true);      
-    payWaterForm.setLocationRelativeTo(null); 
+        // TODO add your handling code here:
     }//GEN-LAST:event_btn62ActionPerformed
-
-    private void btn63ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn63ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn63ActionPerformed
-
-    private void btn64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn64ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn64ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,20 +151,20 @@ public class guiPayment extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(guiPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(guiAccouontSetting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(guiPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(guiAccouontSetting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(guiPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(guiAccouontSetting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(guiPayment.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(guiAccouontSetting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new guiPayment().setVisible(true);
+                new guiAccouontSetting().setVisible(true);
             }
         });
     }
@@ -228,8 +173,6 @@ public class guiPayment extends javax.swing.JFrame {
     private java.awt.Button btn60;
     private java.awt.Button btn61;
     private java.awt.Button btn62;
-    private java.awt.Button btn63;
-    private java.awt.Button btn64;
     private java.awt.Label lblTitleGetCash;
     private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables

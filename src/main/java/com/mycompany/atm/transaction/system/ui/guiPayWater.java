@@ -10,11 +10,15 @@ package com.mycompany.atm.transaction.system.ui;
  */
 public class guiPayWater extends javax.swing.JFrame {
 
-
+  private int userid;
     public guiPayWater() {
         initComponents();
     }
-
+    public guiPayWater(int userid){
+        initComponents();
+        this.userid = userid;
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -243,6 +247,11 @@ public class guiPayWater extends javax.swing.JFrame {
         btnGetCash1.setForeground(new java.awt.Color(220, 194, 154));
         btnGetCash1.setLabel("Cancel");
         btnGetCash1.setPreferredSize(new java.awt.Dimension(100, 70));
+        btnGetCash1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGetCash1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
@@ -306,6 +315,15 @@ public class guiPayWater extends javax.swing.JFrame {
     private void btnGetCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCashActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGetCashActionPerformed
+
+    private void btnGetCash1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCash1ActionPerformed
+        // TODO add your handling code here:
+         MainForm main = new MainForm();
+            main.setLocationRelativeTo(null);
+            main.setVisible(true);
+
+            this.dispose(); 
+    }//GEN-LAST:event_btnGetCash1ActionPerformed
 
     /**
      * @param args the command line arguments

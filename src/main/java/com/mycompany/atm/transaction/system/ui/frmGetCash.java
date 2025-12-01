@@ -253,8 +253,11 @@ public class frmGetCash extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGetCashActionPerformed
 
     private void btn62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn62ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
+            MainForm main = new MainForm(this.currentId);
+            main.setLocationRelativeTo(null);
+            main.setVisible(true);
+
+            this.dispose(); 
     }//GEN-LAST:event_btn62ActionPerformed
 
     private void btn40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn40ActionPerformed

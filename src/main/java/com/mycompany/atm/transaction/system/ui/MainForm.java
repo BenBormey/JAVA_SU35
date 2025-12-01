@@ -160,6 +160,11 @@ public class MainForm extends javax.swing.JFrame {
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton9.setForeground(new java.awt.Color(220, 194, 154));
         jButton9.setText("Account Settings");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton10.setBackground(new java.awt.Color(223, 204, 176));
         jButton10.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -358,11 +363,19 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
            // TODO add your handling code here:  
-    guiPayment getCash = new guiPayment();
+    guiPayment getCash = new guiPayment(this.currentUserId);
     getCash.setLocationRelativeTo(this); 
     getCash.setVisible(true);
      this.dispose(); 
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:guiAccouontSetting
+           guiAccouontSetting getCash = new guiAccouontSetting();
+    getCash.setLocationRelativeTo(this); 
+    getCash.setVisible(true);
+     this.dispose(); 
+    }//GEN-LAST:event_jButton9ActionPerformed
 
     /**
      * @param args the command line arguments
