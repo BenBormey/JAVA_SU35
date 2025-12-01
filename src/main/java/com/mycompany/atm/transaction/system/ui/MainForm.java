@@ -119,7 +119,6 @@ public class MainForm extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(21, 42, 66));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(220, 194, 154));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\Users\\HQ\\Downloads\\money.png")); // NOI18N
         jButton2.setText("Get Cash");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +129,6 @@ public class MainForm extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(21, 42, 66));
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(220, 194, 154));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\Users\\HQ\\Downloads\\wallet.png")); // NOI18N
         jButton4.setText("Deposit");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +139,6 @@ public class MainForm extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(21, 42, 66));
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(220, 194, 154));
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\Users\\HQ\\Downloads\\credit-card.png")); // NOI18N
         jButton5.setText("Credit Card");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,13 +149,16 @@ public class MainForm extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(21, 42, 66));
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(220, 194, 154));
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\Users\\HQ\\Downloads\\payment-method.png")); // NOI18N
         jButton6.setText("Payments");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton9.setBackground(new java.awt.Color(21, 42, 66));
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton9.setForeground(new java.awt.Color(220, 194, 154));
-        jButton9.setIcon(new javax.swing.ImageIcon("C:\\Users\\HQ\\Downloads\\settings.png")); // NOI18N
         jButton9.setText("Account Settings");
 
         jButton10.setBackground(new java.awt.Color(223, 204, 176));
@@ -188,7 +188,6 @@ public class MainForm extends javax.swing.JFrame {
         lblbalandkh.setText("00.00 ៛");
 
         jButton1.setBackground(new java.awt.Color(21, 42, 66));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\HQ\\Downloads\\hide.png")); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -198,7 +197,6 @@ public class MainForm extends javax.swing.JFrame {
         jButton11.setBackground(new java.awt.Color(21, 42, 66));
         jButton11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton11.setForeground(new java.awt.Color(220, 194, 154));
-        jButton11.setIcon(new javax.swing.ImageIcon("C:\\Users\\HQ\\Downloads\\user (3).png")); // NOI18N
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton11ActionPerformed(evt);
@@ -316,7 +314,10 @@ public class MainForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+       guiDeposit getCash = new guiDeposit(this.currentUserId);
+    getCash.setLocationRelativeTo(this); 
+    getCash.setVisible(true);
+     this.dispose(); 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -354,6 +355,14 @@ public class MainForm extends javax.swing.JFrame {
             jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("file:/C:/Users/HQ/Downloads/view.png")));
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+           // TODO add your handling code here:  
+    guiPayment getCash = new guiPayment();
+    getCash.setLocationRelativeTo(this); 
+    getCash.setVisible(true);
+     this.dispose(); 
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
