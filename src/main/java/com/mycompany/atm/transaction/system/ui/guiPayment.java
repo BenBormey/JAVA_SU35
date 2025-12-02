@@ -162,7 +162,7 @@ public class guiPayment extends javax.swing.JFrame {
 
     private void btn60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn60ActionPerformed
             // TODO add your handling code here:   guipayelectricity
-              guipayelectricity payWaterForm = new guipayelectricity();
+              guipayelectricity payWaterForm = new guipayelectricity(this.userid);
     payWaterForm.setVisible(true);      
     payWaterForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn60ActionPerformed
