@@ -13,6 +13,12 @@ public class guiChnagePassword extends javax.swing.JFrame {
     /**
      * Creates new form guiChnagePassword
      */
+        private String currentUsername; 
+    public guiChnagePassword(String username) {
+         this.currentUsername = username;
+        initComponents();
+    }   
+    
     public guiChnagePassword() {
         initComponents();
     }
@@ -138,7 +144,75 @@ public class guiChnagePassword extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnChangePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangePasswordActionPerformed
-       
+     
+         String oldPassword = new String(txtpassword.getPassword()).trim();
+    String newPassword = new String(txtNewPassword.getPassword()).trim();
+
+    // basic validation
+    if (oldPassword.isEmpty() || newPassword.isEmpty()) {
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Please input both old and new password.");
+        return;
+    }
+
+    if (newPassword.length() < 4) { // or 6, 8 ... up to you
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "New password is too short.");
+        return;
+    }
+
+    // connect DB
+    try (java.sql.Connection con = 
+            com.mycompany.atm.transaction.system.DB.dbcontextion.getConnection()) {
+
+  
+        String sqlCheck = """
+                SELECT 1
+                FROM public.users
+                WHERE username = ? AND password = ?
+                LIMIT 1;
+                """;
+
+        try (java.sql.PreparedStatement psCheck = con.prepareStatement(sqlCheck)) {
+            psCheck.setString(1, currentUsername);
+            psCheck.setString(2, oldPassword);
+
+            try (java.sql.ResultSet rs = psCheck.executeQuery()) {
+                if (!rs.next()) {
+                    javax.swing.JOptionPane.showMessageDialog(this,
+                            "Old password is incorrect.");
+                    return;
+                }
+            }
+        }
+
+        // 2) update to new password
+        String sqlUpdate = """
+                UPDATE public.users
+                SET password = ?
+                WHERE username = ?;
+                """;
+
+        try (java.sql.PreparedStatement psUpdate = con.prepareStatement(sqlUpdate)) {
+            psUpdate.setString(1, newPassword);
+            psUpdate.setString(2, currentUsername);
+
+            int rows = psUpdate.executeUpdate();
+            if (rows > 0) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Password changed successfully.");
+                this.dispose();     // close form
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Password not changed. Please try again.");
+            }
+        }
+
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        javax.swing.JOptionPane.showMessageDialog(this,
+                "Error when changing password: " + ex.getMessage());
+    }
 
       
    

@@ -4,6 +4,10 @@
  */
 package com.mycompany.atm.transaction.system.ui;
 
+import com.mycompany.atm.transaction.system.DB.DBHelper;
+import java.math.BigDecimal;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author USER
@@ -17,8 +21,30 @@ public class guiPayWater extends javax.swing.JFrame {
     public guiPayWater(int userid){
         initComponents();
         this.userid = userid;
-        
+          this.loadAccountsToCombo();
     }
+      private void loadAccountsToCombo() {
+    String sql = """
+        SELECT "AccountNo", "AccountType", "Balance($)", "isKh"
+        FROM public."CUSTOMER"
+        WHERE "UserID" = %d
+        """.formatted(userid);
+
+    var list = DBHelper.getValues(sql);
+    cboAccount.removeAllItems();
+
+    for (var row : list) {
+        String no = row.get("AccountNo").toString();
+        String type = row.get("AccountType").toString();
+        double bal  = ((Number)row.get("Balance($)")).doubleValue();
+         this.iskh = (boolean)row.get("isKh");
+        String symbol = this.iskh ? "៛" : "$";
+
+        String text = "%s - %s (%,.2f %s)".formatted(no, type, bal, symbol);
+        cboAccount.addItem(text);
+    }
+}
+       private boolean iskh;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,7 +67,7 @@ public class guiPayWater extends javax.swing.JFrame {
         txtBiilingmonth = new javax.swing.JTextField();
         panel10 = new java.awt.Panel();
         jLabel4 = new javax.swing.JLabel();
-        txtAccount = new javax.swing.JTextField();
+        txtAmount = new javax.swing.JTextField();
         panel14 = new java.awt.Panel();
         jLabel5 = new javax.swing.JLabel();
         cboAccount = new javax.swing.JComboBox<>();
@@ -68,7 +94,7 @@ public class guiPayWater extends javax.swing.JFrame {
         cboProvider.setEditable(true);
         cboProvider.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cboProvider.setForeground(new java.awt.Color(220, 194, 154));
-        cboProvider.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboProvider.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PP", "KK", "KPS" }));
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
@@ -168,12 +194,12 @@ public class guiPayWater extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(220, 194, 154));
-        jLabel4.setText("Account");
+        jLabel4.setText("Acount");
 
-        txtAccount.setBackground(new java.awt.Color(10, 31, 57));
-        txtAccount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtAccount.setForeground(new java.awt.Color(220, 194, 154));
-        txtAccount.setName(""); // NOI18N
+        txtAmount.setBackground(new java.awt.Color(10, 31, 57));
+        txtAmount.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtAmount.setForeground(new java.awt.Color(220, 194, 154));
+        txtAmount.setName(""); // NOI18N
 
         javax.swing.GroupLayout panel10Layout = new javax.swing.GroupLayout(panel10);
         panel10.setLayout(panel10Layout);
@@ -183,7 +209,7 @@ public class guiPayWater extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(txtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panel10Layout.setVerticalGroup(
@@ -192,7 +218,7 @@ public class guiPayWater extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -313,7 +339,139 @@ public class guiPayWater extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGetCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCashActionPerformed
-        // TODO add your handling code here:
+     try {
+    
+    String amountText  = txtAmount.getText().trim();
+    if (amountText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Amount");
+        return;
+    }
+
+    String billingMonth = txtBiilingmonth.getText().trim();
+    if (billingMonth.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Billing Month");
+        return;
+    }
+
+    String customerIdText = txtCustomerId.getText().trim();
+    if (customerIdText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Customer ID");
+        return;
+    }
+
+    Object selAccount = cboAccount.getSelectedItem();
+    if (selAccount == null) {
+        JOptionPane.showMessageDialog(this, "Please choose Pay From Account");
+        return;
+    }
+
+    BigDecimal amount = new BigDecimal(amountText);
+
+    // example: 0011110105 - CHECKING (3,590.00 $)
+    String accountInfo = selAccount.toString();
+    String[] parts     = accountInfo.split(" - ");
+    String accountNo   = parts[0].trim();
+
+    // 2️⃣ Load account from CUSTOMER (ID + Balance)
+    String sqlAcc = """
+        SELECT "ID", "Balance($)" AS balance
+        FROM public."CUSTOMER"
+        WHERE "AccountNo" = ?
+        """;
+
+    var accList = DBHelper.getValues(sqlAcc, accountNo);
+
+    if (accList.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Account not found!");
+        return;
+    }
+
+    var acc = accList.get(0);
+    long customerIdDb         = ((Number) acc.get("ID")).longValue();
+    BigDecimal balanceBefore  = new BigDecimal(acc.get("balance").toString());
+
+    // 3️⃣ Check balance
+    if (balanceBefore.compareTo(amount) < 0) {
+        JOptionPane.showMessageDialog(this, "Not enough balance!");
+        return;
+    }
+
+    BigDecimal balanceAfter = balanceBefore.subtract(amount);
+
+    // 4️⃣ Insert only into atm_transaction  (PAY WATER)
+    String sqlTrans = """
+        INSERT INTO public.atm_transaction(
+            account_id,
+            user_id,
+            tran_type,
+            amount,
+            is_kh,
+            balance_before,
+            balance_after,
+            created_at,
+            note
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?);
+        """;
+
+    boolean isKh = false;  // change if this in KHR
+
+    int rowsTrans = DBHelper.execute(
+            sqlTrans,
+            customerIdDb,
+            this.userid,                 // 👈 from guiPayWater field
+            "WATER_PAY",                 // 👈 tran_type for water
+            amount,
+            isKh,
+            balanceBefore,
+            balanceAfter,
+            "Pay water CID:" + customerIdText +
+            " Month:" + billingMonth
+    );
+
+    if (rowsTrans == 0) {
+        JOptionPane.showMessageDialog(this,
+                "❌ atm_transaction insert failed.",
+                "ERROR",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // 5️⃣ Update CUSTOMER balance
+    String sqlUpdateAcc = """
+        UPDATE public."CUSTOMER"
+        SET "Balance($)" = ?
+        WHERE "ID" = ?
+        """;
+
+    int rowsUpdate = DBHelper.execute(sqlUpdateAcc, balanceAfter, customerIdDb);
+
+    if (rowsUpdate == 0) {
+        JOptionPane.showMessageDialog(this,
+                "❌ Balance not updated in CUSTOMER table.",
+                "ERROR",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // 6️⃣ Success message
+    JOptionPane.showMessageDialog(this,
+            "Water Payment Successful!\n" +      // 👈 text for water
+            "Customer ID: " + customerIdText + "\n" +
+            "Month: " + billingMonth + "\n" +
+            "Amount: " + amount + "\n" +
+            "New Balance: " + balanceAfter);
+
+    // 7️⃣ Clear form
+    txtAmount.setText("");
+    txtBiilingmonth.setText("");
+    txtCustomerId.setText("");
+
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    e.printStackTrace();
+}
+
     }//GEN-LAST:event_btnGetCashActionPerformed
 
     private void btnGetCash1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCash1ActionPerformed
@@ -378,7 +536,7 @@ public class guiPayWater extends javax.swing.JFrame {
     private java.awt.Panel panel2;
     private java.awt.Panel panel8;
     private java.awt.Panel panel9;
-    private javax.swing.JTextField txtAccount;
+    private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtBiilingmonth;
     private javax.swing.JTextField txtCustomerId;
     // End of variables declaration//GEN-END:variables

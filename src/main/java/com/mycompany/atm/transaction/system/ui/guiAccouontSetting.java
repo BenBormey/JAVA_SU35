@@ -4,6 +4,12 @@
  */
 package com.mycompany.atm.transaction.system.ui;
 
+import com.mycompany.atm.transaction.system.DB.DBHelper;
+import com.mycompany.atm.transaction.system.DB.dbcontextion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author HQ
@@ -13,9 +19,36 @@ public class guiAccouontSetting extends javax.swing.JFrame {
     /**
      * Creates new form guiAccouontSetting
      */
+    public String UserName ;
     public guiAccouontSetting() {
         initComponents();
     }
+    private int  userid;
+
+    public guiAccouontSetting(int userid) {
+          initComponents();
+          this.userid = userid;
+        this.UserName = this.GetUserName(userid);
+          
+      }
+
+public String GetUserName(int id) {
+
+    String sql = """
+        SELECT username
+        FROM public.users
+        WHERE userid = ?;
+        """;
+
+    Object result = DBHelper.executeScalar(sql, id);
+
+    if (result == null) {
+        // id not found
+        return null;
+    }
+
+    return result.toString();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,7 +89,7 @@ public class guiAccouontSetting extends javax.swing.JFrame {
         btn61.setBackground(new java.awt.Color(10, 31, 57));
         btn61.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btn61.setForeground(new java.awt.Color(220, 194, 154));
-        btn61.setLabel("Pay Electricity");
+        btn61.setLabel("Change Pin ");
         btn61.setPreferredSize(new java.awt.Dimension(100, 70));
         btn61.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +161,9 @@ public class guiAccouontSetting extends javax.swing.JFrame {
 
     private void btn61ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn61ActionPerformed
         // TODO add your handling code here:
+        guiChnagePassword payWaterForm = new guiChnagePassword(this.UserName);
+        payWaterForm.setVisible(true);
+        payWaterForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn61ActionPerformed
 
     private void btn62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn62ActionPerformed

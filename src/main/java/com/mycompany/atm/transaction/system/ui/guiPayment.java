@@ -98,7 +98,7 @@ public class guiPayment extends javax.swing.JFrame {
         btn64.setBackground(new java.awt.Color(10, 31, 57));
         btn64.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         btn64.setForeground(new java.awt.Color(220, 194, 154));
-        btn64.setLabel("Internet");
+        btn64.setLabel("Back");
         btn64.setPreferredSize(new java.awt.Dimension(100, 70));
         btn64.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,7 +186,11 @@ public class guiPayment extends javax.swing.JFrame {
     }//GEN-LAST:event_btn63ActionPerformed
 
     private void btn64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn64ActionPerformed
-        // TODO add your handling code here:
+          MainForm main = new MainForm(this.userid);
+            main.setLocationRelativeTo(null);
+            main.setVisible(true);
+
+            this.dispose(); 
     }//GEN-LAST:event_btn64ActionPerformed
 
     /**

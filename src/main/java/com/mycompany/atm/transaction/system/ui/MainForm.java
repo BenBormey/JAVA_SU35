@@ -371,7 +371,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:guiAccouontSetting
-           guiAccouontSetting getCash = new guiAccouontSetting();
+           guiAccouontSetting getCash = new guiAccouontSetting(this.currentUserId);
     getCash.setLocationRelativeTo(this); 
     getCash.setVisible(true);
      this.dispose(); 
