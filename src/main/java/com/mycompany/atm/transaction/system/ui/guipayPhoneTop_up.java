@@ -69,6 +69,8 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtPhoneAmount = new javax.swing.JTextField();
+        btndeposit = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -133,6 +135,28 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
         txtPhoneAmount.setForeground(new java.awt.Color(220, 194, 154));
         txtPhoneAmount.setName(""); // NOI18N
 
+        btndeposit.setBackground(new java.awt.Color(21, 42, 66));
+        btndeposit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btndeposit.setForeground(new java.awt.Color(220, 194, 154));
+        btndeposit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/deposit.png"))); // NOI18N
+        btndeposit.setText("Deposit");
+        btndeposit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndepositActionPerformed(evt);
+            }
+        });
+
+        jButton5.setBackground(new java.awt.Color(21, 42, 66));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(220, 194, 154));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/arrow.png"))); // NOI18N
+        jButton5.setText("CanCel");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -165,6 +189,12 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
                             .addComponent(txtPhoneAmount)))
                     .addComponent(txtPhoneNumber, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +217,11 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnGetCash1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(146, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btndeposit))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,7 +240,19 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
 
     private void btnGetCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCashActionPerformed
      
-try {
+
+
+
+        
+        
+    }//GEN-LAST:event_btnGetCashActionPerformed
+
+    private void btnGetCash1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCash1ActionPerformed
+       this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGetCash1ActionPerformed
+
+    private void btndepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositActionPerformed
+      try {
     // 1. Collect UI values
     String accountInfo = cboAccount.getSelectedItem().toString();
     String phone       = txtPhoneNumber.getText().trim();
@@ -357,15 +403,15 @@ try {
     JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
     e.printStackTrace();
 }
+    }//GEN-LAST:event_btndepositActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        MainForm main = new MainForm(this.currentUserId);
+        main.setLocationRelativeTo(null);
+        main.setVisible(true);
 
-        
-        
-    }//GEN-LAST:event_btnGetCashActionPerformed
-
-    private void btnGetCash1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCash1ActionPerformed
-       this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGetCash1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -406,7 +452,9 @@ try {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button btnGetCash;
     private java.awt.Button btnGetCash1;
+    private javax.swing.JButton btndeposit;
     private javax.swing.JComboBox<String> cboAccount;
+    private javax.swing.JButton jButton5;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

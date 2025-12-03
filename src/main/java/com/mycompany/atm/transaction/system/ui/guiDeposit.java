@@ -66,8 +66,8 @@ public class guiDeposit extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cboAccount = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        btnGetCash1 = new java.awt.Button();
-        btnGetCash = new java.awt.Button();
+        btndeposit = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,6 +86,7 @@ public class guiDeposit extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(220, 194, 154));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/salary.png"))); // NOI18N
         jLabel1.setText("Amount");
 
         cboAccount.setBackground(new java.awt.Color(10, 31, 57));
@@ -96,28 +97,28 @@ public class guiDeposit extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(220, 194, 154));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/passbook.png"))); // NOI18N
         jLabel2.setText("Choose Account");
 
-        btnGetCash1.setBackground(new java.awt.Color(10, 31, 57));
-        btnGetCash1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnGetCash1.setForeground(new java.awt.Color(220, 194, 154));
-        btnGetCash1.setLabel("Cancel");
-        btnGetCash1.setPreferredSize(new java.awt.Dimension(100, 70));
-        btnGetCash1.addActionListener(new java.awt.event.ActionListener() {
+        btndeposit.setBackground(new java.awt.Color(21, 42, 66));
+        btndeposit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btndeposit.setForeground(new java.awt.Color(220, 194, 154));
+        btndeposit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/deposit.png"))); // NOI18N
+        btndeposit.setText("Deposit");
+        btndeposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGetCash1ActionPerformed(evt);
+                btndepositActionPerformed(evt);
             }
         });
 
-        btnGetCash.setBackground(new java.awt.Color(10, 31, 57));
-        btnGetCash.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnGetCash.setForeground(new java.awt.Color(220, 194, 154));
-        btnGetCash.setLabel("DEPOSIT");
-        btnGetCash.setName(""); // NOI18N
-        btnGetCash.setPreferredSize(new java.awt.Dimension(100, 70));
-        btnGetCash.addActionListener(new java.awt.event.ActionListener() {
+        jButton5.setBackground(new java.awt.Color(21, 42, 66));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(220, 194, 154));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/arrow.png"))); // NOI18N
+        jButton5.setText("CanCel");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGetCashActionPerformed(evt);
+                jButton5ActionPerformed(evt);
             }
         });
 
@@ -127,29 +128,26 @@ public class guiDeposit extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(175, 175, 175)
-                                .addComponent(lblTitleGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cboAccount, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cboAccount, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(btnGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnGetCash1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap())
+                        .addGap(147, 147, 147)
+                        .addComponent(lblTitleGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,13 +160,13 @@ public class guiDeposit extends javax.swing.JFrame {
                 .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cboAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGetCash1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 104, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,17 +183,8 @@ public class guiDeposit extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGetCash1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCash1ActionPerformed
-       MainForm main = new MainForm(this.currentUserId);
-            main.setLocationRelativeTo(null);
-            main.setVisible(true);
-
-            this.dispose();   
-    }//GEN-LAST:event_btnGetCash1ActionPerformed
-
-    private void btnGetCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCashActionPerformed
-            
-  String txt = txtAmount.getText().trim();
+    private void btndepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositActionPerformed
+      String txt = txtAmount.getText().trim();
     if (txt.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Please enter amount.");
         return;
@@ -349,7 +338,15 @@ public class guiDeposit extends javax.swing.JFrame {
             }
         } catch (Exception ignore) {}
     }
-    }//GEN-LAST:event_btnGetCashActionPerformed
+    }//GEN-LAST:event_btndepositActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+         MainForm main = new MainForm(this.currentUserId);
+            main.setLocationRelativeTo(null);
+            main.setVisible(true);
+
+            this.dispose();   
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -387,9 +384,9 @@ public class guiDeposit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button btnGetCash;
-    private java.awt.Button btnGetCash1;
+    private javax.swing.JButton btndeposit;
     private javax.swing.JComboBox<String> cboAccount;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

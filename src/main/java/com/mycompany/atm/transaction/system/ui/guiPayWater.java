@@ -73,6 +73,8 @@ public class guiPayWater extends javax.swing.JFrame {
         cboAccount = new javax.swing.JComboBox<>();
         btnGetCash = new java.awt.Button();
         btnGetCash1 = new java.awt.Button();
+        jButton5 = new javax.swing.JButton();
+        btndeposit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -242,7 +244,7 @@ public class guiPayWater extends javax.swing.JFrame {
             .addGroup(panel14Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(cboAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -279,26 +281,57 @@ public class guiPayWater extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setBackground(new java.awt.Color(21, 42, 66));
+        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(220, 194, 154));
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/arrow.png"))); // NOI18N
+        jButton5.setText("CanCel");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        btndeposit.setBackground(new java.awt.Color(21, 42, 66));
+        btndeposit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btndeposit.setForeground(new java.awt.Color(220, 194, 154));
+        btndeposit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/deposit.png"))); // NOI18N
+        btndeposit.setText("Deposit");
+        btndeposit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndepositActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(lblTitleGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(btnGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(22, 22, 22)
-                        .addComponent(btnGetCash1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap()
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(panel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addComponent(btnGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnGetCash1, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addComponent(lblTitleGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -321,7 +354,11 @@ public class guiPayWater extends javax.swing.JFrame {
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnGetCash, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                     .addComponent(btnGetCash1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -483,6 +520,149 @@ public class guiPayWater extends javax.swing.JFrame {
             this.dispose(); 
     }//GEN-LAST:event_btnGetCash1ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        MainForm main = new MainForm(this.userid);
+        main.setLocationRelativeTo(null);
+        main.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btndepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositActionPerformed
+    try {
+    
+    String amountText  = txtAmount.getText().trim();
+    if (amountText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Amount");
+        return;
+    }
+
+    String billingMonth = txtBiilingmonth.getText().trim();
+    if (billingMonth.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Billing Month");
+        return;
+    }
+
+    String customerIdText = txtCustomerId.getText().trim();
+    if (customerIdText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Customer ID");
+        return;
+    }
+
+    Object selAccount = cboAccount.getSelectedItem();
+    if (selAccount == null) {
+        JOptionPane.showMessageDialog(this, "Please choose Pay From Account");
+        return;
+    }
+
+    BigDecimal amount = new BigDecimal(amountText);
+
+    // example: 0011110105 - CHECKING (3,590.00 $)
+    String accountInfo = selAccount.toString();
+    String[] parts     = accountInfo.split(" - ");
+    String accountNo   = parts[0].trim();
+
+    // 2️⃣ Load account from CUSTOMER (ID + Balance)
+    String sqlAcc = """
+        SELECT "ID", "Balance($)" AS balance
+        FROM public."CUSTOMER"
+        WHERE "AccountNo" = ?
+        """;
+
+    var accList = DBHelper.getValues(sqlAcc, accountNo);
+
+    if (accList.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Account not found!");
+        return;
+    }
+
+    var acc = accList.get(0);
+    long customerIdDb         = ((Number) acc.get("ID")).longValue();
+    BigDecimal balanceBefore  = new BigDecimal(acc.get("balance").toString());
+
+    // 3️⃣ Check balance
+    if (balanceBefore.compareTo(amount) < 0) {
+        JOptionPane.showMessageDialog(this, "Not enough balance!");
+        return;
+    }
+
+    BigDecimal balanceAfter = balanceBefore.subtract(amount);
+
+    // 4️⃣ Insert only into atm_transaction  (PAY WATER)
+    String sqlTrans = """
+        INSERT INTO public.atm_transaction(
+            account_id,
+            user_id,
+            tran_type,
+            amount,
+            is_kh,
+            balance_before,
+            balance_after,
+            created_at,
+            note
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?);
+        """;
+
+    boolean isKh = false;  // change if this in KHR
+
+    int rowsTrans = DBHelper.execute(
+            sqlTrans,
+            customerIdDb,
+            this.userid,                 // 👈 from guiPayWater field
+            "WATER_PAY",                 // 👈 tran_type for water
+            amount,
+            isKh,
+            balanceBefore,
+            balanceAfter,
+            "Pay water CID:" + customerIdText +
+            " Month:" + billingMonth
+    );
+
+    if (rowsTrans == 0) {
+        JOptionPane.showMessageDialog(this,
+                "❌ atm_transaction insert failed.",
+                "ERROR",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // 5️⃣ Update CUSTOMER balance
+    String sqlUpdateAcc = """
+        UPDATE public."CUSTOMER"
+        SET "Balance($)" = ?
+        WHERE "ID" = ?
+        """;
+
+    int rowsUpdate = DBHelper.execute(sqlUpdateAcc, balanceAfter, customerIdDb);
+
+    if (rowsUpdate == 0) {
+        JOptionPane.showMessageDialog(this,
+                "❌ Balance not updated in CUSTOMER table.",
+                "ERROR",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    // 6️⃣ Success message
+    JOptionPane.showMessageDialog(this,
+            "Water Payment Successful!\n" +      // 👈 text for water
+            "Customer ID: " + customerIdText + "\n" +
+            "Month: " + billingMonth + "\n" +
+            "Amount: " + amount + "\n" +
+            "New Balance: " + balanceAfter);
+
+    // 7️⃣ Clear form
+    txtAmount.setText("");
+    txtBiilingmonth.setText("");
+    txtCustomerId.setText("");
+
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    e.printStackTrace();
+}
+    }//GEN-LAST:event_btndepositActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -522,8 +702,10 @@ public class guiPayWater extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button btnGetCash;
     private java.awt.Button btnGetCash1;
+    private javax.swing.JButton btndeposit;
     private javax.swing.JComboBox<String> cboAccount;
     private javax.swing.JComboBox<String> cboProvider;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
