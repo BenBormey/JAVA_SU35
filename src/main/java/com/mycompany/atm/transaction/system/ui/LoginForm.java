@@ -83,6 +83,7 @@ public class LoginForm extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(10, 31, 57));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(220, 194, 154));
+        jButton1.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\enter.png")); // NOI18N
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,6 +190,7 @@ public class LoginForm extends javax.swing.JFrame {
         String role = row.get("role").toString();
         int id  = (int)row.get("userid");
 
+       
         if (!active) {
             JOptionPane.showMessageDialog(this, "❌ Account inactive! Contact admin.");
             return;
@@ -197,12 +199,19 @@ public class LoginForm extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "✔ Login Successful!\nRole: " + role);
 
         try {
-         
+            if(role.equals("Admin")){
+                    AdminDeshbord main = new AdminDeshbord();
+            main.setLocationRelativeTo(null);
+            main.setVisible(true);
+
+            this.dispose(); 
+            }else{
             MainForm main = new MainForm(id);
             main.setLocationRelativeTo(null);
             main.setVisible(true);
 
             this.dispose(); 
+            }
 
         } catch (Exception ex) {
             ex.printStackTrace();

@@ -16,7 +16,7 @@ public class frmGetCash extends javax.swing.JFrame {
      * Creates new form frmGetCash
      */
     public frmGetCash() {
- 
+  initComponents();
     }  
     public frmGetCash(int userid) {
           initComponents();
