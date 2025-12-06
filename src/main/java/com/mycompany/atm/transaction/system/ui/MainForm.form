@@ -377,16 +377,13 @@
                       <Color blue="9a" green="c2" red="dc" type="rgb"/>
                     </Property>
                     <Property name="name" type="java.lang.String" value="" noResource="true"/>
-                    <Property name="text" type="java.lang.String" value="00.00 &#x17db;"/>
+                    <Property name="text" type="java.lang.String" value="00.00 "/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="42" green="2a" red="15" type="rgb"/>
-                    </Property>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/icon/view.png"/>
                     </Property>
                   </Properties>
                   <Events>

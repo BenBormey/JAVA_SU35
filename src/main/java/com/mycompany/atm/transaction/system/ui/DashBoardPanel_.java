@@ -16,6 +16,7 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
     public DashBoardPanel_() {
         initComponents();
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

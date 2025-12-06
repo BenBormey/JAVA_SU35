@@ -27,8 +27,36 @@ public class LoginForm extends javax.swing.JFrame {
         initComponents();
           this.setLocationRelativeTo(null);
           getRootPane().setDefaultButton(jButton1);
+          this.setKhmerFont(this);
         
     }
+    public void setkh(){
+        lblUserName.setText("ឈ្មោះអ្នកប្រើ :");
+        lblPassword.setText("ពាក្យសម្ងាត់​ :");
+        jButton1.setText("ចូលប្រើ");
+        jButton2.setText("English");
+        lblHeader.setText("ត្រលប់មកវិញ");
+        lblLang.setText("ភាសា");
+    }
+        public void setEng(){
+        lblUserName.setText("UserName :");
+        lblPassword.setText("Password :");
+        jButton1.setText("Login ");
+        jButton2.setText("ខ្មែរ");
+        lblHeader.setText("Well Come Back");
+        lblLang.setText("Language :");
+    }
+private void setKhmerFont(java.awt.Component component) {
+    java.awt.Font current = component.getFont();
+    java.awt.Font khFont = new java.awt.Font("Khmer OS Battambang", current.getStyle(), current.getSize());
+    component.setFont(khFont);
+
+    if (component instanceof java.awt.Container) {
+        for (java.awt.Component child : ((java.awt.Container) component).getComponents()) {
+            setKhmerFont(child);
+        }
+    }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,12 +69,14 @@ public class LoginForm extends javax.swing.JFrame {
 
         btnLogin = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblHeader = new javax.swing.JLabel();
+        lblUserName = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txtpassword = new javax.swing.JPasswordField();
+        lblLang = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -63,27 +93,26 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel1.setFocusable(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(400, 350));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(220, 194, 154));
-        jLabel1.setText("Well Come Back ");
+        lblHeader.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        lblHeader.setForeground(new java.awt.Color(220, 194, 154));
+        lblHeader.setText("Well Come Back ");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(220, 194, 154));
-        jLabel2.setText("UserName : ");
+        lblUserName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblUserName.setForeground(new java.awt.Color(220, 194, 154));
+        lblUserName.setText("UserName : ");
 
         txtUsername.setBackground(new java.awt.Color(10, 31, 57));
         txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtUsername.setForeground(new java.awt.Color(220, 194, 154));
         txtUsername.setName(""); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(220, 194, 154));
-        jLabel3.setText("Password : ");
+        lblPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(220, 194, 154));
+        lblPassword.setText("Password : ");
 
         jButton1.setBackground(new java.awt.Color(10, 31, 57));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(220, 194, 154));
-        jButton1.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\enter.png")); // NOI18N
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,6 +129,25 @@ public class LoginForm extends javax.swing.JFrame {
         txtpassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtpassword.setForeground(new java.awt.Color(220, 194, 154));
 
+        lblLang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblLang.setForeground(new java.awt.Color(220, 194, 154));
+        lblLang.setText("Language :");
+
+        jButton2.setBackground(new java.awt.Color(10, 31, 57));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(220, 194, 154));
+        jButton2.setText("ខ្មែរ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -110,34 +158,45 @@ public class LoginForm extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                            .addComponent(lblUserName)
+                            .addComponent(lblPassword))
                         .addGap(51, 51, 51)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                             .addComponent(txtpassword))))
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(185, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(165, 165, 165))
+                .addContainerGap(194, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblLang)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)
+                        .addGap(71, 71, 71))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(156, 156, 156))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLang)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
+                .addComponent(lblHeader, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel2)
+                    .addComponent(lblUserName)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(lblPassword)
                     .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(170, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,7 +209,7 @@ public class LoginForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 463, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,6 +285,19 @@ public class LoginForm extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_jButton1KeyPressed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(jButton2.getText().equals("ខ្មែរ")){
+               this.setkh();
+        }else{
+             this.setEng();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -264,10 +336,12 @@ public class LoginForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblHeader;
+    private javax.swing.JLabel lblLang;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblUserName;
     private javax.swing.JTextField txtUsername;
     private javax.swing.JPasswordField txtpassword;
     // End of variables declaration//GEN-END:variables

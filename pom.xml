@@ -24,11 +24,11 @@
       <version>42.7.3</version>
     </dependency>
   </dependencies>
-  <dependency>
+<!--  <dependency>
     <groupId>com.toedter</groupId>
     <artifactId>jcalendar</artifactId>
     <version>1.4</version>
-</dependency>
+</dependency>-->
 
 
   <!-- Optional: run via `mvn exec:java` -->

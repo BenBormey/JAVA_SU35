@@ -54,17 +54,26 @@
                   <Component id="lblTitleGetCash" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btn64" min="-2" pref="236" max="-2" attributes="0"/>
-                  <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
+              <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btndeposit" min="-2" pref="184" max="-2" attributes="0"/>
-                      <Component id="btndeposit1" min="-2" pref="184" max="-2" attributes="0"/>
-                      <Component id="btndeposit2" min="-2" pref="184" max="-2" attributes="0"/>
-                      <Component id="btndeposit3" min="-2" pref="184" max="-2" attributes="0"/>
-                      <Component id="btndeposit4" min="-2" pref="184" max="-2" attributes="0"/>
-                      <Component id="btndeposit5" min="-2" pref="184" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="btn64" min="-2" pref="236" max="-2" attributes="0"/>
+                          <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btndeposit2" min="-2" pref="184" max="-2" attributes="0"/>
+                              <Component id="btndeposit3" min="-2" pref="184" max="-2" attributes="0"/>
+                              <Component id="btndeposit4" min="-2" pref="184" max="-2" attributes="0"/>
+                              <Component id="btndeposit5" min="-2" pref="184" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btndeposit" pref="373" max="32767" attributes="0"/>
+                              <Component id="btndeposit1" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>

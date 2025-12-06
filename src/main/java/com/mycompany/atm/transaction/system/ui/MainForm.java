@@ -18,31 +18,32 @@ public class MainForm extends javax.swing.JFrame {
      */
     private int currentUserId;
     public MainForm(){
-           
+             initComponents();
     }
   
     public MainForm(int userId) {
-        initComponents();
-      this.currentUserId = userId;
-        this.loadTotalBalances();
+    initComponents();
+    this.currentUserId = userId;
+    this.loadTotalBalances();
+        
   
         
     }
    private void loadTotalBalances() {
 
 
-    String sqlKhr = """
-        SELECT COALESCE(SUM("Balance($)"), 0)
-        FROM public."CUSTOMER"
-        WHERE "UserID" = %d
-          AND "isKh" = true
-        """.formatted(currentUserId);
-
-    Object resKhr = DBHelper.getSingleValue(sqlKhr);
-    double totalKhr = 0.0;
-    if (resKhr instanceof Number) {
-        totalKhr = ((Number) resKhr).doubleValue();
-    }
+//    String sqlKhr = """
+//        SELECT COALESCE(SUM("Balance($)"), 0)
+//        FROM public."CUSTOMER"
+//        WHERE "UserID" = %d
+//          AND "isKh" = true
+//        """.formatted(currentUserId);
+//
+//    Object resKhr = DBHelper.getSingleValue(sqlKhr);
+//    double totalKhr = 0.0;
+//    if (resKhr instanceof Number) {
+//        totalKhr = ((Number) resKhr).doubleValue();
+//    }
 
 
     String sqlUsd = """
@@ -59,7 +60,7 @@ public class MainForm extends javax.swing.JFrame {
     }
 
    
-    lblbalandkh.setText(String.format("%,.2f ៛", totalKhr));
+    //lblbalandkh.setText(String.format("%,.2f ៛", totalKhr));
     lblBalnceus.setText(String.format("%,.2f $", totalUsd));
 }
 
@@ -195,10 +196,9 @@ public class MainForm extends javax.swing.JFrame {
         lblbalandkh.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblbalandkh.setForeground(new java.awt.Color(220, 194, 154));
         lblbalandkh.setName(""); // NOI18N
-        lblbalandkh.setText("00.00 ៛");
+        lblbalandkh.setText("00.00 ");
 
         jButton1.setBackground(new java.awt.Color(21, 42, 66));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/view.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -352,20 +352,23 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
   public boolean isBalanceHidden =false;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//    ​    galuse
-    this.isBalanceHidden = !this.isBalanceHidden;
-        if (this.isBalanceHidden) {
-            lblbalandkh.setText("••••••••• ៛");
-            lblBalnceus.setText("••••••••• $");
+ this.isBalanceHidden = !this.isBalanceHidden;
 
-            jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("file:/C:/Users/HQ/Downloads/view.png")));
-        } else {
+    if (this.isBalanceHidden) {
+        // hide balances
+        lblbalandkh.setText("••••••••• ៛");
+        lblBalnceus.setText("••••••••• $");
 
-            loadTotalBalances(); 
+        // use icon from /icon folder inside project
+        jButton1.setIcon(new javax.swing.ImageIcon(
+                getClass().getResource("/icon/hide.png")));
+    } else {
+        // show balances again
+        loadTotalBalances();
 
-
-            jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("file:/C:/Users/HQ/Downloads/view.png")));
-        }
+        jButton1.setIcon(new javax.swing.ImageIcon(
+                getClass().getResource("/icon/view.png")));
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed

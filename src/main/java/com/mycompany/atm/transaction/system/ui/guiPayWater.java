@@ -39,6 +39,7 @@ public class guiPayWater extends javax.swing.JFrame {
         double bal  = ((Number)row.get("Balance($)")).doubleValue();
          this.iskh = (boolean)row.get("isKh");
         String symbol = this.iskh ? "៛" : "$";
+        
 
         String text = "%s - %s (%,.2f %s)".formatted(no, type, bal, symbol);
         cboAccount.addItem(text);
@@ -376,138 +377,138 @@ public class guiPayWater extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGetCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCashActionPerformed
-     try {
-    
-    String amountText  = txtAmount.getText().trim();
-    if (amountText.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter Amount");
-        return;
-    }
-
-    String billingMonth = txtBiilingmonth.getText().trim();
-    if (billingMonth.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter Billing Month");
-        return;
-    }
-
-    String customerIdText = txtCustomerId.getText().trim();
-    if (customerIdText.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter Customer ID");
-        return;
-    }
-
-    Object selAccount = cboAccount.getSelectedItem();
-    if (selAccount == null) {
-        JOptionPane.showMessageDialog(this, "Please choose Pay From Account");
-        return;
-    }
-
-    BigDecimal amount = new BigDecimal(amountText);
-
-    // example: 0011110105 - CHECKING (3,590.00 $)
-    String accountInfo = selAccount.toString();
-    String[] parts     = accountInfo.split(" - ");
-    String accountNo   = parts[0].trim();
-
-    // 2️⃣ Load account from CUSTOMER (ID + Balance)
-    String sqlAcc = """
-        SELECT "ID", "Balance($)" AS balance
-        FROM public."CUSTOMER"
-        WHERE "AccountNo" = ?
-        """;
-
-    var accList = DBHelper.getValues(sqlAcc, accountNo);
-
-    if (accList.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Account not found!");
-        return;
-    }
-
-    var acc = accList.get(0);
-    long customerIdDb         = ((Number) acc.get("ID")).longValue();
-    BigDecimal balanceBefore  = new BigDecimal(acc.get("balance").toString());
-
-    // 3️⃣ Check balance
-    if (balanceBefore.compareTo(amount) < 0) {
-        JOptionPane.showMessageDialog(this, "Not enough balance!");
-        return;
-    }
-
-    BigDecimal balanceAfter = balanceBefore.subtract(amount);
-
-    // 4️⃣ Insert only into atm_transaction  (PAY WATER)
-    String sqlTrans = """
-        INSERT INTO public.atm_transaction(
-            account_id,
-            user_id,
-            tran_type,
-            amount,
-            is_kh,
-            balance_before,
-            balance_after,
-            created_at,
-            note
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?);
-        """;
-
-    boolean isKh = false;  // change if this in KHR
-
-    int rowsTrans = DBHelper.execute(
-            sqlTrans,
-            customerIdDb,
-            this.userid,                 // 👈 from guiPayWater field
-            "WATER_PAY",                 // 👈 tran_type for water
-            amount,
-            isKh,
-            balanceBefore,
-            balanceAfter,
-            "Pay water CID:" + customerIdText +
-            " Month:" + billingMonth
-    );
-
-    if (rowsTrans == 0) {
-        JOptionPane.showMessageDialog(this,
-                "❌ atm_transaction insert failed.",
-                "ERROR",
-                JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // 5️⃣ Update CUSTOMER balance
-    String sqlUpdateAcc = """
-        UPDATE public."CUSTOMER"
-        SET "Balance($)" = ?
-        WHERE "ID" = ?
-        """;
-
-    int rowsUpdate = DBHelper.execute(sqlUpdateAcc, balanceAfter, customerIdDb);
-
-    if (rowsUpdate == 0) {
-        JOptionPane.showMessageDialog(this,
-                "❌ Balance not updated in CUSTOMER table.",
-                "ERROR",
-                JOptionPane.ERROR_MESSAGE);
-        return;
-    }
-
-    // 6️⃣ Success message
-    JOptionPane.showMessageDialog(this,
-            "Water Payment Successful!\n" +      // 👈 text for water
-            "Customer ID: " + customerIdText + "\n" +
-            "Month: " + billingMonth + "\n" +
-            "Amount: " + amount + "\n" +
-            "New Balance: " + balanceAfter);
-
-    // 7️⃣ Clear form
-    txtAmount.setText("");
-    txtBiilingmonth.setText("");
-    txtCustomerId.setText("");
-
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-    e.printStackTrace();
-}
+//     try {
+//    
+//    String amountText  = txtAmount.getText().trim();
+//    if (amountText.isEmpty()) {
+//        JOptionPane.showMessageDialog(this, "Please enter Amount");
+//        return;
+//    }
+//
+//    String billingMonth = txtBiilingmonth.getText().trim();
+//    if (billingMonth.isEmpty()) {
+//        JOptionPane.showMessageDialog(this, "Please enter Billing Month");
+//        return;
+//    }
+//
+//    String customerIdText = txtCustomerId.getText().trim();
+//    if (customerIdText.isEmpty()) {
+//        JOptionPane.showMessageDialog(this, "Please enter Customer ID");
+//        return;
+//    }
+//
+//    Object selAccount = cboAccount.getSelectedItem();
+//    if (selAccount == null) {
+//        JOptionPane.showMessageDialog(this, "Please choose Pay From Account");
+//        return;
+//    }
+//
+//    BigDecimal amount = new BigDecimal(amountText);
+//
+//    // example: 0011110105 - CHECKING (3,590.00 $)
+//    String accountInfo = selAccount.toString();
+//    String[] parts     = accountInfo.split(" - ");
+//    String accountNo   = parts[0].trim();
+//
+//    // 2️⃣ Load account from CUSTOMER (ID + Balance)
+//    String sqlAcc = """
+//        SELECT "ID", "Balance($)" AS balance
+//        FROM public."CUSTOMER"
+//        WHERE "AccountNo" = ?
+//        """;
+//
+//    var accList = DBHelper.getValues(sqlAcc, accountNo);
+//
+//    if (accList.isEmpty()) {
+//        JOptionPane.showMessageDialog(this, "Account not found!");
+//        return;
+//    }
+//
+//    var acc = accList.get(0);
+//    long customerIdDb         = ((Number) acc.get("ID")).longValue();
+//    BigDecimal balanceBefore  = new BigDecimal(acc.get("balance").toString());
+//
+//    // 3️⃣ Check balance
+//    if (balanceBefore.compareTo(amount) < 0) {
+//        JOptionPane.showMessageDialog(this, "Not enough balance!");
+//        return;
+//    }
+//
+//    BigDecimal balanceAfter = balanceBefore.subtract(amount);
+//
+//    // 4️⃣ Insert only into atm_transaction  (PAY WATER)
+//    String sqlTrans = """
+//        INSERT INTO public.atm_transaction(
+//            account_id,
+//            user_id,
+//            tran_type,
+//            amount,
+//            is_kh,
+//            balance_before,
+//            balance_after,
+//            created_at,
+//            note
+//        )
+//        VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?);
+//        """;
+//
+//    boolean isKh = false;  // change if this in KHR
+//
+//    int rowsTrans = DBHelper.execute(
+//            sqlTrans,
+//            customerIdDb,
+//            this.userid,                 // 👈 from guiPayWater field
+//            "WATER_PAY",                 // 👈 tran_type for water
+//            amount,
+//            isKh,
+//            balanceBefore,
+//            balanceAfter,
+//            "Pay water CID:" + customerIdText +
+//            " Month:" + billingMonth
+//    );
+//
+//    if (rowsTrans == 0) {
+//        JOptionPane.showMessageDialog(this,
+//                "❌ atm_transaction insert failed.",
+//                "ERROR",
+//                JOptionPane.ERROR_MESSAGE);
+//        return;
+//    }
+//
+//    // 5️⃣ Update CUSTOMER balance
+//    String sqlUpdateAcc = """
+//        UPDATE public."CUSTOMER"
+//        SET "Balance($)" = ?
+//        WHERE "ID" = ?
+//        """;
+//
+//    int rowsUpdate = DBHelper.execute(sqlUpdateAcc, balanceAfter, customerIdDb);
+//
+//    if (rowsUpdate == 0) {
+//        JOptionPane.showMessageDialog(this,
+//                "❌ Balance not updated in CUSTOMER table.",
+//                "ERROR",
+//                JOptionPane.ERROR_MESSAGE);
+//        return;
+//    }
+//
+//    // 6️⃣ Success message
+//    JOptionPane.showMessageDialog(this,
+//            "Water Payment Successful!\n" +      // 👈 text for water
+//            "Customer ID: " + customerIdText + "\n" +
+//            "Month: " + billingMonth + "\n" +
+//            "Amount: " + amount + "\n" +
+//            "New Balance: " + balanceAfter);
+//
+//    // 7️⃣ Clear form
+//    txtAmount.setText("");
+//    txtBiilingmonth.setText("");
+//    txtCustomerId.setText("");
+//
+//} catch (Exception e) {
+//    JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+//    e.printStackTrace();
+//}
 
     }//GEN-LAST:event_btnGetCashActionPerformed
 
@@ -557,12 +558,12 @@ public class guiPayWater extends javax.swing.JFrame {
 
     BigDecimal amount = new BigDecimal(amountText);
 
-    // example: 0011110105 - CHECKING (3,590.00 $)
+   
     String accountInfo = selAccount.toString();
     String[] parts     = accountInfo.split(" - ");
     String accountNo   = parts[0].trim();
 
-    // 2️⃣ Load account from CUSTOMER (ID + Balance)
+  
     String sqlAcc = """
         SELECT "ID", "Balance($)" AS balance
         FROM public."CUSTOMER"
@@ -580,7 +581,7 @@ public class guiPayWater extends javax.swing.JFrame {
     long customerIdDb         = ((Number) acc.get("ID")).longValue();
     BigDecimal balanceBefore  = new BigDecimal(acc.get("balance").toString());
 
-    // 3️⃣ Check balance
+    
     if (balanceBefore.compareTo(amount) < 0) {
         JOptionPane.showMessageDialog(this, "Not enough balance!");
         return;
@@ -588,7 +589,7 @@ public class guiPayWater extends javax.swing.JFrame {
 
     BigDecimal balanceAfter = balanceBefore.subtract(amount);
 
-    // 4️⃣ Insert only into atm_transaction  (PAY WATER)
+ 
     String sqlTrans = """
         INSERT INTO public.atm_transaction(
             account_id,
@@ -609,8 +610,8 @@ public class guiPayWater extends javax.swing.JFrame {
     int rowsTrans = DBHelper.execute(
             sqlTrans,
             customerIdDb,
-            this.userid,                 // 👈 from guiPayWater field
-            "WATER_PAY",                 // 👈 tran_type for water
+            this.userid,               
+            "WATER_PAY",           
             amount,
             isKh,
             balanceBefore,
@@ -627,7 +628,7 @@ public class guiPayWater extends javax.swing.JFrame {
         return;
     }
 
-    // 5️⃣ Update CUSTOMER balance
+   
     String sqlUpdateAcc = """
         UPDATE public."CUSTOMER"
         SET "Balance($)" = ?
@@ -646,7 +647,7 @@ public class guiPayWater extends javax.swing.JFrame {
 
     // 6️⃣ Success message
     JOptionPane.showMessageDialog(this,
-            "Water Payment Successful!\n" +      // 👈 text for water
+            "Water Payment Successful!\n" +   
             "Customer ID: " + customerIdText + "\n" +
             "Month: " + billingMonth + "\n" +
             "Amount: " + amount + "\n" +
