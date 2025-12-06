@@ -2,6 +2,7 @@ com\mycompany\atm\transaction\system\ui\guiChnagePassword$3.class
 com\mycompany\atm\transaction\system\ui\guiAccouontSetting.class
 com\mycompany\atm\transaction\system\ui\guipayelectricity$2.class
 com\mycompany\atm\transaction\system\ui\guiPayWater$2.class
+com\mycompany\atm\transaction\system\ui\New.class
 com\mycompany\atm\transaction\system\ui\guiAccouontSetting$4.class
 com\mycompany\atm\transaction\system\ui\guiChooseAccount$3.class
 com\mycompany\atm\transaction\system\ui\guiReport.class
@@ -10,7 +11,6 @@ com\mycompany\atm\transaction\system\ui\MainForm$3.class
 com\mycompany\atm\transaction\system\ui\guiDeposit$3.class
 com\mycompany\atm\transaction\system\ui\frmGetCash.class
 com\mycompany\atm\transaction\system\ui\LoginForm$6.class
-Repository\UserRepository.class
 com\mycompany\atm\transaction\system\ui\AdminDeshbord$3.class
 com\mycompany\atm\transaction\system\ui\frmGetCash$6.class
 com\mycompany\atm\transaction\system\ui\guiAccouontSetting$1.class
@@ -25,7 +25,6 @@ com\mycompany\atm\transaction\system\ui\guipayPhoneTop_up$3.class
 com\mycompany\atm\transaction\system\ui\guiCustomerManegement$2.class
 com\mycompany\atm\transaction\system\ui\guipayelectricity.class
 com\mycompany\atm\transaction\system\ui\guiPayment.class
-interfaces\IUserRepository.class
 com\mycompany\atm\transaction\system\ui\LoginForm$1.class
 com\mycompany\atm\transaction\system\ui\MainForm$8.class
 com\mycompany\atm\transaction\system\ui\guiPayment$2.class
