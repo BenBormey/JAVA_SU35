@@ -29,40 +29,39 @@ public class MainForm extends javax.swing.JFrame {
   
         
     }
-   private void loadTotalBalances() {
+  private void loadTotalBalances() {
 
+    // KHR
+    String sqlKhr = """
+        SELECT COALESCE(SUM(a.balance), 0)
+        FROM account a
+        JOIN public."CUSTOMER" c
+             ON a.customer_id = c."ID"
+        WHERE c."UserID" = %d
+          AND a.is_kh = TRUE
+        """.formatted(currentUserId);
 
-//    String sqlKhr = """
-//        SELECT COALESCE(SUM("Balance($)"), 0)
-//        FROM public."CUSTOMER"
-//        WHERE "UserID" = %d
-//          AND "isKh" = true
-//        """.formatted(currentUserId);
-//
-//    Object resKhr = DBHelper.getSingleValue(sqlKhr);
-//    double totalKhr = 0.0;
-//    if (resKhr instanceof Number) {
-//        totalKhr = ((Number) resKhr).doubleValue();
-//    }
+    Object resKhr = DBHelper.getSingleValue(sqlKhr);
+    double totalKhr = (resKhr instanceof Number) ? ((Number) resKhr).doubleValue() : 0.0;
 
-
+    // USD
     String sqlUsd = """
-        SELECT COALESCE(SUM("Balance($)"), 0)
-        FROM public."CUSTOMER"
-        WHERE "UserID" = %d
-          AND "isKh" = false
+        SELECT COALESCE(SUM(a.balance), 0)
+        FROM account a
+        JOIN public."CUSTOMER" c
+             ON a.customer_id = c."ID"
+        WHERE c."UserID" = %d
+          AND a.is_kh = FALSE
         """.formatted(currentUserId);
 
     Object resUsd = DBHelper.getSingleValue(sqlUsd);
-    double totalUsd = 0.0;
-    if (resUsd instanceof Number) {
-        totalUsd = ((Number) resUsd).doubleValue();
-    }
+    double totalUsd = (resUsd instanceof Number) ? ((Number) resUsd).doubleValue() : 0.0;
 
-   
-    //lblbalandkh.setText(String.format("%,.2f ៛", totalKhr));
+     lblbalandkh.setText(String.format("%,.2f ៛", totalKhr));
     lblBalnceus.setText(String.format("%,.2f $", totalUsd));
 }
+
+
 
    
 

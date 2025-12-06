@@ -33,27 +33,35 @@ public class guiChooseAccount extends javax.swing.JFrame {
         initComponents();
     }
    private boolean iskh;
-   private void loadAccountsToCombo() {
+private void loadAccountsToCombo() {
+
     String sql = """
-        SELECT "AccountNo", "AccountType", "Balance($)", "isKh"
-        FROM public."CUSTOMER"
-        WHERE "UserID" = %d
+        SELECT a.account_no      AS account_no,
+               a.account_type    AS account_type,
+               a.balance         AS balance,
+               a.is_kh           AS is_kh
+        FROM account a
+        JOIN public."CUSTOMER" c
+             ON a.customer_id = c."ID"
+        WHERE c."UserID" = %d
         """.formatted(currentUserId);
 
     var list = DBHelper.getValues(sql);
     cboAccount.removeAllItems();
 
     for (var row : list) {
-        String no = row.get("AccountNo").toString();
-        String type = row.get("AccountType").toString();
-        double bal  = ((Number)row.get("Balance($)")).doubleValue();
-         this.iskh = (boolean)row.get("isKh");
-        String symbol = this.iskh ? "៛" : "$";
+        String no   = row.get("account_no").toString();
+        String type = row.get("account_type").toString();
+        double bal  = ((Number) row.get("balance")).doubleValue();
+        boolean isKh = (Boolean) row.get("is_kh");   // or (boolean)
 
+        String symbol = isKh ? "៛" : "$";
         String text = "%s - %s (%,.2f %s)".formatted(no, type, bal, symbol);
+
         cboAccount.addItem(text);
     }
 }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,44 +184,56 @@ public class guiChooseAccount extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGetCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCashActionPerformed
-   this.iskh = false;
-        if (cboAccount.getSelectedItem() == null) {
-        JOptionPane.showMessageDialog(this, "Please choose account.");
-        return;
-    }
+  this.iskh = false;
 
+if (cboAccount.getSelectedItem() == null) {
+    JOptionPane.showMessageDialog(this, "Please choose account.");
+    return;
+}
+
+// Example item: 001-111-0001 - SAVING (950.00 $)
 String item = cboAccount.getSelectedItem().toString();
 
+// Split "001-111-0001 - SAVING (950.00 $)"
 String[] mainParts = item.split(" - ");
+if (mainParts.length < 1) {
+    JOptionPane.showMessageDialog(this, "Invalid account format.");
+    return;
+}
 
-String accountNo = mainParts[0];
+String accountNo   = mainParts[0];   // 001-111-0001
+// String accountType = mainParts[1]; // if you need it later
 
-String accountType = mainParts[1];
+// 🔹 NOW: load from account + CUSTOMER (not from CUSTOMER only)
+String sqlLoad = """
+    SELECT a.id          AS account_id,
+           a.balance     AS balance,
+           a.is_kh       AS is_kh,
+           a.account_no  AS account_no
+    FROM account a
+    JOIN public."CUSTOMER" c
+      ON a.customer_id = c."ID"
+    WHERE c."UserID" = %d
+      AND a.account_no = '%s'
+    """.formatted(currentUserId, accountNo);
 
+var list = DBHelper.getValues(sqlLoad);
+if (list.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Account not found.");
+    return;
+}
 
+var row = list.get(0);
+double balance = ((Number) row.get("balance")).doubleValue();
+this.iskh      = (Boolean) row.get("is_kh");
+String symbol  = this.iskh ? "៛" : "$";
 
-    String sqlLoad = """
-        SELECT "ID", "Balance($)", "isKh", "AccountNo"
-        FROM public."CUSTOMER"
-        WHERE "UserID" = %d
-          AND "AccountNo" = '%s'
-        """.formatted(currentUserId, accountNo);
+// account.id from account table
+long accountId = ((Number) row.get("account_id")).longValue();
+// String accountNoFromDb = row.get("account_no").toString(); // same as accountNo
 
-    var list = DBHelper.getValues(sqlLoad);
-    if (list.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Account not found.");
-        return;
-    }
-
-    var row = list.get(0);
-    double balance = ((Number)row.get("Balance($)")).doubleValue();
-    this.iskh  = (boolean)row.get("isKh");
-    String symbol = this.iskh  ? "៛" : "$";
-
-    long accountId = Long.parseLong(row.get("ID").toString());
- 
-    
-    String sqlLoadCurrency = """
+// 🔹 Load last USD→KHR rate (unchanged)
+String sqlLoadCurrency = """
     SELECT id, from_code, to_code, rate
     FROM public.currency_rate
     WHERE from_code = 'USD'
@@ -222,103 +242,104 @@ String accountType = mainParts[1];
 """;
 
 var listCurrency = DBHelper.getValues(sqlLoadCurrency);
-
 double rateUsd = 0;
 
 if (!listCurrency.isEmpty()) {
-    var rowCurrency = listCurrency.get(0);   
+    var rowCurrency = listCurrency.get(0);
     rateUsd = ((Number) rowCurrency.get("rate")).doubleValue();
 }
-  
 
+// ⚠ assume withdrawAmount already calculated above from your textbox
+double withdrawAmountriel = 0;
 
-   // String accountNo = row.get("AccountNo").toString();
- double withdrawAmountriel = 0;
-   if(this.iskh){
-       withdrawAmountriel = withdrawAmount *rateUsd;
-       if (withdrawAmountriel > balance) {
-           JOptionPane.showMessageDialog(this, "Insufficient balance!");
-           return;
-       }else{
-           withdrawAmount = withdrawAmountriel;
-       }
-   }
+if (this.iskh) {
+    // account is KHR; withdrawAmount probably is USD → convert
+    withdrawAmountriel = withdrawAmount * rateUsd;
 
-    if (withdrawAmount > balance) {
+    if (withdrawAmountriel > balance) {
         JOptionPane.showMessageDialog(this, "Insufficient balance!");
         return;
+    } else {
+        withdrawAmount = withdrawAmountriel;
     }
+}
 
+// Final check in account currency
+if (withdrawAmount > balance) {
+    JOptionPane.showMessageDialog(this, "Insufficient balance!");
+    return;
+}
 
-    double newBalance = balance - withdrawAmount;
+double newBalance = balance - withdrawAmount;
 
+// 🔹 UPDATE account, not CUSTOMER
+String sqlUpdate = """
+    UPDATE account
+    SET balance = %f
+    WHERE id = %d
+    """.formatted(newBalance, accountId);
 
-    String sqlUpdate = """
-        UPDATE public."CUSTOMER"
-        SET "Balance($)" = %f
-        WHERE "ID" = %d
-        """.formatted(newBalance, accountId);
+// 🔹 History uses account_id from account table
+String sqlHistory = """
+    INSERT INTO public."atm_transaction"
+    (account_id, user_id, tran_type, amount, is_kh,
+     balance_before, balance_after, note)
+    VALUES (%d, %d, '%s', %f, %b, %f, %f, '%s')
+    """.formatted(
+        accountId,
+        currentUserId,
+        "GET_CASH",
+        withdrawAmount,
+        this.iskh,
+        balance,
+        newBalance,
+        "ATM GET CASH - " + accountNo
+    );
 
-    String sqlHistory = """
-        INSERT INTO public."atm_transaction"
-        (account_id, user_id, tran_type, amount, is_kh,
-         balance_before, balance_after, note)
-        VALUES (%d, %d, '%s', %f, %b, %f, %f, '%s')
-        """.formatted(
-            accountId,
-            currentUserId,
-            "GET_CASH",
-            withdrawAmount,
-            this.iskh ,
-            balance,
-            newBalance,
-            "ATM GET CASH - " + accountNo
-        );
+java.sql.Connection con = null;
+java.sql.Statement stmt = null;
 
+try {
+    con = com.mycompany.atm.transaction.system.DB.dbcontextion.getConnection();
+    con.setAutoCommit(false);   // start transaction
 
-    java.sql.Connection con = null;
-    java.sql.Statement stmt = null;
+    stmt = con.createStatement();
+    stmt.executeUpdate(sqlUpdate);   // update balance in account
+    stmt.executeUpdate(sqlHistory);  // insert history
 
+    con.commit();   // ✅ success, commit
+
+    JOptionPane.showMessageDialog(this,
+        "Withdraw: " + String.format("%,.2f %s", withdrawAmount, symbol)
+      + "\nNew Balance: " + String.format("%,.2f %s", newBalance, symbol)
+      + "\nTransaction Saved!");
+
+    MainForm main = new MainForm(this.currentUserId);
+    main.setLocationRelativeTo(null);
+    main.setVisible(true);
+
+    this.dispose();
+}
+catch (Exception ex) {
     try {
-        con = com.mycompany.atm.transaction.system.DB.dbcontextion.getConnection();
-        con.setAutoCommit(false);   // start transaction
+        if (con != null) con.rollback();   // ❌ error → rollback everything
+    } catch (Exception ignore) {}
 
-        stmt = con.createStatement();
-        stmt.executeUpdate(sqlUpdate);   // update balance
-        stmt.executeUpdate(sqlHistory);  // insert history
+    JOptionPane.showMessageDialog(this,
+        "Error while processing transaction.\nAll changes rolled back.\n" + ex.getMessage(),
+        "Error",
+        JOptionPane.ERROR_MESSAGE);
+}
+finally {
+    try {
+        if (stmt != null) stmt.close();
+        if (con != null) {
+            con.setAutoCommit(true);
+            con.close();
+        }
+    } catch (Exception ignore) {}
+}
 
-        con.commit();   // ✅ success, commit
-
-        JOptionPane.showMessageDialog(this,
-            "Withdraw: " + String.format("%,.2f %s", withdrawAmount, symbol)
-          + "\nNew Balance: " + String.format("%,.2f %s", newBalance, symbol)
-          + "\nTransaction Saved!");
-
-       MainForm main = new MainForm(this.currentUserId);
-            main.setLocationRelativeTo(null);
-            main.setVisible(true);
-
-            this.dispose();
-    }
-    catch (Exception ex) {
-        try {
-            if (con != null) con.rollback();   // ❌ error → rollback everything
-        } catch (Exception ignore) {}
-
-        JOptionPane.showMessageDialog(this,
-            "Error while processing transaction.\nAll changes rolled back.\n" + ex.getMessage(),
-            "Error",
-            JOptionPane.ERROR_MESSAGE);
-    }
-    finally {
-        try {
-            if (stmt != null) stmt.close();
-            if (con != null) {
-                con.setAutoCommit(true);
-                con.close();
-            }
-        } catch (Exception ignore) {}
-    }
     }//GEN-LAST:event_btnGetCashActionPerformed
 
     private void btnGetCash1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCash1ActionPerformed

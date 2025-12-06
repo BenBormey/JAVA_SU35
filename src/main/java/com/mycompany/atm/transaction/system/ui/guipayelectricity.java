@@ -25,28 +25,35 @@ public class guipayelectricity extends javax.swing.JFrame {
      
     }
        private boolean iskh;
-   private void loadAccountsToCombo() {
+
+private void loadAccountsToCombo() {
+
     String sql = """
-        SELECT "AccountNo", "AccountType", "Balance($)", "isKh"
-        FROM public."CUSTOMER"
-        WHERE "UserID" = %d
+        SELECT a.account_no      AS account_no,
+               a.account_type    AS account_type,
+               a.balance         AS balance,
+               a.is_kh           AS is_kh
+        FROM account a
+        JOIN public."CUSTOMER" c
+             ON a.customer_id = c."ID"
+        WHERE c."UserID" = %d
         """.formatted(currentUserId);
 
     var list = DBHelper.getValues(sql);
     cboAccount.removeAllItems();
 
     for (var row : list) {
-        String no = row.get("AccountNo").toString();
-        String type = row.get("AccountType").toString();
-        double bal  = ((Number)row.get("Balance($)")).doubleValue();
-         this.iskh = (boolean)row.get("isKh");
-        String symbol = this.iskh ? "៛" : "$";
+        String no   = row.get("account_no").toString();
+        String type = row.get("account_type").toString();
+        double bal  = ((Number) row.get("balance")).doubleValue();
+        boolean isKh = (Boolean) row.get("is_kh");   // or (boolean)
 
+        String symbol = isKh ? "៛" : "$";
         String text = "%s - %s (%,.2f %s)".formatted(no, type, bal, symbol);
+
         cboAccount.addItem(text);
     }
 }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,8 +80,6 @@ public class guipayelectricity extends javax.swing.JFrame {
         panel14 = new java.awt.Panel();
         jLabel5 = new javax.swing.JLabel();
         cboAccount = new javax.swing.JComboBox<>();
-        btnGetCash = new java.awt.Button();
-        btnGetCash1 = new java.awt.Button();
         jLabel6 = new javax.swing.JLabel();
         btndeposit = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -256,29 +261,6 @@ public class guipayelectricity extends javax.swing.JFrame {
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
-        btnGetCash.setBackground(new java.awt.Color(10, 31, 57));
-        btnGetCash.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnGetCash.setForeground(new java.awt.Color(220, 194, 154));
-        btnGetCash.setLabel("Payment");
-        btnGetCash.setName(""); // NOI18N
-        btnGetCash.setPreferredSize(new java.awt.Dimension(100, 70));
-        btnGetCash.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGetCashActionPerformed(evt);
-            }
-        });
-
-        btnGetCash1.setBackground(new java.awt.Color(10, 31, 57));
-        btnGetCash1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnGetCash1.setForeground(new java.awt.Color(220, 194, 154));
-        btnGetCash1.setLabel("Cancel");
-        btnGetCash1.setPreferredSize(new java.awt.Dimension(100, 70));
-        btnGetCash1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGetCash1ActionPerformed(evt);
-            }
-        });
-
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(220, 194, 154));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/energetic.png"))); // NOI18N
@@ -319,20 +301,16 @@ public class guipayelectricity extends javax.swing.JFrame {
                     .addComponent(panel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(btnGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22)
-                                .addComponent(btnGetCash1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addGap(76, 76, 76)
-                                .addComponent(jLabel6)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel6)
+                        .addGap(0, 67, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,14 +328,10 @@ public class guipayelectricity extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnGetCash, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
-                    .addComponent(btnGetCash1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(21, 21, 21)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btndeposit))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -374,148 +348,172 @@ public class guipayelectricity extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGetCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCashActionPerformed
-
-    }//GEN-LAST:event_btnGetCashActionPerformed
-
-    private void btnGetCash1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCash1ActionPerformed
-       this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGetCash1ActionPerformed
-
     private void btndepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositActionPerformed
-         try {
-        // 1️⃣ Read + validate input
-        String amountText  = txtAmount.getText().trim();
-        if (amountText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Amount");
-            return;
-        }
-
-        String billingMonth = txtBiilingmonth.getText().trim();
-        if (billingMonth.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Billing Month");
-            return;
-        }
-
-        String customerIdText = txtCustomerId.getText().trim();
-        if (customerIdText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter Customer ID");
-            return;
-        }
-
-        Object selAccount = cboAccount.getSelectedItem();
-        if (selAccount == null) {
-            JOptionPane.showMessageDialog(this, "Please choose Pay From Account");
-            return;
-        }
-
-        BigDecimal amount = new BigDecimal(amountText);
-
-        // example: 0011110105 - CHECKING (3,590.00 $)
-        String accountInfo = selAccount.toString();
-        String[] parts     = accountInfo.split(" - ");
-        String accountNo   = parts[0].trim();
-
-        // 2️⃣ Load account from CUSTOMER (ID + Balance)
-        String sqlAcc = """
-            SELECT "ID", "Balance($)" AS balance
-            FROM public."CUSTOMER"
-            WHERE "AccountNo" = ?
-            """;
-
-        var accList = DBHelper.getValues(sqlAcc, accountNo);
-
-        if (accList.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Account not found!");
-            return;
-        }
-
-        var acc = accList.get(0);
-        long customerIdDb     = ((Number) acc.get("ID")).longValue();
-        BigDecimal balanceBefore = new BigDecimal(acc.get("balance").toString());
-
-        // 3️⃣ Check balance
-        if (balanceBefore.compareTo(amount) < 0) {
-            JOptionPane.showMessageDialog(this, "Not enough balance!");
-            return;
-        }
-
-        BigDecimal balanceAfter = balanceBefore.subtract(amount);
-
-        // 4️⃣ Insert only into atm_transaction  (NO ElectricityPayment table)
-        String sqlTrans = """
-            INSERT INTO public.atm_transaction(
-                account_id,
-                user_id,
-                tran_type,
-                amount,
-                is_kh,
-                balance_before,
-                balance_after,
-                created_at,
-                note
-            )
-            VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?);
-            """;
-
-        boolean isKh = false;  // change if this in KHR
-
-        int rowsTrans = DBHelper.execute(
-                sqlTrans,
-                customerIdDb,
-                this.currentUserId,             // logged-in user id field
-                "ELECTRICITY_PAY",              // tran_type
-                amount,
-                isKh,
-                balanceBefore,
-                balanceAfter,
-                "Pay electricity CID:" + customerIdText +
-                " Month:" + billingMonth
-        );
-
-        if (rowsTrans == 0) {
-            JOptionPane.showMessageDialog(this,
-                    "❌ atm_transaction insert failed.",
-                    "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // 5️⃣ Update CUSTOMER balance
-        String sqlUpdateAcc = """
-            UPDATE public."CUSTOMER"
-            SET "Balance($)" = ?
-            WHERE "ID" = ?
-            """;
-
-        int rowsUpdate = DBHelper.execute(sqlUpdateAcc, balanceAfter, customerIdDb);
-
-        if (rowsUpdate == 0) {
-            JOptionPane.showMessageDialog(this,
-                    "❌ Balance not updated in CUSTOMER table.",
-                    "ERROR",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // 6️⃣ Success message
-        JOptionPane.showMessageDialog(this,
-                "Electricity Payment Successful!\n" +
-                "Customer ID: " + customerIdText + "\n" +
-                "Month: " + billingMonth + "\n" +
-                "Amount: " + amount + "\n" +
-                "New Balance: " + balanceAfter);
-
-        // 7️⃣ Clear form
-        txtAmount.setText("");
-        txtBiilingmonth.setText("");
-        txtCustomerId.setText("");
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
-        e.printStackTrace();
+   try {
+    String amountText  = txtAmount.getText().trim();
+    if (amountText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Amount");
+        return;
     }
-  
+
+    String billingMonth = txtBiilingmonth.getText().trim();
+    if (billingMonth.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Billing Month");
+        return;
+    }
+
+    String customerIdText = txtCustomerId.getText().trim();
+    if (customerIdText.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Please enter Customer ID");
+        return;
+    }
+
+    Object selAccount = cboAccount.getSelectedItem();
+    if (selAccount == null) {
+        JOptionPane.showMessageDialog(this, "Please choose Pay From Account");
+        return;
+    }
+
+    BigDecimal amount = new BigDecimal(amountText);
+
+    String accountInfo = selAccount.toString();
+    String[] parts     = accountInfo.split(" - ");
+    String accountNo   = parts[0].trim();
+
+    String sqlAcc = """
+        SELECT a.id, a.balance, a.is_kh
+        FROM account a
+        JOIN public."CUSTOMER" c ON a.customer_id = c."ID"
+        WHERE a.account_no = ?
+          AND c."UserID" = ?
+        """;
+
+    var accList = DBHelper.getValues(sqlAcc, accountNo, this.currentUserId);
+
+    if (accList.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Account not found!");
+        return;
+    }
+
+    var acc = accList.get(0);
+    long accountIdDb        = ((Number) acc.get("id")).longValue();
+    BigDecimal balanceBefore = new BigDecimal(acc.get("balance").toString());
+    boolean isKh             = (Boolean) acc.get("is_kh");
+
+    if (balanceBefore.compareTo(amount) < 0) {
+        JOptionPane.showMessageDialog(this, "Not enough balance!");
+        return;
+    }
+
+    BigDecimal balanceAfter = balanceBefore.subtract(amount);
+
+    int providerId = 1;
+    String noteText =
+            "Pay electricity CID:" + customerIdText +
+            " Month:" + billingMonth;
+
+    String sqlBill = """
+        INSERT INTO public.bill_payment(
+            account_id,
+            provider_id,
+            customer_ref,
+            bill_month,
+            amount,
+            is_kh,
+            created_at,
+            user_id,
+            note
+        )
+        VALUES (?, ?, ?, ?, ?, ?, NOW(), ?, ?);
+        """;
+
+    int rowsBill = DBHelper.execute(
+            sqlBill,
+            accountIdDb,
+            providerId,
+            customerIdText,
+            billingMonth,
+            amount,
+            isKh,
+            this.currentUserId,
+            noteText
+    );
+
+    if (rowsBill == 0) {
+        JOptionPane.showMessageDialog(this,
+                "bill_payment insert failed.",
+                "ERROR",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    String sqlTrans = """
+        INSERT INTO public.atm_transaction(
+            account_id,
+            user_id,
+            tran_type,
+            amount,
+            is_kh,
+            balance_before,
+            balance_after,
+            created_at,
+            note
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?);
+        """;
+
+    int rowsTrans = DBHelper.execute(
+            sqlTrans,
+            accountIdDb,
+            this.currentUserId,
+            "ELECTRICITY_PAY",
+            amount,
+            isKh,
+            balanceBefore,
+            balanceAfter,
+            noteText
+    );
+
+    if (rowsTrans == 0) {
+        JOptionPane.showMessageDialog(this,
+                "atm_transaction insert failed.",
+                "ERROR",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    String sqlUpdateAcc = """
+        UPDATE account
+        SET balance = ?
+        WHERE id = ?
+        """;
+
+    int rowsUpdate = DBHelper.execute(sqlUpdateAcc, balanceAfter, accountIdDb);
+
+    if (rowsUpdate == 0) {
+        JOptionPane.showMessageDialog(this,
+                "Balance not updated in account table.",
+                "ERROR",
+                JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    JOptionPane.showMessageDialog(this,
+            "Electricity Payment Successful!\n" +
+            "Customer ID: " + customerIdText + "\n" +
+            "Month: " + billingMonth + "\n" +
+            "Amount: " + amount + "\n" +
+            "New Balance: " + balanceAfter);
+
+    txtAmount.setText("");
+    txtBiilingmonth.setText("");
+    txtCustomerId.setText("");
+
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    e.printStackTrace();
+}
+
     }//GEN-LAST:event_btndepositActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -562,8 +560,6 @@ public class guipayelectricity extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button btnGetCash;
-    private java.awt.Button btnGetCash1;
     private javax.swing.JButton btndeposit;
     private javax.swing.JComboBox<String> cboAccount;
     private javax.swing.JComboBox<String> cboProvider;

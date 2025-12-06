@@ -5,15 +5,12 @@ com\mycompany\atm\transaction\system\ui\guiPayWater$2.class
 com\mycompany\atm\transaction\system\ui\guiAccouontSetting$4.class
 com\mycompany\atm\transaction\system\ui\guiChooseAccount$3.class
 com\mycompany\atm\transaction\system\ui\guiReport.class
-com\mycompany\atm\transaction\system\ui\guipayelectricity$5.class
 com\mycompany\atm\transaction\system\ui\guipayPhoneTop_up$1.class
 com\mycompany\atm\transaction\system\ui\MainForm$3.class
 com\mycompany\atm\transaction\system\ui\guiDeposit$3.class
-com\mycompany\atm\transaction\system\ui\guiPayment$7.class
 com\mycompany\atm\transaction\system\ui\frmGetCash.class
 com\mycompany\atm\transaction\system\ui\LoginForm$6.class
 Repository\UserRepository.class
-com\mycompany\atm\transaction\system\ui\guipayPhoneTop_up$4.class
 com\mycompany\atm\transaction\system\ui\AdminDeshbord$3.class
 com\mycompany\atm\transaction\system\ui\frmGetCash$6.class
 com\mycompany\atm\transaction\system\ui\guiAccouontSetting$1.class
@@ -23,12 +20,10 @@ com\mycompany\atm\transaction\system\ui\MainForm.class
 com\mycompany\atm\transaction\system\ui\frmGetCash$3.class
 com\mycompany\atm\transaction\system\ui\guiCustomerManegement$4.class
 com\mycompany\atm\transaction\system\ui\DashBoardPanel_.class
-com\mycompany\atm\transaction\system\ui\guiPayWater$5.class
 com\mycompany\atm\transaction\system\ui\guiTransations$1.class
 com\mycompany\atm\transaction\system\ui\guipayPhoneTop_up$3.class
 com\mycompany\atm\transaction\system\ui\guiCustomerManegement$2.class
 com\mycompany\atm\transaction\system\ui\guipayelectricity.class
-com\mycompany\atm\transaction\system\ui\guiPayment$8.class
 com\mycompany\atm\transaction\system\ui\guiPayment.class
 interfaces\IUserRepository.class
 com\mycompany\atm\transaction\system\ui\LoginForm$1.class
@@ -55,7 +50,6 @@ com\mycompany\atm\transaction\system\ui\guiPayment$3.class
 com\mycompany\atm\transaction\system\ui\AdminDeshbord$2.class
 com\mycompany\atm\transaction\system\ui\MainForm$7.class
 com\mycompany\atm\transaction\system\model\Customer.class
-com\mycompany\atm\transaction\system\ui\guipayPhoneTop_up$5.class
 com\mycompany\atm\transaction\system\ui\DashboardPanel.class
 com\mycompany\atm\transaction\system\ui\frmGetCash$7.class
 com\mycompany\atm\transaction\system\ui\frmGetCash$4.class
@@ -73,7 +67,6 @@ com\mycompany\atm\transaction\system\ui\guipayelectricity$1.class
 com\mycompany\atm\transaction\system\ui\MainForm$1.class
 com\mycompany\atm\transaction\system\ui\guiPayment$6.class
 com\mycompany\atm\transaction\system\ui\guiDeposit$2.class
-com\mycompany\atm\transaction\system\ui\guipayelectricity$4.class
 com\mycompany\atm\transaction\system\ui\MainForm$4.class
 com\mycompany\atm\transaction\system\model\User.class
 com\mycompany\atm\transaction\system\ui\guiChnagePassword$1.class
@@ -85,7 +78,6 @@ com\mycompany\atm\transaction\system\ui\LoginForm$4.class
 com\mycompany\atm\transaction\system\ui\guiCustomerManegement$5.class
 com\mycompany\atm\transaction\system\ui\MainForm$5.class
 com\mycompany\atm\transaction\system\ui\frmGetCash$2.class
-com\mycompany\atm\transaction\system\ui\guiPayWater$4.class
 com\mycompany\atm\transaction\system\ui\guiChnagePassword$5.class
 com\mycompany\atm\transaction\system\ui\guiPayment$5.class
 com\mycompany\atm\transaction\system\ui\guiDeposit$1.class

@@ -24,24 +24,32 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
      
     }
        private boolean iskh;
-   private void loadAccountsToCombo() {
+
+private void loadAccountsToCombo() {
+
     String sql = """
-        SELECT "AccountNo", "AccountType", "Balance($)", "isKh"
-        FROM public."CUSTOMER"
-        WHERE "UserID" = %d
+        SELECT a.account_no      AS account_no,
+               a.account_type    AS account_type,
+               a.balance         AS balance,
+               a.is_kh           AS is_kh
+        FROM account a
+        JOIN public."CUSTOMER" c
+             ON a.customer_id = c."ID"
+        WHERE c."UserID" = %d
         """.formatted(currentUserId);
 
     var list = DBHelper.getValues(sql);
     cboAccount.removeAllItems();
 
     for (var row : list) {
-        String no = row.get("AccountNo").toString();
-        String type = row.get("AccountType").toString();
-        double bal  = ((Number)row.get("Balance($)")).doubleValue();
-         this.iskh = (boolean)row.get("isKh");
-        String symbol = this.iskh ? "៛" : "$";
+        String no   = row.get("account_no").toString();
+        String type = row.get("account_type").toString();
+        double bal  = ((Number) row.get("balance")).doubleValue();
+        boolean isKh = (Boolean) row.get("is_kh");   // or (boolean)
 
+        String symbol = isKh ? "៛" : "$";
         String text = "%s - %s (%,.2f %s)".formatted(no, type, bal, symbol);
+
         cboAccount.addItem(text);
     }
 }
@@ -61,8 +69,6 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
         jOptionPane1 = new javax.swing.JOptionPane();
         panel1 = new java.awt.Panel();
         lblTitleGetCash = new java.awt.Label();
-        btnGetCash = new java.awt.Button();
-        btnGetCash1 = new java.awt.Button();
         cboAccount = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         txtPhoneNumber = new javax.swing.JTextField();
@@ -83,29 +89,6 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
         lblTitleGetCash.setForeground(new java.awt.Color(220, 194, 154));
         lblTitleGetCash.setName(""); // NOI18N
         lblTitleGetCash.setText("Pay Mobile Phone");
-
-        btnGetCash.setBackground(new java.awt.Color(10, 31, 57));
-        btnGetCash.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnGetCash.setForeground(new java.awt.Color(220, 194, 154));
-        btnGetCash.setLabel("Payment");
-        btnGetCash.setName(""); // NOI18N
-        btnGetCash.setPreferredSize(new java.awt.Dimension(100, 70));
-        btnGetCash.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGetCashActionPerformed(evt);
-            }
-        });
-
-        btnGetCash1.setBackground(new java.awt.Color(10, 31, 57));
-        btnGetCash1.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btnGetCash1.setForeground(new java.awt.Color(220, 194, 154));
-        btnGetCash1.setLabel("Cancel");
-        btnGetCash1.setPreferredSize(new java.awt.Dimension(100, 70));
-        btnGetCash1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGetCash1ActionPerformed(evt);
-            }
-        });
 
         cboAccount.setBackground(new java.awt.Color(10, 31, 57));
         cboAccount.setEditable(true);
@@ -179,13 +162,8 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panel1Layout.createSequentialGroup()
-                                        .addComponent(btnGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnGetCash1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel3))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jLabel3)
+                                .addGap(0, 358, Short.MAX_VALUE))
                             .addComponent(txtPhoneAmount)))
                     .addComponent(txtPhoneNumber, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
@@ -213,15 +191,11 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPhoneAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(btnGetCash1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btndeposit))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,22 +212,8 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGetCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCashActionPerformed
-     
-
-
-
-        
-        
-    }//GEN-LAST:event_btnGetCashActionPerformed
-
-    private void btnGetCash1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetCash1ActionPerformed
-       this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGetCash1ActionPerformed
-
     private void btndepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositActionPerformed
-      try {
-    // 1. Collect UI values
+     try {
     String accountInfo = cboAccount.getSelectedItem().toString();
     String phone       = txtPhoneNumber.getText().trim();
     String amtStr      = txtPhoneAmount.getText().trim();
@@ -265,18 +225,18 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
 
     double amount = Double.parseDouble(amtStr);
 
-    // From: 0011110105 - CHECKING (3,590,865.00 ៛)
     String[] parts   = accountInfo.split(" - ");
     String accountNo = parts[0].trim();
 
-    // 2. Load account balance from CUSTOMER
     String sqlAcc = """
-        SELECT "ID", "Balance($)" AS balance
-        FROM "CUSTOMER"
-        WHERE "AccountNo" = ?
+        SELECT a.id, a.balance, a.is_kh
+        FROM account a
+        JOIN public."CUSTOMER" c ON a.customer_id = c."ID"
+        WHERE a.account_no = ?
+          AND c."UserID" = ?
         """;
 
-    var accList = DBHelper.getValues(sqlAcc, accountNo);
+    var accList = DBHelper.getValues(sqlAcc, accountNo, this.currentUserId);
 
     if (accList.isEmpty()) {
         JOptionPane.showMessageDialog(this, "Account not found!");
@@ -284,8 +244,9 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
     }
 
     var acc = accList.get(0);
-    long customerId      = ((Number) acc.get("ID")).longValue();
+    long accountId      = ((Number) acc.get("id")).longValue();
     double balanceBefore = ((Number) acc.get("balance")).doubleValue();
+    boolean isKh         = (Boolean) acc.get("is_kh");
 
     if (balanceBefore < amount) {
         JOptionPane.showMessageDialog(this, "Insufficient balance!");
@@ -294,7 +255,6 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
 
     double balanceAfter = balanceBefore - amount;
 
-    // 3. Detect operator
     String operator = "Unknown";
     if (phone.startsWith("096") || phone.startsWith("076") || phone.startsWith("086"))
         operator = "Cellcard";
@@ -303,24 +263,21 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
     else if (phone.startsWith("097") || phone.startsWith("088"))
         operator = "Metfone";
 
-    // 4. Insert into TopUp
     String sqlTopUp = """
         INSERT INTO public."TopUp"(
             "UserID",
-            "AccountNo",
             "PhoneNumber",
             "Operator",
             "Amount",
             "CreatedAt"
         )
-        VALUES (?, ?, ?, ?, ?, NOW())
+        VALUES (?, ?, ?, ?, NOW())
         RETURNING "TopUpID";
         """;
 
     Object topUpIdObj = DBHelper.executeScalar(
             sqlTopUp,
             this.currentUserId,
-            accountNo,
             phone,
             operator,
             amount
@@ -329,13 +286,12 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
 
     if (topUpId == 0L) {
         JOptionPane.showMessageDialog(this,
-                "❌ TopUp insert failed (TopUpID = 0).",
+                "TopUp insert failed (TopUpID = 0).",
                 "ERROR",
                 JOptionPane.ERROR_MESSAGE);
         return;
     }
 
-    // 5. Insert into atm_transaction (ledger)
     String sqlTrans = """
         INSERT INTO public.atm_transaction(
             account_id,
@@ -351,10 +307,9 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
         VALUES (?, ?, ?, ?, ?, ?, ?, NOW(), ?);
         """;
 
-    boolean isKh = true; 
-
-    int rowsTrans = DBHelper.execute(sqlTrans,
-            customerId,
+    int rowsTrans = DBHelper.execute(
+            sqlTrans,
+            accountId,
             this.currentUserId,
             "MOBILE_TOPUP",
             amount,
@@ -366,29 +321,28 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
 
     if (rowsTrans == 0) {
         JOptionPane.showMessageDialog(this,
-                "❌ atm_transaction insert failed (rows = 0).\nPlease check console / DB error.",
+                "atm_transaction insert failed (rows = 0).",
                 "ERROR",
                 JOptionPane.ERROR_MESSAGE);
         return;
     }
 
-    // 6. Update CUSTOMER balance
     String sqlUpdateAcc = """
-        UPDATE "CUSTOMER"
-        SET "Balance($)" = ?
-        WHERE "ID" = ?
+        UPDATE account
+        SET balance = ?
+        WHERE id = ?
         """;
-    int rowsUpdate = DBHelper.execute(sqlUpdateAcc, balanceAfter, customerId);
+
+    int rowsUpdate = DBHelper.execute(sqlUpdateAcc, balanceAfter, accountId);
 
     if (rowsUpdate == 0) {
         JOptionPane.showMessageDialog(this,
-                "❌ Balance not updated in CUSTOMER table.",
+                "Balance not updated in account table.",
                 "ERROR",
                 JOptionPane.ERROR_MESSAGE);
         return;
     }
 
-    // 7. Success message — only if all 3 steps OK
     JOptionPane.showMessageDialog(this,
             "Top-up Successful!\n" +
             "Phone: " + phone + "\n" +
@@ -403,6 +357,7 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
     JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
     e.printStackTrace();
 }
+
     }//GEN-LAST:event_btndepositActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -450,8 +405,6 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button btnGetCash;
-    private java.awt.Button btnGetCash1;
     private javax.swing.JButton btndeposit;
     private javax.swing.JComboBox<String> cboAccount;
     private javax.swing.JButton jButton5;

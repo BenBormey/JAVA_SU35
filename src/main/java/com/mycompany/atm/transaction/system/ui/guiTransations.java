@@ -6,6 +6,7 @@ package com.mycompany.atm.transaction.system.ui;
 
 import com.mycompany.atm.transaction.system.DB.DBHelper;
 import com.mycompany.atm.transaction.system.model.transation;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -51,25 +52,35 @@ public class guiTransations extends javax.swing.JFrame {
     // => មិនត្រូវ setDefaultRenderer ទេ
 }
 
-    private void loadTransactions() {
+ private void loadTransactions() {
     try {
-        long accountId = /* get from current session or selected account */ 4;
 
+        // 1️⃣ Must have selected account
+//        if (this.selectedAccountId <= 0) {
+//            JOptionPane.showMessageDialog(this, "Please select account first.");
+//            return;
+//        }
+//
+//        long accountId = this.selectedAccountId;
+
+        // 2️⃣ Query transactions
         String sql = """
             SELECT created_at, tran_type, amount, balance_after, note
             FROM public.atm_transaction
-            WHERE account_id = ?
+      
             ORDER BY created_at DESC
             LIMIT 20
-            """;
+        """.formatted();
 
-        var rows = DBHelper.getValues(sql, accountId);
+        var rows = DBHelper.getValues(sql);
 
         javax.swing.table.DefaultTableModel model =
-                (javax.swing.table.DefaultTableModel) tbTransation.getModel();
+            (javax.swing.table.DefaultTableModel) tbTransation.getModel();
 
-        model.setRowCount(0); // clear
+        // 3️⃣ Clear table
+        model.setRowCount(0);
 
+        // 4️⃣ Fill new data
         for (var row : rows) {
             Object date   = row.get("created_at");
             Object type   = row.get("tran_type");
@@ -81,11 +92,12 @@ public class guiTransations extends javax.swing.JFrame {
         }
 
     } catch (Exception e) {
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Error loading transactions: " + e.getMessage());
+        JOptionPane.showMessageDialog(this,
+            "Error loading transactions: " + e.getMessage());
         e.printStackTrace();
     }
 }
+
 
 
 

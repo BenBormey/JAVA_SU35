@@ -258,7 +258,7 @@ private void setKhmerFont(java.awt.Component component) {
         JOptionPane.showMessageDialog(this, "✔ Login Successful!\nRole: " + role);
 
         try {
-            if(role.equals("Admin")){
+            if(role.equals("ADMIN")){
                     AdminDeshbord main = new AdminDeshbord();
             main.setLocationRelativeTo(null);
             main.setVisible(true);

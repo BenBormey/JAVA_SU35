@@ -31,9 +31,12 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="634" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="426" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Component id="panel1" alignment="1" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Component id="panel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="12" max="32767" attributes="0"/>
+              </Group>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,26 +57,14 @@
                   <Component id="lblTitleGetCash" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btn64" min="-2" pref="236" max="-2" attributes="0"/>
-                          <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btndeposit2" min="-2" pref="184" max="-2" attributes="0"/>
-                              <Component id="btndeposit3" min="-2" pref="184" max="-2" attributes="0"/>
-                              <Component id="btndeposit4" min="-2" pref="184" max="-2" attributes="0"/>
-                              <Component id="btndeposit5" min="-2" pref="184" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btndeposit" pref="373" max="32767" attributes="0"/>
-                              <Component id="btndeposit1" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="btndeposit" pref="373" max="32767" attributes="0"/>
+                      <Component id="btndeposit1" max="32767" attributes="0"/>
+                      <Component id="btndeposit2" alignment="0" max="32767" attributes="0"/>
+                      <Component id="btndeposit3" max="32767" attributes="0"/>
+                      <Component id="btndeposit4" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -85,20 +76,16 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblTitleGetCash" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Component id="btndeposit" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btndeposit1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btndeposit2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btndeposit3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btndeposit4" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="btndeposit5" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
-                  <Component id="btn64" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="btndeposit" min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btndeposit1" min="-2" pref="44" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btndeposit2" min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                  <Component id="btndeposit3" min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="btndeposit4" min="-2" pref="46" max="-2" attributes="0"/>
+                  <EmptySpace pref="24" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -116,26 +103,6 @@
             <Property name="text" type="java.lang.String" value="Payment"/>
           </Properties>
         </Component>
-        <Component class="java.awt.Button" name="btn64">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="39" green="1f" red="a" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Dialog" size="18" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="9a" green="c2" red="dc" type="rgb"/>
-            </Property>
-            <Property name="label" type="java.lang.String" value="Back"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[100, 70]"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn64ActionPerformed"/>
-          </Events>
-        </Component>
         <Component class="javax.swing.JButton" name="btndeposit">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -148,9 +115,9 @@
               <Color blue="9a" green="c2" red="dc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/deposit.png"/>
+              <Image iconType="2" name="E:\JavaProgramming\atm_project\atm-transaction-system\src\main\java\com\mycompany\atm\transaction\system\ui\icon\energetic.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Deposit"/>
+            <Property name="text" type="java.lang.String" value="Electricity"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btndepositActionPerformed"/>
@@ -168,9 +135,9 @@
               <Color blue="9a" green="c2" red="dc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/deposit.png"/>
+              <Image iconType="2" name="E:\JavaProgramming\atm_project\atm-transaction-system\target\classes\icon\water-tap.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Deposit"/>
+            <Property name="text" type="java.lang.String" value="Water"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btndeposit1ActionPerformed"/>
@@ -188,7 +155,7 @@
               <Color blue="9a" green="c2" red="dc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/deposit.png"/>
+              <Image iconType="2" name="E:\JavaProgramming\atm_project\atm-transaction-system\target\classes\icon\prepaid.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Phone Tup_up"/>
           </Properties>
@@ -208,9 +175,10 @@
               <Color blue="9a" green="c2" red="dc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/deposit.png"/>
+              <Image iconType="2" name="E:\JavaProgramming\atm_project\atm-transaction-system\target\classes\icon\internet.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Internet"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btndeposit3ActionPerformed"/>
@@ -234,26 +202,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btndeposit4ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btndeposit5">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="42" green="2a" red="15" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="18" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="9a" green="c2" red="dc" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/icon/deposit.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Deposit"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btndeposit5ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

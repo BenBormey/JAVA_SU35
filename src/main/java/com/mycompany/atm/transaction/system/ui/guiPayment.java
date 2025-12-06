@@ -36,13 +36,11 @@ public class guiPayment extends javax.swing.JFrame {
 
         panel1 = new java.awt.Panel();
         lblTitleGetCash = new java.awt.Label();
-        btn64 = new java.awt.Button();
         btndeposit = new javax.swing.JButton();
         btndeposit1 = new javax.swing.JButton();
         btndeposit2 = new javax.swing.JButton();
         btndeposit3 = new javax.swing.JButton();
         btndeposit4 = new javax.swing.JButton();
-        btndeposit5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,22 +51,11 @@ public class guiPayment extends javax.swing.JFrame {
         lblTitleGetCash.setName(""); // NOI18N
         lblTitleGetCash.setText("Payment");
 
-        btn64.setBackground(new java.awt.Color(10, 31, 57));
-        btn64.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        btn64.setForeground(new java.awt.Color(220, 194, 154));
-        btn64.setLabel("Back");
-        btn64.setPreferredSize(new java.awt.Dimension(100, 70));
-        btn64.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn64ActionPerformed(evt);
-            }
-        });
-
         btndeposit.setBackground(new java.awt.Color(21, 42, 66));
         btndeposit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btndeposit.setForeground(new java.awt.Color(220, 194, 154));
-        btndeposit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/deposit.png"))); // NOI18N
-        btndeposit.setText("Deposit");
+        btndeposit.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\src\\main\\java\\com\\mycompany\\atm\\transaction\\system\\ui\\icon\\energetic.png")); // NOI18N
+        btndeposit.setText("Electricity");
         btndeposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndepositActionPerformed(evt);
@@ -78,8 +65,8 @@ public class guiPayment extends javax.swing.JFrame {
         btndeposit1.setBackground(new java.awt.Color(21, 42, 66));
         btndeposit1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btndeposit1.setForeground(new java.awt.Color(220, 194, 154));
-        btndeposit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/deposit.png"))); // NOI18N
-        btndeposit1.setText("Deposit");
+        btndeposit1.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\water-tap.png")); // NOI18N
+        btndeposit1.setText("Water");
         btndeposit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndeposit1ActionPerformed(evt);
@@ -89,7 +76,7 @@ public class guiPayment extends javax.swing.JFrame {
         btndeposit2.setBackground(new java.awt.Color(21, 42, 66));
         btndeposit2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btndeposit2.setForeground(new java.awt.Color(220, 194, 154));
-        btndeposit2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/deposit.png"))); // NOI18N
+        btndeposit2.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\prepaid.png")); // NOI18N
         btndeposit2.setText("Phone Tup_up");
         btndeposit2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,8 +87,9 @@ public class guiPayment extends javax.swing.JFrame {
         btndeposit3.setBackground(new java.awt.Color(21, 42, 66));
         btndeposit3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btndeposit3.setForeground(new java.awt.Color(220, 194, 154));
-        btndeposit3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/deposit.png"))); // NOI18N
+        btndeposit3.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\internet.png")); // NOI18N
         btndeposit3.setText("Internet");
+        btndeposit3.setToolTipText("");
         btndeposit3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btndeposit3ActionPerformed(evt);
@@ -119,17 +107,6 @@ public class guiPayment extends javax.swing.JFrame {
             }
         });
 
-        btndeposit5.setBackground(new java.awt.Color(21, 42, 66));
-        btndeposit5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btndeposit5.setForeground(new java.awt.Color(220, 194, 154));
-        btndeposit5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/deposit.png"))); // NOI18N
-        btndeposit5.setText("Deposit");
-        btndeposit5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btndeposit5ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
@@ -139,21 +116,13 @@ public class guiPayment extends javax.swing.JFrame {
                 .addComponent(lblTitleGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(150, 150, 150))
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btn64, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btndeposit2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btndeposit3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btndeposit4, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btndeposit5, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(113, 113, 113)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btndeposit, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
-                            .addComponent(btndeposit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(113, 113, 113)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btndeposit, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                    .addComponent(btndeposit1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btndeposit2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btndeposit3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btndeposit4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
@@ -162,20 +131,16 @@ public class guiPayment extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTitleGetCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
-                .addComponent(btndeposit)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btndeposit1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btndeposit2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btndeposit3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btndeposit4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btndeposit5)
-                .addGap(250, 250, 250)
-                .addComponent(btn64, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btndeposit1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btndeposit2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btndeposit3, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btndeposit4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -188,17 +153,15 @@ public class guiPayment extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 12, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btn64ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn64ActionPerformed
-    
-    }//GEN-LAST:event_btn64ActionPerformed
 
     private void btndepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositActionPerformed
            guipayelectricity payWaterForm = new guipayelectricity(this.userid);
@@ -229,10 +192,6 @@ public class guiPayment extends javax.swing.JFrame {
 
             this.dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_btndeposit4ActionPerformed
-
-    private void btndeposit5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeposit5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btndeposit5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,13 +229,11 @@ public class guiPayment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Button btn64;
     private javax.swing.JButton btndeposit;
     private javax.swing.JButton btndeposit1;
     private javax.swing.JButton btndeposit2;
     private javax.swing.JButton btndeposit3;
     private javax.swing.JButton btndeposit4;
-    private javax.swing.JButton btndeposit5;
     private java.awt.Label lblTitleGetCash;
     private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables

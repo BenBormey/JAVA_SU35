@@ -28,27 +28,36 @@ public class guiDeposit extends javax.swing.JFrame {
         
     }
      private boolean iskh;
-      private void loadAccountsToCombo() {
+    private void loadAccountsToCombo() {
+
     String sql = """
-        SELECT "AccountNo", "AccountType", "Balance($)", "isKh"
-        FROM public."CUSTOMER"
-        WHERE "UserID" = %d
+        SELECT a.account_no      AS account_no,
+               a.account_type    AS account_type,
+               a.balance         AS balance,
+               a.is_kh           AS is_kh
+        FROM account a
+        JOIN public."CUSTOMER" c
+             ON a.customer_id = c."ID"
+        WHERE c."UserID" = %d
         """.formatted(currentUserId);
 
     var list = DBHelper.getValues(sql);
     cboAccount.removeAllItems();
 
     for (var row : list) {
-        String no = row.get("AccountNo").toString();
-        String type = row.get("AccountType").toString();
-        double bal  = ((Number)row.get("Balance($)")).doubleValue();
-         this.iskh = (boolean)row.get("isKh");
-        String symbol = this.iskh ? "៛" : "$";
+        String no   = row.get("account_no").toString();
+        String type = row.get("account_type").toString();
+        double bal  = ((Number) row.get("balance")).doubleValue();
+        boolean isKh = (Boolean) row.get("is_kh");   // or (boolean)
 
+        String symbol = isKh ? "៛" : "$";
         String text = "%s - %s (%,.2f %s)".formatted(no, type, bal, symbol);
+
         cboAccount.addItem(text);
     }
 }
+
+
 
 
     /**
@@ -184,160 +193,155 @@ public class guiDeposit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btndepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositActionPerformed
-      String txt = txtAmount.getText().trim();
-    if (txt.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Please enter amount.");
+   String txt = txtAmount.getText().trim();
+if (txt.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Please enter amount.");
+    return;
+}
+
+double depositAmount;
+try {
+    depositAmount = Double.parseDouble(txt);
+} catch (NumberFormatException ex) {
+    JOptionPane.showMessageDialog(this, "Amount invalid.");
+    return;
+}
+
+if (depositAmount <= 0) {
+    JOptionPane.showMessageDialog(this, "Amount must be > 0.");
+    return;
+}
+
+this.iskh = false;
+
+if (cboAccount.getSelectedItem() == null) {
+    JOptionPane.showMessageDialog(this, "Please choose account.");
+    return;
+}
+
+String item = cboAccount.getSelectedItem().toString();
+String[] mainParts = item.split(" - ");
+if (mainParts.length < 1) {
+    JOptionPane.showMessageDialog(this, "Invalid account format.");
+    return;
+}
+
+String accountNo = mainParts[0];
+
+String sqlLoad = """
+    SELECT a.id, a.balance, a.is_kh, a.account_no
+    FROM account a
+    JOIN public."CUSTOMER" c ON a.customer_id = c."ID"
+    WHERE c."UserID" = %d
+      AND a.account_no = '%s'
+    """.formatted(currentUserId, accountNo);
+
+var list = DBHelper.getValues(sqlLoad);
+if (list.isEmpty()) {
+    JOptionPane.showMessageDialog(this, "Account not found.");
+    return;
+}
+
+var row = list.get(0);
+double balance = ((Number) row.get("balance")).doubleValue();
+this.iskh = (Boolean) row.get("is_kh");
+String symbol = this.iskh ? "៛" : "$";
+long accountId = ((Number) row.get("id")).longValue();
+
+String sqlLoadCurrency = """
+    SELECT id, from_code, to_code, rate
+    FROM public.currency_rate
+    WHERE from_code = 'USD'
+    ORDER BY effective_at DESC
+    LIMIT 1
+""";
+
+var listCurrency = DBHelper.getValues(sqlLoadCurrency);
+
+double rateUsd = 0;
+if (!listCurrency.isEmpty()) {
+    var rowCurrency = listCurrency.get(0);
+    rateUsd = ((Number) rowCurrency.get("rate")).doubleValue();
+}
+
+double depositAmountForDb = depositAmount;
+
+if (this.iskh) {
+    if (rateUsd == 0) {
+        JOptionPane.showMessageDialog(this,
+            "Currency rate not found. Cannot process deposit.");
         return;
     }
+    double depositRiel = depositAmount * rateUsd;
+    depositAmountForDb = depositRiel;
+}
 
-    double depositAmount;
+double newBalance = balance + depositAmountForDb;
+
+String sqlUpdate = """
+    UPDATE account
+    SET balance = %f
+    WHERE id = %d
+    """.formatted(newBalance, accountId);
+
+String sqlHistory = """
+    INSERT INTO public."atm_transaction"
+    (account_id, user_id, tran_type, amount, is_kh,
+     balance_before, balance_after, note)
+    VALUES (%d, %d, '%s', %f, %b, %f, %f, '%s')
+    """.formatted(
+        accountId,
+        currentUserId,
+        "DEPOSIT",
+        depositAmountForDb,
+        this.iskh,
+        balance,
+        newBalance,
+        "ATM DEPOSIT - " + accountNo
+    );
+
+java.sql.Connection con = null;
+java.sql.Statement stmt = null;
+
+try {
+    con = com.mycompany.atm.transaction.system.DB.dbcontextion.getConnection();
+    con.setAutoCommit(false);
+
+    stmt = con.createStatement();
+    stmt.executeUpdate(sqlUpdate);
+    stmt.executeUpdate(sqlHistory);
+
+    con.commit();
+
+    JOptionPane.showMessageDialog(this,
+        "Deposit: " + String.format("%,.2f %s", depositAmountForDb, symbol)
+      + "\nNew Balance: " + String.format("%,.2f %s", newBalance, symbol)
+      + "\nTransaction Saved!");
+
+    MainForm main = new MainForm(this.currentUserId);
+    main.setLocationRelativeTo(null);
+    main.setVisible(true);
+    this.dispose();
+
+} catch (Exception ex) {
     try {
-        depositAmount = Double.parseDouble(txt);
-    } catch (NumberFormatException ex) {
-        JOptionPane.showMessageDialog(this, "Amount invalid.");
-        return;
-    }
+        if (con != null) con.rollback();
+    } catch (Exception ignore) {}
 
-    if (depositAmount <= 0) {
-        JOptionPane.showMessageDialog(this, "Amount must be > 0.");
-        return;
-    }
-
-    // 2️⃣ Read selected account
-    this.iskh = false;
-
-    if (cboAccount.getSelectedItem() == null) {
-        JOptionPane.showMessageDialog(this, "Please choose account.");
-        return;
-    }
-
-    String item = cboAccount.getSelectedItem().toString();
-    String[] mainParts = item.split(" - ");
-    String accountNo   = mainParts[0];
-    String accountType = mainParts[1]; 
-
-    // 3️⃣ Load account info from DB
-    String sqlLoad = """
-        SELECT "ID", "Balance($)", "isKh", "AccountNo"
-        FROM public."CUSTOMER"
-        WHERE "UserID" = %d
-          AND "AccountNo" = '%s'
-        """.formatted(currentUserId, accountNo);
-
-    var list = DBHelper.getValues(sqlLoad);
-    if (list.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Account not found.");
-        return;
-    }
-
-    var row = list.get(0);
-    double balance = ((Number) row.get("Balance($)")).doubleValue();
-    this.iskh      = (boolean) row.get("isKh");
-    String symbol  = this.iskh ? "៛" : "$";
-
-    long accountId = Long.parseLong(row.get("ID").toString());
-
-    // 4️⃣ Load currency rate (USD → KHR) – សម្រាប់គណនី KHR
-    String sqlLoadCurrency = """
-        SELECT id, from_code, to_code, rate
-        FROM public.currency_rate
-        WHERE from_code = 'USD'
-        ORDER BY effective_at DESC
-        LIMIT 1
-        """;
-
-    var listCurrency = DBHelper.getValues(sqlLoadCurrency);
-
-    double rateUsd = 0;
-    if (!listCurrency.isEmpty()) {
-        var rowCurrency = listCurrency.get(0);
-        rateUsd = ((Number) rowCurrency.get("rate")).doubleValue();
-    }
-
-    // 5️⃣ Convert amount follow currency of account
-    double depositAmountForDb = depositAmount;
-
-    if (this.iskh) {
-        // Account is KHR → convert USD input → KHR
-        if (rateUsd == 0) {
-            JOptionPane.showMessageDialog(this,
-                "Currency rate not found. Cannot process deposit.");
-            return;
+    JOptionPane.showMessageDialog(this,
+        "Error while processing deposit.\nAll changes rolled back.\n" + ex.getMessage(),
+        "Error",
+        JOptionPane.ERROR_MESSAGE);
+} finally {
+    try {
+        if (stmt != null) stmt.close();
+        if (con != null) {
+            con.setAutoCommit(true);
+            con.close();
         }
+    } catch (Exception ignore) {}
+}
 
-        double depositRiel = depositAmount * rateUsd;
-        depositAmountForDb = depositRiel;
-    }
-
-    // 6️⃣ New balance (Deposit = balance + amount)
-    double newBalance = balance + depositAmountForDb;
-
-    // 7️⃣ SQL UPDATE & HISTORY
-    String sqlUpdate = """
-        UPDATE public."CUSTOMER"
-        SET "Balance($)" = %f
-        WHERE "ID" = %d
-        """.formatted(newBalance, accountId);
-
-    String sqlHistory = """
-        INSERT INTO public."atm_transaction"
-        (account_id, user_id, tran_type, amount, is_kh,
-         balance_before, balance_after, note)
-        VALUES (%d, %d, '%s', %f, %b, %f, %f, '%s')
-        """.formatted(
-            accountId,
-            currentUserId,
-            "DEPOSIT",
-            depositAmountForDb,
-            this.iskh,
-            balance,
-            newBalance,
-            "ATM DEPOSIT - " + accountNo
-        );
-
-    // 8️⃣ Transaction (commit / rollback)
-    java.sql.Connection con = null;
-    java.sql.Statement stmt = null;
-
-    try {
-        con = com.mycompany.atm.transaction.system.DB.dbcontextion.getConnection();
-        con.setAutoCommit(false);   // start transaction
-
-        stmt = con.createStatement();
-        stmt.executeUpdate(sqlUpdate);   // update balance
-        stmt.executeUpdate(sqlHistory);  // insert history
-
-        con.commit();   // ✅ success, commit
-
-        JOptionPane.showMessageDialog(this,
-            "Deposit: " + String.format("%,.2f %s", depositAmount, symbol)
-          + "\nNew Balance: " + String.format("%,.2f %s", newBalance, symbol)
-          + "\nTransaction Saved!");
-
-        // back to main form
-        MainForm main = new MainForm(this.currentUserId);
-        main.setLocationRelativeTo(null);
-        main.setVisible(true);
-        this.dispose();
-
-    } catch (Exception ex) {
-        try {
-            if (con != null) con.rollback();   // ❌ error → rollback everything
-        } catch (Exception ignore) {}
-
-        JOptionPane.showMessageDialog(this,
-            "Error while processing deposit.\nAll changes rolled back.\n" + ex.getMessage(),
-            "Error",
-            JOptionPane.ERROR_MESSAGE);
-    } finally {
-        try {
-            if (stmt != null) stmt.close();
-            if (con != null) {
-                con.setAutoCommit(true);
-                con.close();
-            }
-        } catch (Exception ignore) {}
-    }
     }//GEN-LAST:event_btndepositActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
