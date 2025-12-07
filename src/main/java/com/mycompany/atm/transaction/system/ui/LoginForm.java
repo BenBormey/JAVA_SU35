@@ -113,7 +113,7 @@ private void setKhmerFont(java.awt.Component component) {
         jButton1.setBackground(new java.awt.Color(10, 31, 57));
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(220, 194, 154));
-        jButton1.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\enter.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("D:\\SETEC\\SU35\\Final2\\JAVA\\ASS\\JAVA_SU35\\target\\classes\\icon\\enter.png")); // NOI18N
         jButton1.setText("Login");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

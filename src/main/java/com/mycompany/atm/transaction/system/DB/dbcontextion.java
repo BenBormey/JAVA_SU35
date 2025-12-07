@@ -8,9 +8,9 @@ import java.sql.SQLException;
 public class dbcontextion {
     
     // 🔧 Database info
-    private static final String URL = "jdbc:postgresql://localhost:5432/dbATM";
+    private static final String URL = "jdbc:postgresql://localhost:5433/dbATM";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "ADMIN";
+    private static final String PASSWORD = "admin";
 
     // ✅ Function to get Connection
     public static Connection getConnection() {
