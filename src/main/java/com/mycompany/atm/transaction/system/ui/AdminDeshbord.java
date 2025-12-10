@@ -15,12 +15,66 @@ import javax.swing.JPanel;
  */
 public class AdminDeshbord extends javax.swing.JFrame {
 
+    
+    private  int Userid ;
+   
     /**
      * Creates new form AdminDeshbord
      */
     public AdminDeshbord() {
         initComponents();
     }
+    private boolean iskh_;
+    public AdminDeshbord(int userid , boolean iskh) {
+        initComponents();
+          this.setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH);
+        this.Userid = userid;
+        this.iskh_ = iskh;
+        setKhmerFont(this);
+         if(iskh) {
+        iskh = false;
+    
+                setKh();
+
+    } else {
+        iskh = true;    setEng();
+    }
+    }
+public void setKh() {
+    lbladmin.setText("គ្រប់គ្រង");
+    btnCustomer.setText("អតិថិជន");
+    btnDashboard.setText("ផ្ទាំងគ្រប់គ្រង");
+    btnReport.setText("របាយការណ៍");
+    btnSitting.setText("ការកំណត់");
+    btnTransation.setText("ប្រតិបត្តិការ");
+    btnlogout.setText("ចាកចេញ");
+      jButton2.setText("English");
+    iskh_ = true;
+}
+
+public void setEng() {
+    lbladmin.setText("Admin");
+    btnCustomer.setText("Customer");
+    btnDashboard.setText("Dashboard");
+    btnReport.setText("Report");
+    btnSitting.setText("Setting");
+    btnTransation.setText("Transaction");
+    btnlogout.setText("Logout");iskh_= false;
+      jButton2.setText("ខ្មែរ");
+}
+
+private void setKhmerFont(java.awt.Component component) {
+    java.awt.Font current = component.getFont();
+    java.awt.Font khFont = new java.awt.Font("Khmer OS Battambang", current.getStyle(), current.getSize());
+    component.setFont(khFont);
+
+    if (component instanceof java.awt.Container) {
+        for (java.awt.Component child : ((java.awt.Container) component).getComponents()) {
+            setKhmerFont(child);
+        }
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,19 +89,21 @@ public class AdminDeshbord extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
+        lbladmin = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnDashboard = new javax.swing.JButton();
+        btnCustomer = new javax.swing.JButton();
         btnTransation = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnSitting = new javax.swing.JButton();
+        btnReport = new javax.swing.JButton();
+        btnlogout = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        lblLang = new javax.swing.JLabel();
         jPanelMain = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panel2.setBackground(new java.awt.Color(10, 31, 57));
+        panel2.setBackground(new java.awt.Color(225, 225, 225));
 
         jSeparator1.setBackground(new java.awt.Color(0, 102, 204));
 
@@ -55,33 +111,29 @@ public class AdminDeshbord extends javax.swing.JFrame {
 
         jSeparator2.setBackground(new java.awt.Color(0, 102, 204));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("ADMIN");
+        lbladmin.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        lbladmin.setText("ADMIN");
 
-        jPanel1.setBackground(new java.awt.Color(10, 31, 57));
+        jPanel1.setBackground(new java.awt.Color(225, 225, 225));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\statisctics.png")); // NOI18N
-        jButton1.setText(" Dashboard");
-        jButton1.setToolTipText("");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnDashboard.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnDashboard.setText(" Dashboard");
+        btnDashboard.setToolTipText("");
+        btnDashboard.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnDashboardActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\project-manager.png")); // NOI18N
-        jButton2.setText(" Customer");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnCustomer.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnCustomer.setText(" Customer");
+        btnCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnCustomerActionPerformed(evt);
             }
         });
 
         btnTransation.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnTransation.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\change-management.png")); // NOI18N
         btnTransation.setText(" Transactions");
         btnTransation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,17 +141,38 @@ public class AdminDeshbord extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\settings (1).png")); // NOI18N
-        jButton4.setText(" Sitting");
+        btnSitting.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnSitting.setText(" Sitting");
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\report.png")); // NOI18N
-        jButton5.setText(" Report");
+        btnReport.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnReport.setText(" Report");
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
 
-        jButton6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\logout.png")); // NOI18N
-        jButton6.setText(" Logout");
+        btnlogout.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnlogout.setText(" Logout");
+
+        jButton2.setBackground(new java.awt.Color(10, 31, 57));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(220, 194, 154));
+        jButton2.setText("ខ្មែរ");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jButton2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jButton2KeyPressed(evt);
+            }
+        });
+
+        lblLang.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblLang.setForeground(new java.awt.Color(220, 194, 154));
+        lblLang.setText("Language :");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -107,31 +180,40 @@ public class AdminDeshbord extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTransation, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblLang)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTransation, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSitting, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jButton1)
+                .addComponent(btnDashboard)
                 .addGap(16, 16, 16)
-                .addComponent(jButton2)
+                .addComponent(btnCustomer)
                 .addGap(16, 16, 16)
                 .addComponent(btnTransation)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5)
+                .addComponent(btnReport)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(btnSitting)
                 .addGap(18, 18, 18)
-                .addComponent(jButton6)
-                .addContainerGap(350, Short.MAX_VALUE))
+                .addComponent(btnlogout)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLang)
+                    .addComponent(jButton2))
+                .addContainerGap(319, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
@@ -145,7 +227,7 @@ public class AdminDeshbord extends javax.swing.JFrame {
                 .addGroup(panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addGap(84, 84, 84)
-                        .addComponent(jLabel2))
+                        .addComponent(lbladmin))
                     .addGroup(panel2Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
                         .addComponent(jLabel1)))
@@ -155,7 +237,7 @@ public class AdminDeshbord extends javax.swing.JFrame {
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLabel2)
+                .addComponent(lbladmin)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
@@ -188,14 +270,14 @@ public class AdminDeshbord extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardActionPerformed
      try {
     DashBoardPanel_ dash = new DashBoardPanel_();
                  showPanel(dash);   // បង្ហាញ window ថ្មី
@@ -203,9 +285,9 @@ public class AdminDeshbord extends javax.swing.JFrame {
     ex.printStackTrace();
     JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
 }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnDashboardActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
          try{
                 guiCustomerManegement dash = new guiCustomerManegement();
                  showPanel(dash); 
@@ -214,19 +296,44 @@ public class AdminDeshbord extends javax.swing.JFrame {
                 ex.printStackTrace();
     JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
          }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnCustomerActionPerformed
 
     private void btnTransationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransationActionPerformed
-        // TODO add your handling code here:
-        try{
-            guiReport desh = new guiReport();
+
+             try{
+                guitrasation desh = new guitrasation(Userid,iskh_);
+                showPanel(desh);
+        }catch(Exception ex)
+         {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+         }
+    }//GEN-LAST:event_btnTransationActionPerformed
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:​​​ guitrasation
+           try{
+            guitrasation desh = new guitrasation();
             showPanel(desh);
         }catch(Exception ex)
          {
                 ex.printStackTrace();
-    JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
          }
-    }//GEN-LAST:event_btnTransationActionPerformed
+    }//GEN-LAST:event_btnReportActionPerformed
+
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2KeyPressed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(jButton2.getText().equals("ខ្មែរ")){
+            this.setKh();
+        }else{
+            this.setEng();
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,18 +381,20 @@ public class AdminDeshbord extends javax.swing.JFrame {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCustomer;
+    private javax.swing.JButton btnDashboard;
+    private javax.swing.JButton btnReport;
+    private javax.swing.JButton btnSitting;
     private javax.swing.JButton btnTransation;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnlogout;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblLang;
+    private javax.swing.JLabel lbladmin;
     private java.awt.Panel panel2;
     // End of variables declaration//GEN-END:variables
 }

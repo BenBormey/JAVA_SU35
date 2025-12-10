@@ -37,6 +37,7 @@ public class LoginForm extends javax.swing.JFrame {
         jButton2.setText("English");
         lblHeader.setText("ត្រលប់មកវិញ");
         lblLang.setText("ភាសា");
+        this.iskhfont = true;
     }
         public void setEng(){
         lblUserName.setText("UserName :");
@@ -45,6 +46,7 @@ public class LoginForm extends javax.swing.JFrame {
         jButton2.setText("ខ្មែរ");
         lblHeader.setText("Well Come Back");
         lblLang.setText("Language :");
+        this.iskhfont =false;
     }
 private void setKhmerFont(java.awt.Component component) {
     java.awt.Font current = component.getFont();
@@ -220,12 +222,10 @@ private void setKhmerFont(java.awt.Component component) {
 
     
     }//GEN-LAST:event_btnLoginActionPerformed
-
+  private boolean iskhfont = false;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String user = txtUsername.getText().trim();
          String pass = String.valueOf(txtpassword.getPassword()).trim();
-
-
         if (user.isEmpty() || pass.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter username and password!");
             return;
@@ -258,7 +258,7 @@ private void setKhmerFont(java.awt.Component component) {
 
         try {
             if(role.equals("ADMIN")){
-                    AdminDeshbord main = new AdminDeshbord();
+                    AdminDeshbord main = new AdminDeshbord(id,iskhfont);
             main.setLocationRelativeTo(null);
             main.setVisible(true);
 

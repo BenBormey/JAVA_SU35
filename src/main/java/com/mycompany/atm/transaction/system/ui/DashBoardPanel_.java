@@ -61,7 +61,6 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
         jPanel8.setBackground(new java.awt.Color(10, 31, 57));
 
         lblname7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname7.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\Customer.png")); // NOI18N
         lblname7.setToolTipText("");
 
         lblname8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -101,16 +100,16 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel1.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        panel1.setBackground(new java.awt.Color(0, 56, 56));
+        panel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("DashBoard");
 
+        lblname.setBackground(new java.awt.Color(0, 0, 0));
         lblname.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname.setForeground(new java.awt.Color(255, 255, 255));
         lblname.setText("DashBoard");
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
@@ -134,23 +133,22 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        panel2.setBackground(new java.awt.Color(0, 56, 56));
+        panel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel3.setBackground(new java.awt.Color(0, 56, 56));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel10.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel10.setBackground(new java.awt.Color(0, 102, 102));
 
         lblname11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         lblname11.setForeground(new java.awt.Color(255, 255, 255));
-        lblname11.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\Customer.png")); // NOI18N
         lblname11.setToolTipText("");
 
+        lblname12.setBackground(new java.awt.Color(0, 0, 0));
         lblname12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname12.setForeground(new java.awt.Color(255, 255, 255));
         lblname12.setText("ToTal Customer :");
 
+        lblTotalCustomer5.setBackground(new java.awt.Color(0, 0, 0));
         lblTotalCustomer5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTotalCustomer5.setForeground(new java.awt.Color(255, 255, 255));
         lblTotalCustomer5.setText("customer");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -184,18 +182,17 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel11.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel11.setBackground(new java.awt.Color(0, 102, 102));
 
         lblname13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname13.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\Customer.png")); // NOI18N
         lblname13.setToolTipText("");
 
+        lblname14.setBackground(new java.awt.Color(0, 0, 0));
         lblname14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname14.setForeground(new java.awt.Color(255, 255, 255));
         lblname14.setText("ToTal Customer :");
 
+        lblTotalCustomer6.setBackground(new java.awt.Color(0, 0, 0));
         lblTotalCustomer6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTotalCustomer6.setForeground(new java.awt.Color(255, 255, 255));
         lblTotalCustomer6.setText("customer");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -229,18 +226,17 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel12.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel12.setBackground(new java.awt.Color(0, 102, 102));
 
         lblname15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname15.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\Customer.png")); // NOI18N
         lblname15.setToolTipText("");
 
+        lblname16.setBackground(new java.awt.Color(0, 0, 0));
         lblname16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname16.setForeground(new java.awt.Color(255, 255, 255));
         lblname16.setText("ToTal Customer :");
 
+        lblTotalCustomer7.setBackground(new java.awt.Color(0, 0, 0));
         lblTotalCustomer7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTotalCustomer7.setForeground(new java.awt.Color(255, 255, 255));
         lblTotalCustomer7.setText("customer");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
@@ -274,18 +270,17 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
-        jPanel4.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel4.setBackground(new java.awt.Color(0, 102, 102));
 
         lblname17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname17.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\Customer.png")); // NOI18N
         lblname17.setToolTipText("");
 
+        lblname18.setBackground(new java.awt.Color(0, 0, 0));
         lblname18.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname18.setForeground(new java.awt.Color(255, 255, 255));
         lblname18.setText("ToTal Customer :");
 
+        lblTotalCustomer8.setBackground(new java.awt.Color(0, 0, 0));
         lblTotalCustomer8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTotalCustomer8.setForeground(new java.awt.Color(255, 255, 255));
         lblTotalCustomer8.setText("customer");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -359,10 +354,9 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        panel4.setBackground(new java.awt.Color(0, 56, 56));
+        panel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Recent Transactions");
 
         gvtransition.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N

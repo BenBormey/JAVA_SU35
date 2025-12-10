@@ -59,10 +59,14 @@ public class DBHelper {
                 list.add(row);
             }
 
-        } catch (Exception e) {
-            System.out.println("❌ getValues(params) Error: " + e.getMessage());
-            e.printStackTrace();
-        }
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(
+        null,
+        "❌ getValues(params) Error: " + e.getMessage()
+    );
+    e.printStackTrace();
+}
+
 
         return list;
     }
