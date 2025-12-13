@@ -39,6 +39,11 @@ public class AdminDeshbord extends javax.swing.JFrame {
     } else {
         iskh = true;    setEng();
     }
+              try {
+    DashBoardPanel_ dash = new DashBoardPanel_();
+                 showPanel(dash);   // បង្ហាញ window ថ្មី
+} catch (Exception ex) {
+}
     }
 public void setKh() {
     lbladmin.setText("គ្រប់គ្រង");

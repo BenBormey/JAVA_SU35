@@ -16,7 +16,17 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
     public DashBoardPanel_() {
         initComponents();
     }
+    public void TotalCustomer(){
+        
+    }
+    public void TotalTransation(){
+    }
+    public void TotalAccount(){
+    }
+        public void Ecchage(){
+        }
     
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,22 +47,22 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
         lblname = new javax.swing.JLabel();
         panel2 = new java.awt.Panel();
         jPanel3 = new javax.swing.JPanel();
-        jPanel10 = new javax.swing.JPanel();
-        lblname11 = new javax.swing.JLabel();
-        lblname12 = new javax.swing.JLabel();
-        lblTotalCustomer5 = new javax.swing.JLabel();
-        jPanel11 = new javax.swing.JPanel();
-        lblname13 = new javax.swing.JLabel();
-        lblname14 = new javax.swing.JLabel();
-        lblTotalCustomer6 = new javax.swing.JLabel();
-        jPanel12 = new javax.swing.JPanel();
-        lblname15 = new javax.swing.JLabel();
-        lblname16 = new javax.swing.JLabel();
-        lblTotalCustomer7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         lblname17 = new javax.swing.JLabel();
         lblname18 = new javax.swing.JLabel();
         lblTotalCustomer8 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        lblname19 = new javax.swing.JLabel();
+        lblname20 = new javax.swing.JLabel();
+        lblTotalCustomer9 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        lblname23 = new javax.swing.JLabel();
+        lblname24 = new javax.swing.JLabel();
+        lblTotalCustomer11 = new javax.swing.JLabel();
+        jPanel13 = new javax.swing.JPanel();
+        lblname27 = new javax.swing.JLabel();
+        lblname28 = new javax.swing.JLabel();
+        lblTotalCustomer13 = new javax.swing.JLabel();
         panel4 = new java.awt.Panel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -137,139 +147,6 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel10.setBackground(new java.awt.Color(0, 102, 102));
-
-        lblname11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname11.setForeground(new java.awt.Color(255, 255, 255));
-        lblname11.setToolTipText("");
-
-        lblname12.setBackground(new java.awt.Color(0, 0, 0));
-        lblname12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname12.setText("ToTal Customer :");
-
-        lblTotalCustomer5.setBackground(new java.awt.Color(0, 0, 0));
-        lblTotalCustomer5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTotalCustomer5.setText("customer");
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblname11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblname12))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(lblTotalCustomer5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblname11))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(lblname12)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblTotalCustomer5)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-
-        jPanel11.setBackground(new java.awt.Color(0, 102, 102));
-
-        lblname13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname13.setToolTipText("");
-
-        lblname14.setBackground(new java.awt.Color(0, 0, 0));
-        lblname14.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname14.setText("ToTal Customer :");
-
-        lblTotalCustomer6.setBackground(new java.awt.Color(0, 0, 0));
-        lblTotalCustomer6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTotalCustomer6.setText("customer");
-
-        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
-        jPanel11.setLayout(jPanel11Layout);
-        jPanel11Layout.setHorizontalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblname13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblname14))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(lblTotalCustomer6)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel11Layout.setVerticalGroup(
-            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblname13))
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(lblname14)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblTotalCustomer6)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-
-        jPanel12.setBackground(new java.awt.Color(0, 102, 102));
-
-        lblname15.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname15.setToolTipText("");
-
-        lblname16.setBackground(new java.awt.Color(0, 0, 0));
-        lblname16.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblname16.setText("ToTal Customer :");
-
-        lblTotalCustomer7.setBackground(new java.awt.Color(0, 0, 0));
-        lblTotalCustomer7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTotalCustomer7.setText("customer");
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblname15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblname16))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(lblTotalCustomer7)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblname15))
-                    .addGroup(jPanel12Layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(lblname16)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblTotalCustomer7)
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
 
         lblname17.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -288,13 +165,16 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblname17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblname18))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(lblTotalCustomer8))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblname17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblname18))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(lblTotalCustomer8)))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,41 +191,173 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        jPanel5.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel5.setPreferredSize(new java.awt.Dimension(271, 116));
+
+        lblname19.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblname19.setToolTipText("");
+
+        lblname20.setBackground(new java.awt.Color(0, 0, 0));
+        lblname20.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblname20.setText("ToTal Customer :");
+
+        lblTotalCustomer9.setBackground(new java.awt.Color(0, 0, 0));
+        lblTotalCustomer9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTotalCustomer9.setText("customer");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblname19)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblname20))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(lblTotalCustomer9)))
+                .addContainerGap(103, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblname19))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(lblname20)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTotalCustomer9)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jPanel7.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel7.setPreferredSize(new java.awt.Dimension(271, 116));
+
+        lblname23.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblname23.setToolTipText("");
+
+        lblname24.setBackground(new java.awt.Color(0, 0, 0));
+        lblname24.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblname24.setText("ToTal Customer :");
+
+        lblTotalCustomer11.setBackground(new java.awt.Color(0, 0, 0));
+        lblTotalCustomer11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTotalCustomer11.setText("customer");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblname23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblname24))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(lblTotalCustomer11)))
+                .addContainerGap(94, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblname23))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(lblname24)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTotalCustomer11)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jPanel13.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel13.setPreferredSize(new java.awt.Dimension(271, 116));
+
+        lblname27.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblname27.setToolTipText("");
+
+        lblname28.setBackground(new java.awt.Color(0, 0, 0));
+        lblname28.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblname28.setText("ToTal Customer :");
+
+        lblTotalCustomer13.setBackground(new java.awt.Color(0, 0, 0));
+        lblTotalCustomer13.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTotalCustomer13.setText("customer");
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblname27)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblname28))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addComponent(lblTotalCustomer13)))
+                .addContainerGap(103, Short.MAX_VALUE))
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblname27))
+                    .addGroup(jPanel13Layout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addComponent(lblname28)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTotalCustomer13)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(21, 21, 21)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
         panel2.setLayout(panel2Layout);
         panel2Layout.setHorizontalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,15 +398,18 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane1)
+            .addGroup(panel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         panel4Layout.setVerticalGroup(
             panel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -412,7 +427,7 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(panel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -433,27 +448,27 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTotalCustomer11;
+    private javax.swing.JLabel lblTotalCustomer13;
     private javax.swing.JLabel lblTotalCustomer3;
-    private javax.swing.JLabel lblTotalCustomer5;
-    private javax.swing.JLabel lblTotalCustomer6;
-    private javax.swing.JLabel lblTotalCustomer7;
     private javax.swing.JLabel lblTotalCustomer8;
+    private javax.swing.JLabel lblTotalCustomer9;
     private javax.swing.JLabel lblname;
-    private javax.swing.JLabel lblname11;
-    private javax.swing.JLabel lblname12;
-    private javax.swing.JLabel lblname13;
-    private javax.swing.JLabel lblname14;
-    private javax.swing.JLabel lblname15;
-    private javax.swing.JLabel lblname16;
     private javax.swing.JLabel lblname17;
     private javax.swing.JLabel lblname18;
+    private javax.swing.JLabel lblname19;
+    private javax.swing.JLabel lblname20;
+    private javax.swing.JLabel lblname23;
+    private javax.swing.JLabel lblname24;
+    private javax.swing.JLabel lblname27;
+    private javax.swing.JLabel lblname28;
     private javax.swing.JLabel lblname7;
     private javax.swing.JLabel lblname8;
     private java.awt.Panel panel1;
