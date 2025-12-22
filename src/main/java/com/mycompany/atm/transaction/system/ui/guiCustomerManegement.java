@@ -4,7 +4,11 @@
  */
 package com.mycompany.atm.transaction.system.ui;
 
+import com.mycompany.atm.transaction.system.DB.DBHelper;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,6 +21,8 @@ public class guiCustomerManegement extends javax.swing.JPanel {
      */
     public guiCustomerManegement() {
         initComponents();
+         loadingCustomer();
+        loadingUserToCombo();
     }
 
     /**
@@ -35,19 +41,17 @@ public class guiCustomerManegement extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         txtCustomerName = new javax.swing.JTextField();
-        txtCustomerName1 = new javax.swing.JTextField();
-        txtCustomerName2 = new javax.swing.JTextField();
-        txtCustomerName3 = new javax.swing.JTextField();
-        txtCustomerName4 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnAdd1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        cboUser = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableCustomer = new javax.swing.JTable();
         btnAdd2 = new javax.swing.JButton();
         btnAdd3 = new javax.swing.JButton();
 
@@ -55,10 +59,8 @@ public class guiCustomerManegement extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(0, 51, 51));
 
-        jPanel3.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createCompoundBorder()));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\atm (1).png")); // NOI18N
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("SimSun", 0, 36)); // NOI18N
@@ -104,45 +106,31 @@ public class guiCustomerManegement extends javax.swing.JPanel {
                 .addGap(261, 261, 261))
         );
 
-        jPanel4.setBackground(new java.awt.Color(0, 51, 51));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("CustomerName :");
-
-        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Account No :");
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Balance    :");
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Email    :");
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Account Type :");
-
-        jLabel7.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Khmer Account :");
-        jLabel7.setToolTipText("");
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Phone :");
 
         txtCustomerName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        txtCustomerName1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
-        txtCustomerName2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        txtCustomerName3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-
-        txtCustomerName4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtPhone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         btnAdd.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAdd.setForeground(new java.awt.Color(0, 0, 0));
         btnAdd.setText("Add");
         btnAdd.setToolTipText("");
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -152,6 +140,7 @@ public class guiCustomerManegement extends javax.swing.JPanel {
         });
 
         btnAdd1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnAdd1.setForeground(new java.awt.Color(0, 0, 0));
         btnAdd1.setText("CanCel");
         btnAdd1.setToolTipText("");
         btnAdd1.addActionListener(new java.awt.event.ActionListener() {
@@ -160,46 +149,49 @@ public class guiCustomerManegement extends javax.swing.JPanel {
             }
         });
 
+        jLabel8.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("User  :");
+
+        cboUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cboUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(832, 832, 832)
+                        .addComponent(btnAdd)
+                        .addGap(18, 18, 18))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnAdd)))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAdd1))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtCustomerName2, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(48, 48, 48)
-                                .addComponent(txtCustomerName1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(45, 45, 45)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(72, 72, 72)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCustomerName3))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(23, 23, 23)
-                                .addComponent(txtCustomerName4, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(33, Short.MAX_VALUE))
+                            .addComponent(txtPhone)
+                            .addComponent(cboUser, 0, 319, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)))
+                .addComponent(btnAdd1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,18 +201,14 @@ public class guiCustomerManegement extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(txtCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(txtCustomerName4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel7)
-                    .addComponent(txtCustomerName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCustomerName3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtCustomerName2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(cboUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnAdd1))
@@ -243,7 +231,7 @@ public class guiCustomerManegement extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -262,7 +250,7 @@ public class guiCustomerManegement extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableCustomer);
 
         btnAdd2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAdd2.setText("Export To Excel");
@@ -308,15 +296,7 @@ public class guiCustomerManegement extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-    
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdd1ActionPerformed
-
+private HashMap<String, Integer> userMap = new HashMap<>();
     private void btnAdd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdd2ActionPerformed
@@ -325,29 +305,159 @@ public class guiCustomerManegement extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdd3ActionPerformed
 
+    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAdd1ActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        
+        String customerName = txtCustomerName.getText().trim();
+    String email = txtEmail.getText().trim();
+    String phone = txtPhone.getText().trim();
+
+    // 2️⃣ Validate inputs
+    if (customerName.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Customer name is required!");
+        txtCustomerName.requestFocus();
+        return;
+    }
+
+    if (cboUser.getSelectedItem() == null) {
+        JOptionPane.showMessageDialog(this, "Please select a user!");
+        cboUser.requestFocus();
+        return;
+    }
+
+    // 3️⃣ Get userId from ComboBox (via Map)
+    String username = cboUser.getSelectedItem().toString();
+    int userId = userMap.get(username);   // ✅ correct userId
+
+    // 4️⃣ Insert customer
+    String sql = """
+        INSERT INTO public."CUSTOMER"
+        ("CustomerName", "UserID", "Email", "Phone")
+        VALUES (?, ?, ?, ?)
+    """;
+
+    int rows = DBHelper.execute(
+        sql,
+        customerName,
+        userId,
+        email,
+        phone
+    );
+
+    // 5️⃣ Result
+    if (rows > 0) {
+        JOptionPane.showMessageDialog(this, "Customer created successfully!");
+        clearCustomerForm();
+        loadingCustomer();   // reload table (if you have)
+    } else {
+        JOptionPane.showMessageDialog(this, "Failed to create customer!");
+    }
+    }//GEN-LAST:event_btnAddActionPerformed
+private void clearCustomerForm() {
+    txtCustomerName.setText("");
+    txtEmail.setText("");
+    txtPhone.setText("");
+    cboUser.setSelectedIndex(-1);
+    txtCustomerName.requestFocus();
+}
+private void loadingCustomer() {
+
+    String sql = """
+        SELECT 
+            c."ID",
+            c."CustomerName",
+            c."Email",
+            c."Phone",
+            u.username
+        FROM public."CUSTOMER" c
+        LEFT JOIN public.users u 
+            ON c."UserID" = u.userid
+        ORDER BY c."ID"
+    """;
+
+    ArrayList<HashMap<String, Object>> rows = DBHelper.getValues(sql);
+
+    DefaultTableModel model = (DefaultTableModel) jTableCustomer.getModel();
+    model.setRowCount(0); // clear old data
+
+    if (rows == null || rows.isEmpty()) {
+        return;
+    }
+
+    for (HashMap<String, Object> row : rows) {
+
+        Object id           = row.get("ID");
+        Object customerName = row.get("CustomerName");
+        Object email        = row.get("Email");
+        Object phone        = row.get("Phone");
+        Object username     = row.get("username");
+
+        model.addRow(new Object[]{
+            id,
+            customerName,
+            email,
+            phone,
+            username
+        });
+    }
+}
+
+ private void loadingUserToCombo() {
+
+    cboUser.removeAllItems();
+    userMap.clear();
+
+    String sql = """
+        SELECT userid, username
+        FROM public.users
+        WHERE active = true
+        ORDER BY username
+    """;
+
+    ArrayList<HashMap<String, Object>> users = DBHelper.getValues(sql);
+
+    if (users == null || users.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No users found!");
+        return;
+    }
+
+    for (HashMap<String, Object> row : users) {
+
+        int userId = ((Number) row.get("userid")).intValue();
+        String username = row.get("username").toString();
+
+        cboUser.addItem(username);      
+        userMap.put(username, userId);       
+ 
+
+    }
+}
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnAdd2;
     private javax.swing.JButton btnAdd3;
+    private javax.swing.JComboBox<String> cboUser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableCustomer;
     private javax.swing.JTextField txtCustomerName;
-    private javax.swing.JTextField txtCustomerName1;
-    private javax.swing.JTextField txtCustomerName2;
-    private javax.swing.JTextField txtCustomerName3;
-    private javax.swing.JTextField txtCustomerName4;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 }
