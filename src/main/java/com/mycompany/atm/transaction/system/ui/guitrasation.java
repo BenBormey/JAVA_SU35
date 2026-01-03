@@ -97,6 +97,7 @@ private void setKhmerFont(java.awt.Component component) {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         btnAdd2 = new javax.swing.JButton();
+        btnClose  = new javax.swing.JButton();
         btnAdd3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         lblFrom = new javax.swing.JLabel();
@@ -183,6 +184,18 @@ private void setKhmerFont(java.awt.Component component) {
                 btnAdd2ActionPerformed(evt);
             }
         });
+
+        btnClose.setFont(new java.awt.Font("Segoe UI",0,18));
+        btnClose.setText("Close");
+        btnClose.setToolTipText("");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnclassActionPerformed(evt);
+            }
+        });
+
+
+
 
         btnAdd3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAdd3.setText("Close");
@@ -325,6 +338,10 @@ private void setKhmerFont(java.awt.Component component) {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+
+    private  void btnclassActionPerformed(java.awt.event.ActionEvent evt){
+
+    }
     private void btnAdd2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd2ActionPerformed
         // TODO add your handling code here:
         
@@ -545,5 +562,6 @@ private void loadingtransation() {
     private javax.swing.JLabel lblTo;
     private javax.swing.JTable tblTransaction;
     private javax.swing.JTextField txttpye;
+    private javax.swing.JButton btnClose;
     // End of variables declaration//GEN-END:variables
 }

@@ -53,7 +53,7 @@ public class Report extends JPanel {
         lblType.setBounds(370, 70, 50, 30);
         add(lblType);
 
-        cboType = new JComboBox<>(new String[]{"All", "Deposit", "Withdraw", "Transfer"});
+        cboType = new JComboBox<>(new String[]{"All", "GET_CASH", "MOBILE_TOPUP","ELECTRICITY_PAY","TRANSFER","DEPOSIT"});
         cboType.setBounds(420, 70, 120, 30);
         add(cboType);
 
@@ -143,6 +143,7 @@ public class Report extends JPanel {
         String customer = txtCustomerId.getText().trim();
         String account = txtAccountId.getText().trim();
 
+
         String sql = """
             SELECT 
                 a.id,
@@ -167,7 +168,7 @@ public class Report extends JPanel {
 
         if (!type.equals("All")) {
             sql += " AND a.tran_type = ?";
-            params.add(type.toLowerCase());
+            params.add(type);
         }
 
         if (!customer.isEmpty()) {

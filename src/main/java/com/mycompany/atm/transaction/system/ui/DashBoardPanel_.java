@@ -137,9 +137,14 @@ public class DashBoardPanel_ extends javax.swing.JPanel {
     // ---------------- LOAD RECENT TABLE ----------------
     public void loadRecentTransaction() {
 
-        String sql =
-                "SELECT id, created_at, tran_type, amount, is_kh " +
-                        "FROM transaction ORDER BY created_at DESC LIMIT 10";
+        var sql = """
+    SELECT id, created_at, tran_type, amount, is_kh
+    FROM atm_transaction
+    ORDER BY created_at DESC
+    LIMIT 10
+    """;
+
+
 
         var rows = DBHelper.getValues(sql);
 
