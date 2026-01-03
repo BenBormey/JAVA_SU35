@@ -20,10 +20,105 @@ public class guiCustomerManegement extends javax.swing.JPanel {
      * Creates new form DashBoardPanel_
      */
     public guiCustomerManegement() {
-        initComponents();
+       
+    }
+    public int userid;
+    public boolean iskher_;
+    
+    public guiCustomerManegement(int userid , boolean iskhe_){
+         initComponents();
+         tblCustomer.getTableHeader().setFont(
+    new java.awt.Font("Khmer OS Battambang", java.awt.Font.PLAIN, 16)
+);
+tblCustomer.getTableHeader().repaint();
+
          loadingCustomer();
+         this.userid = userid;
+         this.iskher_ = iskhe_;
+              setKhmerFont(this);
+                 if(this.iskher_) {
+                iskher_ = false;
+
+                        setKh();
+
+                        } else {
+                            iskher_ = true;  
+                            setEng();
+                        }
+         
         loadingUserToCombo();
     }
+    private void setKhmerFont(java.awt.Component component) {
+    java.awt.Font current = component.getFont();
+    java.awt.Font khFont = new java.awt.Font("Khmer OS Battambang", current.getStyle(), current.getSize());
+    component.setFont(khFont);
+
+    if (component instanceof java.awt.Container) {
+        for (java.awt.Component child : ((java.awt.Container) component).getComponents()) {
+            setKhmerFont(child);
+        }
+    }
+    
+    }
+    public void setKh() {
+
+    // 🔹 Header
+    jLabel2.setText("ប្រព័ន្ធ ATM SU35");
+
+    // 🔹 Form labels
+    jLabel3.setText("ឈ្មោះអតិថិជន :");
+    jLabel5.setText("អ៊ីមែល :");
+    jLabel6.setText("ទូរស័ព្ទ :");
+    jLabel8.setText("អ្នកប្រើប្រាស់ :");
+
+    // 🔹 Buttons
+    btnAdd.setText("បន្ថែម");
+    btnAdd1.setText("បោះបង់");
+    btnAdd2.setText("នាំចេញទៅ Excel");
+    btnAdd3.setText("បិទ");
+
+    // 🔹 Table headers
+    tblCustomer.getColumnModel().getColumn(0).setHeaderValue("លេខ");
+    tblCustomer.getColumnModel().getColumn(1).setHeaderValue("ឈ្មោះអតិថិជន");
+    tblCustomer.getColumnModel().getColumn(2).setHeaderValue("លេខគណនី");
+    tblCustomer.getColumnModel().getColumn(3).setHeaderValue("ប្រាក់នៅសល់ ($)");
+    tblCustomer.getColumnModel().getColumn(4).setHeaderValue("ប្រភេទ");
+    tblCustomer.getColumnModel().getColumn(5).setHeaderValue("ភាសាខ្មែរ");
+    tblCustomer.getColumnModel().getColumn(6).setHeaderValue("លេខអ្នកប្រើ");
+
+    tblCustomer.getTableHeader().repaint();
+    }
+
+
+public void setEng() {
+
+    // 🔹 Header
+    jLabel2.setText("ATM SU35 System");
+
+    // 🔹 Form labels
+    jLabel3.setText("Customer Name :");
+    jLabel5.setText("Email :");
+    jLabel6.setText("Phone :");
+    jLabel8.setText("User :");
+
+    // 🔹 Buttons
+    btnAdd.setText("Add");
+    btnAdd1.setText("Cancel");
+    btnAdd2.setText("Export To Excel");
+    btnAdd3.setText("Close");
+
+    // 🔹 Table headers
+    tblCustomer.getColumnModel().getColumn(0).setHeaderValue("ID");
+    tblCustomer.getColumnModel().getColumn(1).setHeaderValue("Customer Name");
+    tblCustomer.getColumnModel().getColumn(2).setHeaderValue("Account No");
+    tblCustomer.getColumnModel().getColumn(3).setHeaderValue("Balance ($)");
+    tblCustomer.getColumnModel().getColumn(4).setHeaderValue("Type");
+    tblCustomer.getColumnModel().getColumn(5).setHeaderValue("Khmer");
+    tblCustomer.getColumnModel().getColumn(6).setHeaderValue("User ID");
+
+    tblCustomer.getTableHeader().repaint();
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,7 +146,7 @@ public class guiCustomerManegement extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         cboUser = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableCustomer = new javax.swing.JTable();
+        tblCustomer = new javax.swing.JTable();
         btnAdd2 = new javax.swing.JButton();
         btnAdd3 = new javax.swing.JButton();
 
@@ -231,7 +326,7 @@ public class guiCustomerManegement extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTableCustomer.setModel(new javax.swing.table.DefaultTableModel(
+        tblCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -250,7 +345,7 @@ public class guiCustomerManegement extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableCustomer);
+        jScrollPane1.setViewportView(tblCustomer);
 
         btnAdd2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnAdd2.setText("Export To Excel");
@@ -380,7 +475,7 @@ private void loadingCustomer() {
 
     ArrayList<HashMap<String, Object>> rows = DBHelper.getValues(sql);
 
-    DefaultTableModel model = (DefaultTableModel) jTableCustomer.getModel();
+    DefaultTableModel model = (DefaultTableModel) tblCustomer.getModel();
     model.setRowCount(0); // clear old data
 
     if (rows == null || rows.isEmpty()) {
@@ -455,7 +550,7 @@ private void loadingCustomer() {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableCustomer;
+    private javax.swing.JTable tblCustomer;
     private javax.swing.JTextField txtCustomerName;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtPhone;

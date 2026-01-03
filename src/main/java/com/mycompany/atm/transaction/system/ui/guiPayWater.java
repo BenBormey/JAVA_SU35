@@ -22,7 +22,29 @@ public class guiPayWater extends javax.swing.JFrame {
         initComponents();
         this.userid = userid;
           this.loadAccountsToCombo();
+          this.loadinProvider();
     }
+    public void loadinProvider() {
+
+    cboProvider.removeAllItems();   // clear first
+
+    String sql = """
+        SELECT id, name
+        FROM service_provider
+        WHERE is_active = true
+        ORDER BY name
+    """;
+
+    var list = DBHelper.getValues(sql);
+
+    for (var row : list) {
+        long id = ((Number) row.get("id")).longValue();
+        String name = row.get("name").toString();
+
+        cboProvider.addItem(id + " - " + name);
+    }
+}
+
   
 private void loadAccountsToCombo() {
 
@@ -283,9 +305,7 @@ private void loadAccountsToCombo() {
                             .addGroup(panel14Layout.createSequentialGroup()
                                 .addGap(203, 203, 203)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panel14Layout.createSequentialGroup()
-                                .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(74, 74, 74)))))
+                            .addComponent(btndeposit, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         panel14Layout.setVerticalGroup(
@@ -337,7 +357,7 @@ private void loadAccountsToCombo() {
                 .addComponent(panel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -23,6 +23,7 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
     public guipayPhoneTop_up() {
      
     }
+    
        private boolean iskh;
 
 private void loadAccountsToCombo() {

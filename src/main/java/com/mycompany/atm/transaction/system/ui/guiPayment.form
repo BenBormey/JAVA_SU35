@@ -114,9 +114,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="9a" green="c2" red="dc" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="E:\JavaProgramming\atm_project\atm-transaction-system\src\main\java\com\mycompany\atm\transaction\system\ui\icon\energetic.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Electricity"/>
           </Properties>
           <Events>
@@ -133,9 +130,6 @@
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="9a" green="c2" red="dc" type="rgb"/>
-            </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="E:\JavaProgramming\atm_project\atm-transaction-system\target\classes\icon\water-tap.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Water"/>
           </Properties>
@@ -154,9 +148,6 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="9a" green="c2" red="dc" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="E:\JavaProgramming\atm_project\atm-transaction-system\target\classes\icon\prepaid.png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Phone Tup_up"/>
           </Properties>
           <Events>
@@ -174,10 +165,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="9a" green="c2" red="dc" type="rgb"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="E:\JavaProgramming\atm_project\atm-transaction-system\target\classes\icon\internet.png"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Internet"/>
+            <Property name="text" type="java.lang.String" value="Transfer"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
           <Events>

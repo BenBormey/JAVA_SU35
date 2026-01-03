@@ -160,6 +160,11 @@ private void setKhmerFont(java.awt.Component component) {
 
         btnlogout.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnlogout.setText(" Logout");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(10, 31, 57));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -306,32 +311,33 @@ private void setKhmerFont(java.awt.Component component) {
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-         try{
-                guiCustomerManegement dash = new guiCustomerManegement();
-                 showPanel(dash); 
-         }catch(Exception ex)
-         {
-                ex.printStackTrace();
-    JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-         }
+         
+          try{
+        currentPanel = "Customer";
+        guiCustomerManegement desh = new guiCustomerManegement(Userid, iskh_);
+        showPanel(desh);
+    }catch(Exception ex){
+        ex.printStackTrace();
+    }
+        
+   
     }//GEN-LAST:event_btnCustomerActionPerformed
 
     private void btnTransationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransationActionPerformed
 
-             try{
-                guitrasation desh = new guitrasation(Userid,iskh_);
-                showPanel(desh);
-        }catch(Exception ex)
-         {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-         }
+         try{
+        currentPanel = "transaction";
+        guitrasation desh = new guitrasation(Userid, iskh_);
+        showPanel(desh);
+    }catch(Exception ex){
+        ex.printStackTrace();
+    }
     }//GEN-LAST:event_btnTransationActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:​​​ guitrasation
            try{
-            guitrasation desh = new guitrasation();
+               Report desh = new Report();
             showPanel(desh);
         }catch(Exception ex)
          {
@@ -346,59 +352,93 @@ private void setKhmerFont(java.awt.Component component) {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if(jButton2.getText().equals("ខ្មែរ")){
-            this.setKh();
-        }else{
-            this.setEng();
-        }
+       // toggle language value
+    iskh_ = !iskh_;
+
+    if(iskh_) {
+        setKh();
+        jButton2.setText("English");
+    } else {
+        setEng();
+        jButton2.setText("ខ្មែរ");
+    }
+
+    reloadCurrentPanel();
     }//GEN-LAST:event_jButton2ActionPerformed
+private void reloadCurrentPanel() {
+
+    try{
+        switch(currentPanel){
+
+            case "transaction":
+                showPanel(new guitrasation(Userid, iskh_));
+                break;
+
+            case "report":
+                showPanel(new Report());
+                break;
+
+            case "dashboard":
+                showPanel(new DashBoardPanel_());
+                break;
+
+            case "Customer":
+                showPanel(new guiCustomerManegement(Userid, iskh_));
+                break;
+            case "User" : 
+                showPanel(new guiCreateUsers(Userid, iskh_));
+
+                break;
+            default:
+                // nothing opened yet
+                break;
+        }
+
+    }catch(Exception ex){
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, ex.getMessage());
+    }
+}
 
     private void btnlogout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogout1ActionPerformed
         // TODO add your handling code here:
         //guiCreateUser
            try {
-    guiCreateUsers dash = new guiCreateUsers();
-                 showPanel(dash);   // បង្ហាញ window ថ្មី
+               this.currentPanel = "User";
+    guiCreateUsers dash = new guiCreateUsers(Userid , iskh_);
+                 showPanel(dash);   
 } catch (Exception ex) {
     ex.printStackTrace();
     JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
 }
     }//GEN-LAST:event_btnlogout1ActionPerformed
 
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+  int choice = JOptionPane.showConfirmDialog(
+        null,
+        "Are you sure you want to delete?",
+        "Delete",
+        JOptionPane.YES_NO_OPTION
+);
+
+if (choice == JOptionPane.YES_OPTION) {
+    this.dispose();
+}
+
+    }//GEN-LAST:event_btnlogoutActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminDeshbord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminDeshbord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminDeshbord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminDeshbord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AdminDeshbord().setVisible(true);
             }
         });
     }
+    private String currentPanel = "";
+
      private void showPanel(JPanel panel) {
      panel.setSize(jPanelMain.getWidth(), jPanelMain.getHeight());
     panel.setLocation(0, 0);

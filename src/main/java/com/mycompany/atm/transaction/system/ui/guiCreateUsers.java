@@ -17,16 +17,187 @@ import javax.swing.table.DefaultTableModel;
  */
 public class guiCreateUsers extends javax.swing.JPanel {
 private HashMap<String, Integer> roleMap = new HashMap<>();
+private Integer editingUserId = null;
+
 
     /**
      * Creates new form guiCreateUsers
      */
-    public guiCreateUsers() {
+    public guiCreateUsers(int userid, boolean iskhe_) {
         initComponents();
          this.loudingrole();
          loadingUser();
+         
+         jTable1.getTableHeader().setFont(
+    new java.awt.Font("Khmer OS Battambang", java.awt.Font.PLAIN, 16)
+);
+jTable1.getTableHeader().repaint();
+      addButtonToTable();
+
+      
+         this.userid = userid;
+         this.iskher_ = iskhe_;
+              setKhmerFont(this);
+                 if(this.iskher_) {
+                iskher_ = false;
+
+                        setKh();
+
+                        } else {
+                            iskher_ = true;  
+                            setEng();
+                        }
+         
+
+    }
+    
+     private void setKhmerFont(java.awt.Component component) {
+    java.awt.Font current = component.getFont();
+    java.awt.Font khFont = new java.awt.Font("Khmer OS Battambang", current.getStyle(), current.getSize());
+    component.setFont(khFont);
+
+    if (component instanceof java.awt.Container) {
+        for (java.awt.Component child : ((java.awt.Container) component).getComponents()) {
+            setKhmerFont(child);
+        }
+    }
+    
+    }
+     private void addButtonToTable() {
+
+    // ===== EDIT BUTTON =====
+    jTable1.getColumn("Edit").setCellRenderer(
+            new ButtonRenderer("Edit")
+    );
+
+    jTable1.getColumn("Edit").setCellEditor(
+            new ButtonEditor(new javax.swing.JCheckBox(), "Edit")
+    );
+
+    // ===== DELETE BUTTON =====
+    jTable1.getColumn("Delete").setCellRenderer(
+            new ButtonRenderer("Delete")
+    );
+
+    jTable1.getColumn("Delete").setCellEditor(
+            new ButtonEditor(new javax.swing.JCheckBox(), "Delete")
+    );
+}
+
+
+
+        // ================= BUTTON RENDERER ==================
+class ButtonRenderer extends javax.swing.JButton implements javax.swing.table.TableCellRenderer {
+
+    public ButtonRenderer(String text) {
+        setText(text);
     }
 
+    @Override
+    public java.awt.Component getTableCellRendererComponent(
+            javax.swing.JTable table,
+            Object value,
+            boolean isSelected,
+            boolean hasFocus,
+            int row,
+            int column) {
+
+        return this;
+    }
+}
+
+
+// ================= BUTTON EDITOR ==================
+class ButtonEditor extends javax.swing.DefaultCellEditor {
+
+    protected javax.swing.JButton button;
+    private String label;
+    private boolean clicked;
+    private int row;
+
+    public ButtonEditor(javax.swing.JCheckBox checkBox, String text) {
+        super(checkBox);
+
+        button = new javax.swing.JButton();
+        this.label = text;
+
+        button.addActionListener(e -> fireEditingStopped());
+    }
+
+    @Override
+    public java.awt.Component getTableCellEditorComponent(
+            javax.swing.JTable table,
+            Object value,
+            boolean isSelected,
+            int row,
+            int column) {
+
+        this.row = row;
+        button.setText(label);
+        clicked = true;
+        return button;
+    }
+
+    @Override
+    public Object getCellEditorValue() {
+
+        if (clicked) {
+
+            int id = (int) jTable1.getValueAt(row, 0);   // userid
+
+            // ================== EDIT ==================
+            if (label.equals("Edit")) {
+
+                editingUserId = id;
+
+                String username = jTable1.getValueAt(row, 1).toString();
+                Boolean active = (Boolean) jTable1.getValueAt(row, 2);
+                String role = jTable1.getValueAt(row, 3).toString();
+
+                // push to form inputs
+                txtUsername.setText(username);
+
+                // password not from table
+                txtPassword.setText("");
+                txtComfirmps.setText("");
+
+                choRole.setSelectedItem(role);
+                chkActive.setSelected(active);
+
+                JOptionPane.showMessageDialog(null, "Editing user id = " + id);
+            }
+
+            // ================== DELETE ==================
+            else if (label.equals("Delete")) {
+
+                int c = JOptionPane.showConfirmDialog(
+                        null,
+                        "Delete user id = " + id + " ?",
+                        "Confirm",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if (c == JOptionPane.YES_OPTION) {
+
+                    String sql = "DELETE FROM users WHERE userid=?";
+
+                    DBHelper.execute(sql, id);
+
+                    JOptionPane.showMessageDialog(null, "Deleted!");
+
+                    loadingUser();
+                }
+            }
+        }
+
+        clicked = false;
+        return label;
+    }
+}
+
+
+ public int userid;
+    public boolean iskher_;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,17 +268,17 @@ private HashMap<String, Integer> roleMap = new HashMap<>();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "userid", "username", "active", "role"
+                "userid", "username", "active", "role", "Edit", "Delete"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -231,34 +402,51 @@ private HashMap<String, Integer> roleMap = new HashMap<>();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-   if (!validateCreateUser()) {
-        return;
+  if (!validateCreateUser()) return;
+
+    // INSERT
+    if (editingUserId == null) {
+
+        boolean result = insertUser();
+
+        if (result) {
+            JOptionPane.showMessageDialog(this, "User created successfully!");
+        }
+    }
+    // UPDATE
+    else {
+
+        updateUser();
+        JOptionPane.showMessageDialog(this, "User updated successfully!");
     }
 
-    boolean result = insertUser();
-
-    if (result) {
-        JOptionPane.showMessageDialog(
-            this,
-            "User created successfully!",
-            "Success",
-            JOptionPane.INFORMATION_MESSAGE
-        );
-        clearForm();
-         loadingUser();
-    } else {
-        JOptionPane.showMessageDialog(
-            this,
-            "Failed to create user!",
-            "Error",
-            JOptionPane.ERROR_MESSAGE
-        );
-    }
-        
-
-      
+    clearForm();
+    loadingUser();
     }//GEN-LAST:event_btnAddActionPerformed
-   private boolean validateCreateUser() {
+   
+    private void updateUser() {
+
+    String sql = """
+        UPDATE users
+        SET username=?, password=?, role_id=?, active=?
+        WHERE userid=?
+    """;
+
+    int roleId = roleMap.get(choRole.getSelectedItem().toString());
+
+    DBHelper.execute(
+            sql,
+            txtUsername.getText().trim(),
+            txtPassword.getText().trim(),
+            roleId,
+            chkActive.isSelected(),
+            editingUserId
+    );
+
+    editingUserId = null; // exit edit mode
+}
+
+    private boolean validateCreateUser() {
 
     String userName = txtUsername.getText().trim();
     String password = txtPassword.getText();//new String(txtPassword.getPassword());
@@ -426,6 +614,55 @@ private void loudingrole() {
         choRole.addItem(roleName);          // ✅ String only
         roleMap.put(roleName, roleId);      // ✅ store id
     }
+}
+public void setEng() {
+
+    // 🔹 Form labels
+    lblUserName.setText("User Name :");
+    lblUserName1.setText("Password :");
+    lblUserName2.setText("Confirm Password :");
+    lblUserName3.setText("Role :");
+    lblUserName4.setText("Active :");
+
+    // 🔹 Inputs / checkbox
+    chkActive.setText("Yes");
+
+    // 🔹 Buttons
+    btnAdd.setText("Add");
+    btnCancel.setText("Cancel");
+
+    // 🔹 Table headers
+    jTable1.getColumnModel().getColumn(0).setHeaderValue("User ID");
+    jTable1.getColumnModel().getColumn(1).setHeaderValue("Username");
+    jTable1.getColumnModel().getColumn(2).setHeaderValue("Active");
+    jTable1.getColumnModel().getColumn(3).setHeaderValue("Role");
+
+    jTable1.getTableHeader().repaint();
+}
+
+public void setKh() {
+
+    // 🔹 Form labels
+    lblUserName.setText("ឈ្មោះអ្នកប្រើ :");
+    lblUserName1.setText("ពាក្យសម្ងាត់ :");
+    lblUserName2.setText("បញ្ជាក់ពាក្យសម្ងាត់ :");
+    lblUserName3.setText("តួនាទី :");
+    lblUserName4.setText("សកម្ម :");
+
+    // 🔹 Inputs / checkbox
+    chkActive.setText("បាទ/ចាស");
+
+    // 🔹 Buttons
+    btnAdd.setText("បន្ថែម");
+    btnCancel.setText("បោះបង់");
+
+    // 🔹 Table headers
+    jTable1.getColumnModel().getColumn(0).setHeaderValue("លេខអ្នកប្រើ");
+    jTable1.getColumnModel().getColumn(1).setHeaderValue("ឈ្មោះអ្នកប្រើ");
+    jTable1.getColumnModel().getColumn(2).setHeaderValue("សកម្ម");
+    jTable1.getColumnModel().getColumn(3).setHeaderValue("តួនាទី");
+
+    jTable1.getTableHeader().repaint();
 }
 
 

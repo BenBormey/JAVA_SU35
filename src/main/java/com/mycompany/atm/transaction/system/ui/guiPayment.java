@@ -54,7 +54,6 @@ public class guiPayment extends javax.swing.JFrame {
         btndeposit.setBackground(new java.awt.Color(21, 42, 66));
         btndeposit.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btndeposit.setForeground(new java.awt.Color(220, 194, 154));
-        btndeposit.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\src\\main\\java\\com\\mycompany\\atm\\transaction\\system\\ui\\icon\\energetic.png")); // NOI18N
         btndeposit.setText("Electricity");
         btndeposit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,7 +64,6 @@ public class guiPayment extends javax.swing.JFrame {
         btndeposit1.setBackground(new java.awt.Color(21, 42, 66));
         btndeposit1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btndeposit1.setForeground(new java.awt.Color(220, 194, 154));
-        btndeposit1.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\water-tap.png")); // NOI18N
         btndeposit1.setText("Water");
         btndeposit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +74,6 @@ public class guiPayment extends javax.swing.JFrame {
         btndeposit2.setBackground(new java.awt.Color(21, 42, 66));
         btndeposit2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btndeposit2.setForeground(new java.awt.Color(220, 194, 154));
-        btndeposit2.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\prepaid.png")); // NOI18N
         btndeposit2.setText("Phone Tup_up");
         btndeposit2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,8 +84,7 @@ public class guiPayment extends javax.swing.JFrame {
         btndeposit3.setBackground(new java.awt.Color(21, 42, 66));
         btndeposit3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btndeposit3.setForeground(new java.awt.Color(220, 194, 154));
-        btndeposit3.setIcon(new javax.swing.ImageIcon("E:\\JavaProgramming\\atm_project\\atm-transaction-system\\target\\classes\\icon\\internet.png")); // NOI18N
-        btndeposit3.setText("Internet");
+        btndeposit3.setText("Transfer");
         btndeposit3.setToolTipText("");
         btndeposit3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,6 +179,9 @@ public class guiPayment extends javax.swing.JFrame {
 
     private void btndeposit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeposit3ActionPerformed
         // TODO add your handling code here:
+         Transfer payWaterForm = new Transfer(this.userid);
+            payWaterForm.setVisible(true);      
+            payWaterForm.setLocationRelativeTo(null); 
     }//GEN-LAST:event_btndeposit3ActionPerformed
 
     private void btndeposit4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeposit4ActionPerformed
