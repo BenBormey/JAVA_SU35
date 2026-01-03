@@ -154,7 +154,7 @@ public String GetUserName(int id) {
 
     private void btn60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn60ActionPerformed
         // TODO add your handling code here:   guipayelectricity
-        guiTransations payWaterForm = new guiTransations();
+        guiTransations payWaterForm = new guiTransations(userid);
         payWaterForm.setVisible(true);
         payWaterForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_btn60ActionPerformed

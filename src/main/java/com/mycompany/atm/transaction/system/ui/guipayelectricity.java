@@ -6,6 +6,7 @@ package com.mycompany.atm.transaction.system.ui;
 
 import com.mycompany.atm.transaction.system.DB.DBHelper;
 import java.math.BigDecimal;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -13,18 +14,54 @@ import javax.swing.JOptionPane;
  * @author USER
  */
 public class guipayelectricity extends javax.swing.JFrame {
-
-
+//    JComboBox<String> cboProvider = new JComboBox<>();
+    private boolean iskh;  
     private int currentUserId;
     public guipayelectricity(int currentUserId_) {
         initComponents();
         this.currentUserId = currentUserId_;
         this.loadAccountsToCombo();
+        this.loadinProvider();
+        this.setKhmerFont(this);
     } 
+    
+    private void setKhmerFont(java.awt.Component component) {
+    java.awt.Font current = component.getFont();
+    java.awt.Font khFont = new java.awt.Font("Khmer OS Battambang", current.getStyle(), current.getSize());
+    component.setFont(khFont);
+
+    if (component instanceof java.awt.Container) {
+        for (java.awt.Component child : ((java.awt.Container) component).getComponents()) {
+            setKhmerFont(child);
+        }
+    }
+}
     public guipayelectricity() {
      
     }
-       private boolean iskh;
+   public void loadinProvider() {
+
+    cboProvider.removeAllItems();   // clear first
+
+    String sql = """
+        SELECT id, name
+        FROM service_provider
+        WHERE is_active = true
+        ORDER BY name
+    """;
+
+    var list = DBHelper.getValues(sql);
+
+    for (var row : list) {
+        long id = ((Number) row.get("id")).longValue();
+        String name = row.get("name").toString();
+
+        // show nicely, keep id for later use
+        cboProvider.addItem(id + " - " + name);
+    }
+}
+
+      
 
 private void loadAccountsToCombo() {
 
@@ -303,7 +340,7 @@ private void loadAccountsToCombo() {
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(76, 76, 76)
                         .addComponent(jLabel6)
-                        .addGap(0, 67, Short.MAX_VALUE)))
+                        .addGap(0, 68, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -315,7 +352,7 @@ private void loadAccountsToCombo() {
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel6)
                 .addGap(22, 22, 22)
                 .addComponent(panel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -331,7 +368,7 @@ private void loadAccountsToCombo() {
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btndeposit))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -523,6 +560,39 @@ private void loadAccountsToCombo() {
 
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
+   public void setkh(){
+
+    // change button text so next click switches back
+    
+    jLabel6.setText("បង់ប្រាក់អគ្គីសនី");
+
+    jLabel1.setText("ក្រុមហ៊ុនផ្តល់សេវា");
+    jLabel2.setText("លេខអតិថិជន");
+    jLabel3.setText("ខែបង់ប្រាក់");
+    jLabel4.setText("ចំនួនទឹកប្រាក់");
+    jLabel5.setText("បង់ពីគណនី");
+
+    btndeposit.setText("បង់ប្រាក់");
+    jButton5.setText("បោះបង់");
+
+    // apply khmer font
+    this.setKhmerFont(this);
+}
+
+public void setEng(){
+
+
+    jLabel6.setText("Pay Electricity");
+
+    jLabel1.setText("Provider");
+    jLabel2.setText("Customer ID");
+    jLabel3.setText("Billing Month");
+    jLabel4.setText("Amount");
+    jLabel5.setText("Pay From Account");
+
+    btndeposit.setText("Pay Now");
+    jButton5.setText("Cancel");
+}
 
     /**
      * @param args the command line arguments

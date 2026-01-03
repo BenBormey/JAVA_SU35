@@ -104,6 +104,7 @@ private void setKhmerFont(java.awt.Component component) {
         btnlogout = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         lblLang = new javax.swing.JLabel();
+        btnlogout1 = new javax.swing.JButton();
         jPanelMain = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -159,6 +160,11 @@ private void setKhmerFont(java.awt.Component component) {
 
         btnlogout.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnlogout.setText(" Logout");
+        btnlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogoutActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(10, 31, 57));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -179,24 +185,34 @@ private void setKhmerFont(java.awt.Component component) {
         lblLang.setForeground(new java.awt.Color(220, 194, 154));
         lblLang.setText("Language :");
 
+        btnlogout1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnlogout1.setText("User");
+        btnlogout1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlogout1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(23, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblLang)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnTransation, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnSitting, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnlogout1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblLang)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnTransation, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnSitting, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnlogout, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
@@ -213,12 +229,14 @@ private void setKhmerFont(java.awt.Component component) {
                 .addGap(18, 18, 18)
                 .addComponent(btnSitting)
                 .addGap(18, 18, 18)
+                .addComponent(btnlogout1)
+                .addGap(16, 16, 16)
                 .addComponent(btnlogout)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLang)
                     .addComponent(jButton2))
-                .addContainerGap(319, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panel2Layout = new javax.swing.GroupLayout(panel2);
@@ -293,32 +311,33 @@ private void setKhmerFont(java.awt.Component component) {
     }//GEN-LAST:event_btnDashboardActionPerformed
 
     private void btnCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCustomerActionPerformed
-         try{
-                guiCustomerManegement dash = new guiCustomerManegement();
-                 showPanel(dash); 
-         }catch(Exception ex)
-         {
-                ex.printStackTrace();
-    JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-         }
+         
+          try{
+        currentPanel = "Customer";
+        guiCustomerManegement desh = new guiCustomerManegement(Userid, iskh_);
+        showPanel(desh);
+    }catch(Exception ex){
+        ex.printStackTrace();
+    }
+        
+   
     }//GEN-LAST:event_btnCustomerActionPerformed
 
     private void btnTransationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransationActionPerformed
 
-             try{
-                guitrasation desh = new guitrasation(Userid,iskh_);
-                showPanel(desh);
-        }catch(Exception ex)
-         {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-         }
+         try{
+        currentPanel = "transaction";
+        guitrasation desh = new guitrasation(Userid, iskh_);
+        showPanel(desh);
+    }catch(Exception ex){
+        ex.printStackTrace();
+    }
     }//GEN-LAST:event_btnTransationActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
         // TODO add your handling code here:​​​ guitrasation
            try{
-            guitrasation desh = new guitrasation();
+               Report desh = new Report();
             showPanel(desh);
         }catch(Exception ex)
          {
@@ -333,47 +352,93 @@ private void setKhmerFont(java.awt.Component component) {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if(jButton2.getText().equals("ខ្មែរ")){
-            this.setKh();
-        }else{
-            this.setEng();
-        }
+       // toggle language value
+    iskh_ = !iskh_;
+
+    if(iskh_) {
+        setKh();
+        jButton2.setText("English");
+    } else {
+        setEng();
+        jButton2.setText("ខ្មែរ");
+    }
+
+    reloadCurrentPanel();
     }//GEN-LAST:event_jButton2ActionPerformed
+private void reloadCurrentPanel() {
+
+    try{
+        switch(currentPanel){
+
+            case "transaction":
+                showPanel(new guitrasation(Userid, iskh_));
+                break;
+
+            case "report":
+                showPanel(new Report());
+                break;
+
+            case "dashboard":
+                showPanel(new DashBoardPanel_());
+                break;
+
+            case "Customer":
+                showPanel(new guiCustomerManegement(Userid, iskh_));
+                break;
+            case "User" : 
+                showPanel(new guiCreateUsers(Userid, iskh_));
+
+                break;
+            default:
+                // nothing opened yet
+                break;
+        }
+
+    }catch(Exception ex){
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, ex.getMessage());
+    }
+}
+
+    private void btnlogout1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogout1ActionPerformed
+        // TODO add your handling code here:
+        //guiCreateUser
+           try {
+               this.currentPanel = "User";
+    guiCreateUsers dash = new guiCreateUsers(Userid , iskh_);
+                 showPanel(dash);   
+} catch (Exception ex) {
+    ex.printStackTrace();
+    JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+}
+    }//GEN-LAST:event_btnlogout1ActionPerformed
+
+    private void btnlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogoutActionPerformed
+  int choice = JOptionPane.showConfirmDialog(
+        null,
+        "Are you sure you want to delete?",
+        "Delete",
+        JOptionPane.YES_NO_OPTION
+);
+
+if (choice == JOptionPane.YES_OPTION) {
+    this.dispose();
+}
+
+    }//GEN-LAST:event_btnlogoutActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminDeshbord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminDeshbord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminDeshbord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminDeshbord.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AdminDeshbord().setVisible(true);
             }
         });
     }
+    private String currentPanel = "";
+
      private void showPanel(JPanel panel) {
      panel.setSize(jPanelMain.getWidth(), jPanelMain.getHeight());
     panel.setLocation(0, 0);
@@ -392,6 +457,7 @@ private void setKhmerFont(java.awt.Component component) {
     private javax.swing.JButton btnSitting;
     private javax.swing.JButton btnTransation;
     private javax.swing.JButton btnlogout;
+    private javax.swing.JButton btnlogout1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

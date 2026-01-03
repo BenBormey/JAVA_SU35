@@ -224,57 +224,97 @@ private void setKhmerFont(java.awt.Component component) {
     }//GEN-LAST:event_btnLoginActionPerformed
   private boolean iskhfont = false;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String user = txtUsername.getText().trim();
-         String pass = String.valueOf(txtpassword.getPassword()).trim();
-        if (user.isEmpty() || pass.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter username and password!");
-            return;
-        }
+  
+    String username = txtUsername.getText().trim();
+    String password = String.valueOf(txtpassword.getPassword()).trim();
 
     
-        String sql = "SELECT * FROM public.users WHERE username='" + user +
-                "' AND password='" + pass + "'";
+    if (username.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(
+            this,
+            "Please enter username and password!",
+            "Validation Error",
+            JOptionPane.WARNING_MESSAGE
+        );
+        return;
+    }
 
-        ArrayList<HashMap<String, Object>> result = DBHelper.getValues(sql);
 
-        if (result.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "❌ Invalid Username or Password!");
-            return;
-        }
+    String sql = """
+        SELECT u.userid, u.active, r.role_name
+        FROM public.users u
+        JOIN public.roles r ON u.role_id = r.role_id
+        WHERE u.username = ? AND u.password = ?
+    """;
+
+    ArrayList<HashMap<String, Object>> result =
+            DBHelper.getValues(sql, username, password);
 
   
-        Map<String, Object> row = result.get(0);
-        boolean active = (boolean) row.get("active");
-        String role = row.get("role").toString();
-        int id  = (int)row.get("userid");
+    if (result.isEmpty()) {
+        JOptionPane.showMessageDialog(
+            this,
+            "❌ Invalid Username or Password!",
+            "Login Failed",
+            JOptionPane.ERROR_MESSAGE
+        );
+        return;
+    }
 
-       
-        if (!active) {
-            JOptionPane.showMessageDialog(this, "❌ Account inactive! Contact admin.");
-            return;
-        }
+    
+    HashMap<String, Object> row = result.get(0);
 
-        JOptionPane.showMessageDialog(this, "✔ Login Successful!\nRole: " + role);
+    boolean active = (Boolean) row.get("active");
+    String role    = row.get("role_name").toString();
+    int userId     = ((Number) row.get("userid")).intValue();
 
-        try {
-            if(role.equals("ADMIN")){
-                    AdminDeshbord main = new AdminDeshbord(id,iskhfont);
+ 
+    if (!active) {
+        JOptionPane.showMessageDialog(
+            this,
+            "❌ Account inactive! Contact admin.",
+            "Access Denied",
+            JOptionPane.ERROR_MESSAGE
+        );
+        return;
+    }
+
+  
+    JOptionPane.showMessageDialog(
+        this,
+        "✔ Login Successful!\nRole: " + role,
+        "Success",
+        JOptionPane.INFORMATION_MESSAGE
+    );
+
+   
+    try {
+        if ("ADMIN".equalsIgnoreCase(role)) {
+
+            AdminDeshbord admin = new AdminDeshbord(userId, iskhfont);
+            admin.setLocationRelativeTo(null);
+            admin.setVisible(true);
+
+        } else {
+
+            MainForm main = new MainForm(userId);
             main.setLocationRelativeTo(null);
             main.setVisible(true);
-
-            this.dispose(); 
-            }else{
-            MainForm main = new MainForm(id);
-            main.setLocationRelativeTo(null);
-            main.setVisible(true);
-
-            this.dispose(); 
-            }
-
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Cannot open MainForm: " + ex.getMessage());
         }
+
+        this.dispose();
+
+    } catch (Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(
+            this,
+            "Cannot open system: " + ex.getMessage(),
+            "Error",
+            JOptionPane.ERROR_MESSAGE
+        );
+    }
+
+
     
     }//GEN-LAST:event_jButton1ActionPerformed
 

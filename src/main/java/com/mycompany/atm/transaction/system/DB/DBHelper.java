@@ -59,13 +59,13 @@ public class DBHelper {
                 list.add(row);
             }
 
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(
-        null,
-        "❌ getValues(params) Error: " + e.getMessage()
-    );
-    e.printStackTrace();
-}
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "❌ getValues(params) Error: " + e.getMessage()
+            );
+            e.printStackTrace();
+        }
 
 
         return list;
@@ -119,21 +119,21 @@ public class DBHelper {
         }
     }
     public static transation fromRow(HashMap<String, Object> row) {
-    transation t = new transation();
+        transation t = new transation();
 
-    t.setId(((Number) row.get("id")).longValue());
-    t.setAccountId(((Number) row.get("account_id")).longValue());
-    t.setUserId(((Number) row.get("user_id")).intValue());
-    t.setTranType(row.get("tran_type").toString());
-    t.setAmount(new BigDecimal(row.get("amount").toString()));
-    t.setKh((Boolean) row.get("is_kh"));
-    t.setBalanceBefore(new BigDecimal(row.get("balance_before").toString()));
-    t.setBalanceAfter(new BigDecimal(row.get("balance_after").toString()));
-    t.setNote(row.get("note") == null ? "" : row.get("note").toString());
-    // created_at you can parse later if you want
+        t.setId(((Number) row.get("id")).longValue());
+        t.setAccountId(((Number) row.get("account_id")).longValue());
+        t.setUserId(((Number) row.get("user_id")).intValue());
+        t.setTranType(row.get("tran_type").toString());
+        t.setAmount(new BigDecimal(row.get("amount").toString()));
+        t.setKh((Boolean) row.get("is_kh"));
+        t.setBalanceBefore(new BigDecimal(row.get("balance_before").toString()));
+        t.setBalanceAfter(new BigDecimal(row.get("balance_after").toString()));
+        t.setNote(row.get("note") == null ? "" : row.get("note").toString());
+        // created_at you can parse later if you want
 
-    return t;
-}
+        return t;
+    }
 
 
     // 🔹 SELECT return single value (no params)

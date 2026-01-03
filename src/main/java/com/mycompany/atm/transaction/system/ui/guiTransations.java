@@ -17,10 +17,14 @@ public class guiTransations extends javax.swing.JFrame {
     /**
      * Creates new form guiTransations
      */
-    public guiTransations() {
+    public int userId;
+    public guiTransations(){
+    }
+    public guiTransations(int userid) {
         initComponents();
           initTable();
           styleTable();
+          userId = userid;
     loadTransactions();
     }
     private void initTable() {
@@ -66,12 +70,13 @@ public class guiTransations extends javax.swing.JFrame {
         // 2️⃣ Query transactions
         String sql = """
             SELECT created_at, tran_type, amount, balance_after, note
-            FROM public.atm_transaction
+            FROM public.atm_transaction where user_id = %d
       
             ORDER BY created_at DESC
             LIMIT 20
-        """.formatted();
+        """.formatted(userId);
 
+        JOptionPane.showConfirmDialog(null, userId);
         var rows = DBHelper.getValues(sql);
 
         javax.swing.table.DefaultTableModel model =

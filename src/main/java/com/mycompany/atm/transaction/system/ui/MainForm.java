@@ -344,6 +344,12 @@ public class MainForm extends javax.swing.JFrame {
 
     private void btnCardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCardActionPerformed
         // TODO add your handling code here:
+        
+        
+                    guiCreateCard getCash = new guiCreateCard(this.currentUserId);
+    getCash.setLocationRelativeTo(this); // center relative to main form
+    getCash.setVisible(true);
+     this.dispose(); 
     }//GEN-LAST:event_btnCardActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -380,7 +386,7 @@ public class MainForm extends javax.swing.JFrame {
 
     private void btnsettingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsettingActionPerformed
         // TODO add your handling code here:guiAccouontSetting
-           guiAccouontSetting getCash = new guiAccouontSetting(this.currentUserId);
+    guiAccouontSetting getCash = new guiAccouontSetting(this.currentUserId);
     getCash.setLocationRelativeTo(this); 
     getCash.setVisible(true);
      this.dispose(); 
