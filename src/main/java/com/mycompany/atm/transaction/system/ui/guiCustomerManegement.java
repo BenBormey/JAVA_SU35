@@ -13,7 +13,6 @@ public class guiCustomerManegement extends javax.swing.JPanel {
 
     private HashMap<String,Integer> userMap = new HashMap<>();
 
-    // ==== UI COMPONENTS ====
     private javax.swing.JTable tblCustomer;
     private javax.swing.JScrollPane jScrollPane1;
 
@@ -38,9 +37,6 @@ public class guiCustomerManegement extends javax.swing.JPanel {
         loadingCustomer();
     }
 
-    // =========================================================
-    // ================== INIT COMPONENTS ======================
-    // =========================================================
     private void initComponents() {
 
         setLayout(null);
@@ -75,7 +71,6 @@ public class guiCustomerManegement extends javax.swing.JPanel {
         btnAdd.addActionListener(evt -> btnAddActionPerformed(evt));
         add(btnAdd);
 
-        // ===== TABLE =====
         tblCustomer = new javax.swing.JTable();
 
         tblCustomer.setModel(
@@ -90,9 +85,6 @@ public class guiCustomerManegement extends javax.swing.JPanel {
         add(jScrollPane1);
     }
 
-    // =========================================================
-    // ================= LOAD CUSTOMER DATA ====================
-    // =========================================================
     private void loadingCustomer(){
 
         String sql = """
@@ -125,9 +117,6 @@ public class guiCustomerManegement extends javax.swing.JPanel {
         }
     }
 
-    // =========================================================
-    // ================= LOAD USER COMBO =======================
-    // =========================================================
     private void loadingUserToCombo(){
 
         cboUser.removeAllItems();
@@ -154,14 +143,10 @@ public class guiCustomerManegement extends javax.swing.JPanel {
         }
     }
 
-    // =========================================================
-    // ================= INSERT CUSTOMER =======================
-    // =========================================================
+    // ================= INSERT CUSTOMER + 2 ACCOUNTS ===================
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt){
 
         String name = txtCustomerName.getText().trim();
-        String email = txtEmail.getText().trim();
-        String phone = txtPhone.getText().trim();
 
         if(name.isEmpty()){
             JOptionPane.showMessageDialog(this,"Enter customer name!");
@@ -176,19 +161,60 @@ public class guiCustomerManegement extends javax.swing.JPanel {
         String username = cboUser.getSelectedItem().toString();
         int userId = userMap.get(username);
 
-        String sql = """
-            INSERT INTO public."CUSTOMER"
-            ("CustomerName","UserID")
-            VALUES (?,?)
+        try {
+
+            // 1. Insert customer and get ID
+            String sqlCustomer = """
+                INSERT INTO public."CUSTOMER"
+                ("CustomerName","UserID")
+                VALUES (?,?)
+                RETURNING "ID"
+            """;
+
+            ArrayList<HashMap<String,Object>> result =
+                    DBHelper.getValues(sqlCustomer, name, userId);
+
+            if(result == null || result.isEmpty()){
+                JOptionPane.showMessageDialog(this,"Create customer failed!");
+                return;
+            }
+
+            int customerId = ((Number)result.get(0).get("ID")).intValue();
+
+
+            // 2. Create two accounts
+            createAccount(customerId,true);   // KH account
+            createAccount(customerId,false);  // USD account or other
+
+            JOptionPane.showMessageDialog(this,"Customer + 2 accounts created!");
+
+            loadingCustomer();
+
+        } catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this,"Error: " + e.getMessage());
+        }
+    }
+
+    // =================== helper create account =======================
+    private void createAccount(int customerId, boolean isKh){
+
+        String accountNo = System.currentTimeMillis() + (isKh ? "KH" : "US");
+
+        String sqlAcc = """
+            INSERT INTO public.account
+            (account_no, customer_id, balance, account_type, is_kh, status)
+            VALUES (?,?,?,?,?,?)
         """;
 
-        int x = DBHelper.execute(sql,name,userId);
-
-        if(x>0){
-            JOptionPane.showMessageDialog(this,"Customer added!");
-            loadingCustomer();
-        } else {
-            JOptionPane.showMessageDialog(this,"Insert failed!");
-        }
+        DBHelper.execute(
+                sqlAcc,
+                accountNo,
+                customerId,
+                0,                 // balance default
+                "SAVING",          // or change your type
+                isKh,
+                true               // active
+        );
     }
 }

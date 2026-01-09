@@ -354,6 +354,10 @@ public class MainForm extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+         guiAddAccount getCash = new guiAddAccount(this.currentUserId);
+    getCash.setLocationRelativeTo(this); // center relative to main form
+    getCash.setVisible(true);
+     this.dispose(); 
     }//GEN-LAST:event_jButton11ActionPerformed
   public boolean isBalanceHidden =false;
     private void btnhideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhideActionPerformed

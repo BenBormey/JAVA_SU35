@@ -12,7 +12,10 @@ public class LoginForm extends JFrame {
     private boolean isKh = false;
 
     public LoginForm() {
+
+
         initComponents();
+        setKhmerFont(this);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(btnLogin);
 
@@ -20,8 +23,8 @@ public class LoginForm extends JFrame {
         setEnglish();
 
         // set Khmer font if available
-        setKhmerFont(this);
     }
+
 
     /** --------------------  LANGUAGE  -------------------- **/
 
