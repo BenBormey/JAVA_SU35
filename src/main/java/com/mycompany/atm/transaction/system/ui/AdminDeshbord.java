@@ -327,7 +327,7 @@ private void setKhmerFont(java.awt.Component component) {
 
          try{
         currentPanel = "transaction";
-        guitrasation desh = new guitrasation(Userid, iskh_);
+             guiTransationAdmin desh = new guiTransationAdmin();
         showPanel(desh);
     }catch(Exception ex){
         ex.printStackTrace();
@@ -441,7 +441,7 @@ if (choice == JOptionPane.YES_OPTION) {
 
      private void showPanel(JPanel panel) {
      panel.setSize(jPanelMain.getWidth(), jPanelMain.getHeight());
-    panel.setLocation(0, 0);
+     panel.setLocation(0, 0);
 
     jPanelMain.removeAll();
     jPanelMain.setLayout(new BorderLayout());

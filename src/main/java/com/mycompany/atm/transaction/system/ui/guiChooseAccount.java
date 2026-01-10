@@ -314,7 +314,7 @@ try {
       + "\nNew Balance: " + String.format("%,.2f %s", newBalance, symbol)
       + "\nTransaction Saved!");
 
-    MainForm main = new MainForm(this.currentUserId);
+    MainForm main = new MainForm(this.currentUserId,iskh);
     main.setLocationRelativeTo(null);
     main.setVisible(true);
 

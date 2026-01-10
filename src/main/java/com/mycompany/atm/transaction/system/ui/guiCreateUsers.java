@@ -121,6 +121,7 @@ class ButtonEditor extends javax.swing.DefaultCellEditor {
         button = new javax.swing.JButton();
         this.label = text;
 
+
         button.addActionListener(e -> fireEditingStopped());
     }
 
@@ -178,8 +179,9 @@ class ButtonEditor extends javax.swing.DefaultCellEditor {
                 );
 
                 if (c == JOptionPane.YES_OPTION) {
-
-                    String sql = "DELETE FROM users WHERE userid=?";
+                    String sql = """
+                            	update public.users set active = false where users.userid = ?
+                            """;
 
                     DBHelper.execute(sql, id);
 
@@ -596,7 +598,7 @@ private boolean insertUser() {
     }
 
   String roleName = choRole.getSelectedItem().toString();
-int roleId = roleMap.get(roleName); // ✅ correct ID
+int roleId = roleMap.get(roleName);
 
     boolean active = chkActive.isSelected();
 

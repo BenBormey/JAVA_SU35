@@ -375,7 +375,7 @@ private void loadAccountsToCombo() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        MainForm main = new MainForm(this.userid);
+        MainForm main = new MainForm(this.userid,iskh);
         main.setLocationRelativeTo(null);
         main.setVisible(true);
 

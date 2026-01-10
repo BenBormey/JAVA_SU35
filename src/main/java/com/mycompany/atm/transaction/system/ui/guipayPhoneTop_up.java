@@ -6,6 +6,7 @@ package com.mycompany.atm.transaction.system.ui;
 
 import com.mycompany.atm.transaction.system.DB.DBHelper;
 import javax.swing.JOptionPane;
+import java.awt.*;
 
 /**
  *
@@ -13,10 +14,17 @@ import javax.swing.JOptionPane;
  */
 public class guipayPhoneTop_up extends javax.swing.JFrame {
 
-
+private  boolean iskhmerfont_;
     private int currentUserId;
-    public guipayPhoneTop_up(int currentUserId_) {
+    public guipayPhoneTop_up(int currentUserId_,boolean iskh) {
         initComponents();
+        this.setKhmerFont(this);
+this.iskhmerfont_ = iskh;
+ if (iskhmerfont_){
+     getkh();
+ }else{
+     geteng();
+ }
         this.currentUserId = currentUserId_;
         this.loadAccountsToCombo();
     } 
@@ -25,7 +33,34 @@ public class guipayPhoneTop_up extends javax.swing.JFrame {
     }
     
        private boolean iskh;
+    private void getkh() {
+        lblTitleGetCash.setText("បញ្ចូលទឹកប្រាក់ទូរស័ព្ទ");
+        jLabel1.setText("ពីគណនី");
+        jLabel2.setText("លេខទូរស័ព្ទ");
+        jLabel3.setText("ចំនួនទឹកប្រាក់");
+        btndeposit.setText("បញ្ចូលប្រាក់");
+        jButton5.setText("បោះបង់");
+    }
+    private void setKhmerFont(Component c) {
+        try {
+            Font khFont = new Font("Khmer OS Battambang", c.getFont().getStyle(), c.getFont().getSize());
+            c.setFont(khFont);
+        } catch (Exception ignored) {}
 
+        if (c instanceof Container) {
+            for (Component child : ((Container) c).getComponents()) {
+                setKhmerFont(child);
+            }
+        }
+    }
+    private void geteng() {
+        lblTitleGetCash.setText("Pay Mobile Phone");
+        jLabel1.setText("From Account");
+        jLabel2.setText("Phone Number");
+        jLabel3.setText("Amount");
+        btndeposit.setText("Deposit");
+        jButton5.setText("Cancel");
+    }
 private void loadAccountsToCombo() {
 
     String sql = """
@@ -362,7 +397,7 @@ private void loadAccountsToCombo() {
     }//GEN-LAST:event_btndepositActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        MainForm main = new MainForm(this.currentUserId);
+        MainForm main = new MainForm(this.currentUserId,iskhmerfont_);
         main.setLocationRelativeTo(null);
         main.setVisible(true);
 

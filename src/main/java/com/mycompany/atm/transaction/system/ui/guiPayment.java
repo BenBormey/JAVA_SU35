@@ -4,27 +4,57 @@
  */
 package com.mycompany.atm.transaction.system.ui;
 
+import com.mycompany.atm.transaction.system.DB.setKhmerFont;
+
 /**
  *
  * @author USER
  */
 public class guiPayment extends javax.swing.JFrame {
-    
+
     private int userid;
     /**
      * Creates new form guiPayment
      */
     public guiPayment() {
-    
-    }
-  
 
-    guiPayment(int currentUserId) {
+    }
+    private  boolean iskh_;
+
+   private  setKhmerFont  font  = new setKhmerFont();
+
+    guiPayment(int currentUserId,boolean iskh) {
          initComponents();
          this.userid = currentUserId;
-       
+         this.iskh_ = iskh;
+         this.font.setFont(this);
+         if(iskh_){
+             getkh();
+
+         }else {
+             geteng();
+         }
+
+
+    }
+    private void getkh() {
+
+        btndeposit.setText("អគ្គិសនី");
+        btndeposit1.setText("ទឹកស្អាត");
+        btndeposit2.setText("បញ្ចូលកាតទូរស័ព្ទ");
+        btndeposit3.setText("ផ្ទេរប្រាក់");
+        btndeposit4.setText("ត្រឡប់ក្រោយ");
     }
 
+    private void geteng() {
+
+        btndeposit.setText("Electricity");
+        btndeposit1.setText("Water");
+        btndeposit2.setText("Phone Top-up");
+        btndeposit3.setText("Transfer");
+        btndeposit4.setText("Back");
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,7 +78,6 @@ public class guiPayment extends javax.swing.JFrame {
 
         lblTitleGetCash.setFont(new java.awt.Font("Dialog", 0, 36)); // NOI18N
         lblTitleGetCash.setForeground(new java.awt.Color(220, 194, 154));
-        lblTitleGetCash.setName(""); // NOI18N
         lblTitleGetCash.setText("Payment");
 
         btndeposit.setBackground(new java.awt.Color(21, 42, 66));
@@ -161,31 +190,31 @@ public class guiPayment extends javax.swing.JFrame {
 
     private void btndepositActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndepositActionPerformed
            guipayelectricity payWaterForm = new guipayelectricity(this.userid);
-           payWaterForm.setVisible(true);      
-           payWaterForm.setLocationRelativeTo(null);       
+           payWaterForm.setVisible(true);
+           payWaterForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_btndepositActionPerformed
 
     private void btndeposit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeposit1ActionPerformed
                guiPayWater payWaterForm = new guiPayWater(this.userid);
-    payWaterForm.setVisible(true);      
+    payWaterForm.setVisible(true);
     payWaterForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_btndeposit1ActionPerformed
 
     private void btndeposit2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeposit2ActionPerformed
-          guipayPhoneTop_up payWaterForm = new guipayPhoneTop_up(this.userid);
-            payWaterForm.setVisible(true);      
-            payWaterForm.setLocationRelativeTo(null); 
+          guipayPhoneTop_up payWaterForm = new guipayPhoneTop_up(this.userid,iskh_);
+            payWaterForm.setVisible(true);
+            payWaterForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_btndeposit2ActionPerformed
 
     private void btndeposit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeposit3ActionPerformed
         // TODO add your handling code here:
          Transfer payWaterForm = new Transfer(this.userid);
-            payWaterForm.setVisible(true);      
-            payWaterForm.setLocationRelativeTo(null); 
+            payWaterForm.setVisible(true);
+            payWaterForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_btndeposit3ActionPerformed
 
     private void btndeposit4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeposit4ActionPerformed
-      MainForm main = new MainForm(this.userid);
+      MainForm main = new MainForm(this.userid,iskh_);
             main.setLocationRelativeTo(null);
             main.setVisible(true);
 
@@ -199,7 +228,7 @@ public class guiPayment extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

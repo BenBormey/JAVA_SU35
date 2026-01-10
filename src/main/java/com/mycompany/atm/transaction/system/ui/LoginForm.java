@@ -107,7 +107,7 @@ public class LoginForm extends JFrame {
         if (!active) {
             JOptionPane.showMessageDialog(
                     this,
-                    "Your account is inactive. Please contact admin.",
+                    "Your account is inactive. Please contact admin. ",
                     "Access denied",
                     JOptionPane.ERROR_MESSAGE
             );
@@ -121,7 +121,7 @@ public class LoginForm extends JFrame {
                 AdminDeshbord admin = new AdminDeshbord(userId, isKh);
                 admin.setVisible(true);
             } else {
-                MainForm main = new MainForm(userId);
+                MainForm main = new MainForm(userId,isKh);
                 main.pack();
                 main.setLocationRelativeTo(null);
                 main.setVisible(true);

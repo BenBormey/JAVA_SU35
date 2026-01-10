@@ -5,6 +5,7 @@
 package com.mycompany.atm.transaction.system.ui;
 
 import javax.swing.JOptionPane;
+import java.awt.*;
 
 /**
  *
@@ -15,16 +16,25 @@ public class frmGetCash extends javax.swing.JFrame {
     /**
      * Creates new form frmGetCash
      */
+    public boolean iskh;
     public frmGetCash() {
   initComponents();
     }  
-    public frmGetCash(int userid) {
+    public frmGetCash(int userid,boolean ihkh) {
           initComponents();
+
+        setKhmerFont(this);
         this.currentId = userid;
+        this.iskh = ihkh;
         setLocationRelativeTo(null);
+        if(iskh) {
+            this.getkh();
+        }else{
+            this.geteng();
+        }
     }
     private int currentId;
-    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -217,7 +227,39 @@ public class frmGetCash extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    private void setKhmerFont(Component c) {
+        try {
+            Font khFont = new Font("Khmer OS Battambang", c.getFont().getStyle(), c.getFont().getSize());
+            c.setFont(khFont);
+        } catch (Exception ignored) {}
 
+        if (c instanceof Container) {
+            for (Component child : ((Container) c).getComponents()) {
+                setKhmerFont(child);
+            }
+        }
+    }
+    private void getkh() {
+        lblTitleGetCash.setText("ដកប្រាក់");
+        jLabel1.setText("ចំនួនទឹកប្រាក់");
+        btn20.setLabel("80,000 ៛");   // Approximate equivalent or fixed KHR value
+        btn40.setLabel("160,000 ៛");
+        btn60.setLabel("240,000 ៛");
+        btn100.setLabel("400,000 ៛");
+        btnGetCash.setLabel("បន្ត");
+        btn62.setLabel("បោះបង់");
+    }
+
+    private void geteng() {
+        lblTitleGetCash.setText("GET CASH");
+        jLabel1.setText("Amount");
+        btn20.setLabel("20 $");
+        btn40.setLabel("40 $");
+        btn60.setLabel("60 $");
+        btn100.setLabel("100 $");
+        btnGetCash.setLabel("Next");
+        btn62.setLabel("Cancel");
+    }
     private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
         txtAmount.setText(String.valueOf(20));
 
@@ -253,7 +295,7 @@ public class frmGetCash extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGetCashActionPerformed
 
     private void btn62ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn62ActionPerformed
-            MainForm main = new MainForm(this.currentId);
+            MainForm main = new MainForm(this.currentId,iskh);
             main.setLocationRelativeTo(null);
             main.setVisible(true);
 

@@ -316,7 +316,7 @@ try {
       + "\nNew Balance: " + String.format("%,.2f %s", newBalance, symbol)
       + "\nTransaction Saved!");
 
-    MainForm main = new MainForm(this.currentUserId);
+    MainForm main = new MainForm(this.currentUserId,iskh);
     main.setLocationRelativeTo(null);
     main.setVisible(true);
     this.dispose();
@@ -343,7 +343,7 @@ try {
     }//GEN-LAST:event_btndepositActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-         MainForm main = new MainForm(this.currentUserId);
+         MainForm main = new MainForm(this.currentUserId,iskh);
             main.setLocationRelativeTo(null);
             main.setVisible(true);
 

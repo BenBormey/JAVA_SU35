@@ -5,7 +5,10 @@
 package com.mycompany.atm.transaction.system.ui;
 
 import com.mycompany.atm.transaction.system.DB.DBHelper;
+import com.mycompany.atm.transaction.system.DB.setKhmerFont;
+
 import javax.swing.JOptionPane;
+import java.awt.*;
 
 /**
  *
@@ -16,18 +19,50 @@ public class MainForm extends javax.swing.JFrame {
     /**
      * Creates new form MainForm
      */
+    private  setKhmerFont font = new setKhmerFont();
     private int currentUserId;
     public MainForm(){
              initComponents();
     }
-  
-    public MainForm(int userId) {
+
+    public boolean iskh;
+    public MainForm(int userId,boolean iskh) {
     initComponents();
+    this.font.setFont(this);
     this.currentUserId = userId;
+    this.iskh = iskh;
     this.loadTotalBalances();
+    if(iskh){
+        getkh();
+    }else{
+        geteng();
+    }
         
   
         
+    }// Function to set UI to Khmer
+
+    private void getkh() {
+
+        lblTotalBalance.setText("សមតុល្យសរុប");
+        btnGetCash.setText("ដកប្រាក់");
+        btndeposit.setText("ដាក់ប្រាក់");
+        btnCard.setText("កាតឥណទាន");
+        btnPayments.setText("ការទូទាត់");
+        btnsetting.setText("ការកំណត់គណនី");
+        btnother.setText("ផ្សេងៗ");
+    }
+
+    // Function to set UI to English
+    private void geteng() {
+
+        lblTotalBalance.setText("Total Balance");
+        btnGetCash.setText("Get Cash");
+        btndeposit.setText("Deposit");
+        btnCard.setText("Credit Card");
+        btnPayments.setText("Payments");
+        btnsetting.setText("Account Settings");
+        btnother.setText("Other");
     }
   private void loadTotalBalances() {
 
@@ -60,12 +95,6 @@ public class MainForm extends javax.swing.JFrame {
      lblbalandkh.setText(String.format("%,.2f ៛", totalKhr));
     lblBalnceus.setText(String.format("%,.2f $", totalUsd));
 }
-
-
-
-   
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -335,7 +364,7 @@ public class MainForm extends javax.swing.JFrame {
                 
                                
 
-    frmGetCash getCash = new frmGetCash(this.currentUserId);
+    frmGetCash getCash = new frmGetCash(this.currentUserId,iskh);
     getCash.setLocationRelativeTo(this); // center relative to main form
     getCash.setVisible(true);
      this.dispose(); 
@@ -346,7 +375,7 @@ public class MainForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-                    guiCreateCard getCash = new guiCreateCard(this.currentUserId);
+                    guiCreateCard getCash = new guiCreateCard(this.currentUserId,iskh);
     getCash.setLocationRelativeTo(this); // center relative to main form
     getCash.setVisible(true);
      this.dispose(); 
@@ -381,8 +410,8 @@ public class MainForm extends javax.swing.JFrame {
     }//GEN-LAST:event_btnhideActionPerformed
 
     private void btnPaymentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaymentsActionPerformed
-           // TODO add your handling code here:  
-    guiPayment getCash = new guiPayment(this.currentUserId);
+
+    guiPayment getCash = new guiPayment(this.currentUserId,iskh);
     getCash.setLocationRelativeTo(this); 
     getCash.setVisible(true);
      this.dispose(); 
