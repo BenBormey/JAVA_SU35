@@ -299,6 +299,8 @@ String sqlHistory = """
 java.sql.Connection con = null;
 java.sql.Statement stmt = null;
 
+JOptionPane.showMessageDialog(this,"nonododdkdfkdfkkdfhjjkdf");
+
 try {
     con = com.mycompany.atm.transaction.system.DB.dbcontextion.getConnection();
     con.setAutoCommit(false);

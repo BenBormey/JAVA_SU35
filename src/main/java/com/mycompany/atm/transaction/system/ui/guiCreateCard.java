@@ -91,19 +91,45 @@ public class guiCreateCard extends JFrame {
 
 
     // ---------- SAVE CARD ----------
-    private void saveCard(){
-
+    private void saveCard() {
         try {
+
+            if (cbAccount.getSelectedItem() == null) {
+                JOptionPane.showMessageDialog(this, "Please select an account");
+                return;
+            }
+
+            if (txtExpiry.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Expiry date is required (YYYY-MM-DD)");
+                return;
+            }
 
             String acc = cbAccount.getSelectedItem().toString();
             long accountId = Long.parseLong(acc.split(" - ")[0]);
 
+            Date expiry;
+            try {
+                expiry = Date.valueOf(txtExpiry.getText());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Invalid date format! Use YYYY-MM-DD");
+                return;
+            }
+
+            BigDecimal limit, debt;
+            try {
+                limit = new BigDecimal(txtLimit.getText());
+                debt = new BigDecimal(txtDebt.getText());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "Limit and Debt must be numbers!");
+                return;
+            }
+
             String sql = """
-                INSERT INTO card
-                (card_number, account_id, card_type, pin_code, expiry_date,
-                 cvv, credit_limit, current_debt, status, created_at)
-                VALUES (?,?,?,?,?,?,?,?,?, NOW())
-            """;
+            INSERT INTO card
+            (card_number, account_id, card_type, pin_code, expiry_date,
+             cvv, credit_limit, current_debt, status, created_at)
+            VALUES (?,?,?,?,?,?,?,?,?, NOW())
+        """;
 
             int row = DBHelper.execute(
                     sql,
@@ -111,25 +137,26 @@ public class guiCreateCard extends JFrame {
                     accountId,
                     cbType.getSelectedItem().toString(),
                     txtPin.getText(),
-                    Date.valueOf(txtExpiry.getText()),
+                    expiry,
                     txtCVV.getText(),
-                    new BigDecimal(txtLimit.getText()),
-                    new BigDecimal(txtDebt.getText()),
+                    limit,
+                    debt,
                     cbStatus.getSelectedItem().toString()
             );
 
-            if(row > 0){
-                JOptionPane.showMessageDialog(this,"🎉 Card Created Successfully!");
+            if (row > 0) {
+                JOptionPane.showMessageDialog(this, "🎉 Card Created Successfully!");
                 dispose();
             } else {
-                JOptionPane.showMessageDialog(this,"❌ Failed to create card");
+                JOptionPane.showMessageDialog(this, "❌ Failed to create card");
             }
 
-        } catch (Exception e){
-            JOptionPane.showMessageDialog(this,"ERROR: " + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "ERROR: " + e.toString());
             e.printStackTrace();
         }
     }
+
 
     private void addRow(JPanel p, String label, JComponent c){
         p.add(new JLabel(label));

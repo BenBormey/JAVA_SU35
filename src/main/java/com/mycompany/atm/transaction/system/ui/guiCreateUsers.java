@@ -27,14 +27,14 @@ private Integer editingUserId = null;
         initComponents();
          this.loudingrole();
          loadingUser();
-         
+
          jTable1.getTableHeader().setFont(
     new java.awt.Font("Khmer OS Battambang", java.awt.Font.PLAIN, 16)
 );
 jTable1.getTableHeader().repaint();
       addButtonToTable();
 
-      
+
          this.userid = userid;
          this.iskher_ = iskhe_;
               setKhmerFont(this);
@@ -44,13 +44,13 @@ jTable1.getTableHeader().repaint();
                         setKh();
 
                         } else {
-                            iskher_ = true;  
+                            iskher_ = true;
                             setEng();
                         }
-         
+
 
     }
-    
+
      private void setKhmerFont(java.awt.Component component) {
     java.awt.Font current = component.getFont();
     java.awt.Font khFont = new java.awt.Font("Khmer OS Battambang", current.getStyle(), current.getSize());
@@ -61,7 +61,7 @@ jTable1.getTableHeader().repaint();
             setKhmerFont(child);
         }
     }
-    
+
     }
      private void addButtonToTable() {
 
@@ -223,6 +223,7 @@ class ButtonEditor extends javax.swing.DefaultCellEditor {
         jTable1 = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        btnAdd1 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -316,6 +317,14 @@ class ButtonEditor extends javax.swing.DefaultCellEditor {
         btnCancel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCancel.setText("CanCel");
 
+        btnAdd1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnAdd1.setText("Add");
+        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -341,7 +350,10 @@ class ButtonEditor extends javax.swing.DefaultCellEditor {
                                     .addComponent(lblUserName4))
                                 .addGap(32, 32, 32)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(choRole, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(choRole, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnAdd1))
                                     .addComponent(txtComfirmps, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(chkActive))))
                         .addGap(62, 62, 62))))
@@ -371,7 +383,8 @@ class ButtonEditor extends javax.swing.DefaultCellEditor {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUserName3)
-                    .addComponent(choRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(choRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblUserName4)
@@ -423,7 +436,25 @@ class ButtonEditor extends javax.swing.DefaultCellEditor {
     clearForm();
     loadingUser();
     }//GEN-LAST:event_btnAddActionPerformed
-   
+
+    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+        // TODO add your handling code here:
+
+        guiRole role = new guiRole();
+role.setVisible(true);
+
+//        getCash.setLocationRelativeTo(this); // center relative to main form
+//    getCash.setVisible(true);
+//     this.dispose();
+
+    role.setLocationRelativeTo(this);
+    role.setVisible(true);
+
+
+
+
+    }//GEN-LAST:event_btnAdd1ActionPerformed
+
     private void updateUser() {
 
     String sql = """
@@ -450,10 +481,10 @@ class ButtonEditor extends javax.swing.DefaultCellEditor {
 
     String userName = txtUsername.getText().trim();
     String password = txtPassword.getText();//new String(txtPassword.getPassword());
-    
+
     String confirm  = txtComfirmps.getText();
 
-    
+
     if (userName.isEmpty()) {
         JOptionPane.showMessageDialog(
             this,
@@ -465,7 +496,7 @@ class ButtonEditor extends javax.swing.DefaultCellEditor {
         return false;
     }
 
-  
+
     if (password.isEmpty()) {
         JOptionPane.showMessageDialog(
             this,
@@ -500,7 +531,7 @@ class ButtonEditor extends javax.swing.DefaultCellEditor {
         return false;
     }
 
- 
+
     if (choRole.getSelectedIndex() == -1) {
         JOptionPane.showMessageDialog(
             this,
@@ -512,7 +543,7 @@ class ButtonEditor extends javax.swing.DefaultCellEditor {
         return false;
     }
 
-    return true; 
+    return true;
 }
 private void clearForm() {
     txtUsername.setText("");
@@ -532,7 +563,7 @@ private void loadingUser(){
         JOIN public.roles r ON u.role_id = r.role_id
         ORDER BY u.userid
     """;
-        
+
        ArrayList<HashMap<String, Object>> rows = DBHelper.getValues(sql);
            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     model.setRowCount(0); // clear old data
@@ -568,8 +599,8 @@ private boolean insertUser() {
 int roleId = roleMap.get(roleName); // ✅ correct ID
 
     boolean active = chkActive.isSelected();
-    
-    
+
+
 
     String sql = """
         INSERT INTO users (username, password, role_id, active)
@@ -668,6 +699,7 @@ public void setKh() {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnCancel;
     private javax.swing.JCheckBox chkActive;
     private javax.swing.JComboBox<String> choRole;
