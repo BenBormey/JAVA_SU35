@@ -90,6 +90,9 @@ private void setKhmerFont(java.awt.Component component) {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         panel2 = new java.awt.Panel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
@@ -106,6 +109,23 @@ private void setKhmerFont(java.awt.Component component) {
         lblLang = new javax.swing.JLabel();
         btnlogout1 = new javax.swing.JButton();
         jPanelMain = new javax.swing.JPanel();
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem1);
+        jMenuItem1.getAccessibleContext().setAccessibleName("Suspicious");
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -152,6 +172,7 @@ private void setKhmerFont(java.awt.Component component) {
 
         btnReport.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnReport.setText(" Report");
+        btnReport.setComponentPopupMenu(jPopupMenu1);
         btnReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReportActionPerformed(evt);
@@ -335,15 +356,25 @@ private void setKhmerFont(java.awt.Component component) {
     }//GEN-LAST:event_btnTransationActionPerformed
 
     private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-        // TODO add your handling code here:​​​ guitrasation
-           try{
-               Report desh = new Report();
-            showPanel(desh);
-        }catch(Exception ex)
-         {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
-         }
+//        // TODO add your handling code here:​​​ guitrasation
+//           try{
+//               Report desh = new Report();
+//            showPanel(desh);
+//        }catch(Exception ex)
+//         {
+//                ex.printStackTrace();
+//                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+//         }
+try {
+       
+        jPopupMenu1.show(btnReport, 0, btnReport.getHeight());
+
+  
+        
+    } catch(Exception ex) {
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+    }
     }//GEN-LAST:event_btnReportActionPerformed
 
     private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
@@ -427,6 +458,28 @@ if (choice == JOptionPane.YES_OPTION) {
 
     }//GEN-LAST:event_btnlogoutActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        guiSuspicious gui = new guiSuspicious();
+    
+    // ២. កំណត់ឱ្យវាបង្ហាញឡើង (Visible)
+    gui.setVisible(true);
+    
+    // ៣. កំណត់ឱ្យ Window លោតមកចំកណ្ដាលអេក្រង់ (Optional)
+    gui.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+          guiReportDaily gui = new guiReportDaily();
+    
+    // ២. កំណត់ឱ្យវាបង្ហាញឡើង (Visible)
+    gui.setVisible(true);
+    
+    // ៣. កំណត់ឱ្យ Window លោតមកចំកណ្ដាលអេក្រង់ (Optional)
+    gui.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -460,8 +513,11 @@ if (choice == JOptionPane.YES_OPTION) {
     private javax.swing.JButton btnlogout1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelMain;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel lblLang;
