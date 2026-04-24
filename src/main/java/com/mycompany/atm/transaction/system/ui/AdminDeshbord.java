@@ -5,7 +5,6 @@
 package com.mycompany.atm.transaction.system.ui;
 
 import java.awt.BorderLayout;
-import java.util.concurrent.ExecutionException;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -93,6 +92,14 @@ private void setKhmerFont(java.awt.Component component) {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         panel2 = new java.awt.Panel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
@@ -110,22 +117,86 @@ private void setKhmerFont(java.awt.Component component) {
         btnlogout1 = new javax.swing.JButton();
         jPanelMain = new javax.swing.JPanel();
 
-        jMenuItem1.setText("jMenuItem1");
+        jMenuItem1.setText("Suspicious");
+        jMenuItem1.setToolTipText("Suspicious");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
             }
         });
         jPopupMenu1.add(jMenuItem1);
-        jMenuItem1.getAccessibleContext().setAccessibleName("Suspicious");
 
-        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.setText("Daily Transation ");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
             }
         });
         jPopupMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("ReportByAccout");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("HigtTransation");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem4);
+
+        jMenuItem5.setText("CashFlowForm");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem5);
+
+        jMenuItem6.setText("PeakHourAnalysis");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem6);
+
+        jMenuItem7.setText("guiMobile_topup");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem7);
+
+        jMenuItem8.setText("CashFlowForm");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem8);
+
+        jMenuItem9.setText("CardList");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem9);
+
+        jMenuItem10.setText("ListAdmin");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(jMenuItem10);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -462,23 +533,103 @@ if (choice == JOptionPane.YES_OPTION) {
         // TODO add your handling code here:
         guiSuspicious gui = new guiSuspicious();
     
-    // ២. កំណត់ឱ្យវាបង្ហាញឡើង (Visible)
-    gui.setVisible(true);
-    
-    // ៣. កំណត់ឱ្យ Window លោតមកចំកណ្ដាលអេក្រង់ (Optional)
-    gui.setLocationRelativeTo(null);
+       gui.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+             gui.setLocationRelativeTo(null);
+             gui.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
           guiReportDaily gui = new guiReportDaily();
     
-    // ២. កំណត់ឱ្យវាបង្ហាញឡើង (Visible)
-    gui.setVisible(true);
-    
-    // ៣. កំណត់ឱ្យ Window លោតមកចំកណ្ដាលអេក្រង់ (Optional)
-    gui.setLocationRelativeTo(null);
+         gui.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+             gui.setLocationRelativeTo(null);
+             gui.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:guiHigtTransation
+                  guiHigtTransation gui = new guiHigtTransation();
+           gui.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+             gui.setLocationRelativeTo(null);
+             gui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        
+            guiReportByAccout gui = new guiReportByAccout();
+           gui.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+             gui.setLocationRelativeTo(null);
+             gui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:CashFlowForm
+          CashFlowForm gui = new CashFlowForm();
+           gui.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+             gui.setLocationRelativeTo(null);
+             gui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+          PeakHourAnalysis gui = new PeakHourAnalysis();
+       gui.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+             gui.setLocationRelativeTo(null);
+             gui.setVisible(true);
+    
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:guiMobile_topup
+           guiMobile_topup gui = new guiMobile_topup();
+
+                 gui.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+             gui.setLocationRelativeTo(null);
+             gui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+            CashFlowForm gui = new CashFlowForm();
+
+             // កំណត់ឱ្យបិទតែ Window មួយនេះ មិនមែនបិទ Project ទាំងមូលទេ
+             gui.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+             gui.setLocationRelativeTo(null);
+             gui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        // TODO add your handling code here:rptCardList
+        
+                rptCardList gui = new rptCardList();
+
+             // កំណត់ឱ្យបិទតែ Window មួយនេះ មិនមែនបិទ Project ទាំងមូលទេ
+             gui.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+             gui.setLocationRelativeTo(null);
+             gui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:rptListAdmin
+        
+             rptListAdmin gui = new rptListAdmin();
+
+             // កំណត់ឱ្យបិទតែ Window មួយនេះ មិនមែនបិទ Project ទាំងមូលទេ
+             gui.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+             gui.setLocationRelativeTo(null);
+             gui.setVisible(true);
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -514,7 +665,15 @@ if (choice == JOptionPane.YES_OPTION) {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelMain;
     private javax.swing.JPopupMenu jPopupMenu1;

@@ -15,12 +15,12 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author HQ
  */
-public class CashFlowForm extends javax.swing.JFrame {
+public class rptListAdmin extends javax.swing.JFrame {
 
     /**
-     * Creates new form CashFlowForm
+     * Creates new form rptListAdmin
      */
-    public CashFlowForm() {
+    public rptListAdmin() {
         initComponents();
     }
 
@@ -33,26 +33,12 @@ public class CashFlowForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnPriview = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
+        btnPriview = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btnPriview.setText("Priview");
-        btnPriview.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPriviewActionPerformed(evt);
-            }
-        });
-
-        btnCancel.setText("Cancel");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(255, 255, 255))); // NOI18N
 
@@ -76,6 +62,20 @@ public class CashFlowForm extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
+        btnPriview.setText("Priview");
+        btnPriview.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPriviewActionPerformed(evt);
+            }
+        });
+
+        btnCancel.setText("Cancel");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -96,7 +96,7 @@ public class CashFlowForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPriview)
                     .addComponent(btnCancel))
-                .addGap(0, 296, Short.MAX_VALUE))
+                .addGap(0, 120, Short.MAX_VALUE))
         );
 
         pack();
@@ -109,14 +109,14 @@ public class CashFlowForm extends javax.swing.JFrame {
 
             java.util.HashMap<String, Object> params = new java.util.HashMap<>();
 
-//            if (pickerFrom.getDate() == null || pickerTo.getDate() == null) {
-//                javax.swing.JOptionPane.showMessageDialog(this, "សូមជ្រើសរើសថ្ងៃខែឱ្យបានត្រឹមត្រូវ!");
-//                return;
-//            }
+            //            if (pickerFrom.getDate() == null || pickerTo.getDate() == null) {
+                //                javax.swing.JOptionPane.showMessageDialog(this, "សូមជ្រើសរើសថ្ងៃខែឱ្យបានត្រឹមត្រូវ!");
+                //                return;
+                //            }
 
-//            params.put("StartDate", new java.sql.Date(pickerFrom.getDate().getTime()));
-//            params.put("EndDate", new java.sql.Date(pickerTo.getDate().getTime()));
-            InputStream jrxml = getClass().getResourceAsStream("/InflowtoOutflowRatio.jrxml");
+            //            params.put("StartDate", new java.sql.Date(pickerFrom.getDate().getTime()));
+            //            params.put("EndDate", new java.sql.Date(pickerTo.getDate().getTime()));
+            InputStream jrxml = getClass().getResourceAsStream("/ListAdin.jrxml");
 
             if (jrxml == null) {
                 javax.swing.JOptionPane.showMessageDialog(this, "រកមិនឃើញឯកសារ TopTransactionsReport.jrxml ក្នុង Resources ឡើយ!");
@@ -157,20 +157,20 @@ public class CashFlowForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CashFlowForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rptListAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CashFlowForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rptListAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CashFlowForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rptListAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CashFlowForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(rptListAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CashFlowForm().setVisible(true);
+                new rptListAdmin().setVisible(true);
             }
         });
     }
